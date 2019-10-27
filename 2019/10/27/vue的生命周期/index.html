@@ -50,28 +50,32 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="嘿！~是小爬">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;index.html">
+  <meta name="description" content="1. 什么是组件的生命周期:  每个组件在加载过程中所经历的阶段  2. 为什么使用组件的生命周期:  我们经常需要在组件加载过程中自动执行一项操作，比如: 希望组件加载完，自动发送ajax请求获取数据但是在单页面中，因为只有一个index.html页面在首次加载，之后更换”页面”, index.html是不换的，且DOM树也不需要整棵更新，所以DOMContentLoaded和window.o">
+<meta name="keywords" content="vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue的生命周期">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;27&#x2F;vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F&#x2F;index.html">
 <meta property="og:site_name" content="嘿！~是小爬">
+<meta property="og:description" content="1. 什么是组件的生命周期:  每个组件在加载过程中所经历的阶段  2. 为什么使用组件的生命周期:  我们经常需要在组件加载过程中自动执行一项操作，比如: 希望组件加载完，自动发送ajax请求获取数据但是在单页面中，因为只有一个index.html页面在首次加载，之后更换”页面”, index.html是不换的，且DOM树也不需要整棵更新，所以DOMContentLoaded和window.o">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-27T14:36:16.352Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/">
+<link rel="canonical" href="http://yoursite.com/2019/10/27/vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false,
+    isHome: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>嘿！~是小爬</title>
+  <title>vue的生命周期 | 嘿！~是小爬</title>
   
 
 
@@ -169,10 +173,10 @@
             
 
   <div class="posts-expand">
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/27/vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -186,8 +190,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/27/vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" class="post-title-link" itemprop="url">vue的生命周期</a>
+          vue的生命周期
         </h1>
 
         <div class="post-meta">
@@ -212,7 +215,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <ul>
+        <ul>
 <li><h3 id="1-什么是组件的生命周期"><a href="#1-什么是组件的生命周期" class="headerlink" title="1. 什么是组件的生命周期:"></a>1. 什么是组件的生命周期:</h3><p>  每个组件在加载过程中所经历的阶段</p>
 </li>
 <li><h3 id="2-为什么使用组件的生命周期"><a href="#2-为什么使用组件的生命周期" class="headerlink" title="2. 为什么使用组件的生命周期:"></a>2. 为什么使用组件的生命周期:</h3><p>  我们经常需要在组件加载过程中自动执行一项操作，比如: 希望组件加载完，自动发送ajax请求获取数据<br>但是在单页面中，因为只有一个index.html页面在首次加载，之后更换”页面”, index.html是不换的，且DOM树也不需要整棵更新，所以DOMContentLoaded和window.onload都不能用，都不会反复触发！   </p>
@@ -227,94 +230,65 @@
 </li>
 </ul>
 
-      
     </div>
 
     
     
     
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="cheney wechat" style="width: 200px; max-width: 100%;">
+  <div>是范范范小爬的微信公众号</div>
+</div>
+
+      
+        <div class="reward-container">
+  <div>喜欢就给我点鼓励吧😄</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="cheney 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="cheney 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/vue/" rel="tag"># vue</a>
+          </div>
 
         
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/27/hello-world/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/1.jpg">
-      <meta itemprop="name" content="cheney">
-      <meta itemprop="description" content="">
-    </span>
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/10/27/hello-world/" rel="next" title="Hello World">
+                  <i class="fa fa-chevron-left"></i> Hello World
+                </a>
+            </div>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="嘿！~是小爬">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/27/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h1>
+            <span class="post-nav-divider"></span>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-27 11:59:00" itemprop="dateCreated datePublished" datetime="2019-10-27T11:59:00+08:00">2019-10-27</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
       </footer>
+    
   </article>
   
   
   
 
   </div>
-
-  
-
 
 
           </div>
@@ -343,6 +317,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-什么是组件的生命周期"><span class="nav-number">1.</span> <span class="nav-text">1. 什么是组件的生命周期:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-为什么使用组件的生命周期"><span class="nav-number">2.</span> <span class="nav-text">2. 为什么使用组件的生命周期:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-何时使用？"><span class="nav-number">3.</span> <span class="nav-text">3.何时使用？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-包括以下几个阶段？"><span class="nav-number">4.</span> <span class="nav-text">4.包括以下几个阶段？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-钩子函数"><span class="nav-number">5.</span> <span class="nav-text">5.钩子函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-如何使用钩子函数："><span class="nav-number">6.</span> <span class="nav-text">6. 如何使用钩子函数：</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
