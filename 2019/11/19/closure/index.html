@@ -50,14 +50,18 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="嘿！~是小爬">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;tags&#x2F;vue&#x2F;index.html">
+  <meta name="description" content="closure 闭包在JS中，变量的作用域属于函数作用域，在函数执行后作用域就会被清理、内存也随之回收，但是由于闭包是建立在一个函数内部的子函数，由于其可访问上级作用域的原因，即使上级函数执行完，作用域也不会随之销毁，这时的子函数——也就是闭包，便拥有了访问上级作用域中的变量的权限，即使上级函数执行完后作用域内的值也不会被销毁。 从以下几句话中来明确概念： 变量作用域：全局变量 在 全局范围内可用">
+<meta name="keywords" content="js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="closure">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;19&#x2F;closure&#x2F;index.html">
 <meta property="og:site_name" content="嘿！~是小爬">
+<meta property="og:description" content="closure 闭包在JS中，变量的作用域属于函数作用域，在函数执行后作用域就会被清理、内存也随之回收，但是由于闭包是建立在一个函数内部的子函数，由于其可访问上级作用域的原因，即使上级函数执行完，作用域也不会随之销毁，这时的子函数——也就是闭包，便拥有了访问上级作用域中的变量的权限，即使上级函数执行完后作用域内的值也不会被销毁。 从以下几句话中来明确概念： 变量作用域：全局变量 在 全局范围内可用">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-19T09:43:05.581Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/tags/vue/">
+<link rel="canonical" href="http://yoursite.com/2019/11/19/closure/">
 
 
 <script id="page-configurations">
@@ -65,13 +69,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>标签: vue | 嘿！~是小爬</title>
+  <title>closure | 嘿！~是小爬</title>
   
 
 
@@ -168,70 +172,114 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h1 class="collection-header">vue
-          <small>标签</small>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/19/closure/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/1.jpg">
+      <meta itemprop="name" content="cheney">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="嘿！~是小爬">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          closure
         </h1>
-      </div>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-11-19 17:42:47 / 修改时间：17:43:05" itemprop="dateCreated datePublished" datetime="2019-11-19T17:42:47+08:00">2019-11-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2019</h1>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-10T21:51:45+08:00"
-              content="2019-11-10">
-          11-10
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/10/vue%E4%B8%AD%E7%9A%84%E7%BB%91%E5%AE%9A%E8%AF%AD%E6%B3%95/" itemprop="url">
-            <span itemprop="name">vue中的绑定语法</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-10-27T21:48:51+08:00"
-              content="2019-10-27">
-          10-27
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/10/27/vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" itemprop="url">
-            <span itemprop="name">vue的生命周期</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
+        <h3 id="closure-闭包"><a href="#closure-闭包" class="headerlink" title="closure 闭包"></a>closure 闭包</h3><p>在JS中，变量的作用域属于函数作用域，在函数执行后作用域就会被清理、内存也随之回收，但是由于闭包是建立在一个函数内部的子函数，由于其可访问上级作用域的原因，即使上级函数执行完，作用域也不会随之销毁，这时的子函数——也就是闭包，便拥有了访问上级作用域中的变量的权限，即使上级函数执行完后作用域内的值也不会被销毁。</p>
+<p>从以下几句话中来明确概念：</p>
+<h4 id="变量作用域："><a href="#变量作用域：" class="headerlink" title="变量作用域："></a>变量作用域：</h4><p>全局变量 在 全局范围内可用，存在于全局作用域中，在js任何代码中可见<br>局部变量 只 存在 函数体内，在局部作用域中使用<br>函数作用域 在函数体内的所有变量可以使用</p>
+<h3 id="作用域链："><a href="#作用域链：" class="headerlink" title="作用域链："></a>作用域链：</h3><p>定义一个函数时， 会保存一个作用域链；<br>对于嵌套函数来说，每内调用一次外部函数，都会创建一个新的作用域链；<br>每次外部函数的调用，内部的代码相同，但其作用域链不同</p>
+<h3 id="js垃圾回收机制："><a href="#js垃圾回收机制：" class="headerlink" title="js垃圾回收机制："></a>js垃圾回收机制：</h3><p>js具有自动垃圾回收机制，会定期把不再使用的变量销毁，释放其占用的内存；<br>(只会销毁局部变量，全局变量的生命周期只有在页面或浏览器关闭时才会结束)</p>
 
     </div>
+
+    
+    
+    
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="cheney wechat" style="width: 200px; max-width: 100%;">
+  <div>是范范范小爬的微信公众号</div>
+</div>
+
+      
+        <div class="reward-container">
+  <div>喜欢就给我点鼓励吧😄</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="cheney 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="cheney 支付宝">
+        <p>支付宝</p>
+      </div>
+
   </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/js/" rel="tag"># js</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/19/%E4%BA%8B%E4%BB%B6%E9%98%9F%E5%88%97/" rel="next" title="事件队列">
+                  <i class="fa fa-chevron-left"></i> 事件队列
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
   
   
   
 
-  
-
+  </div>
 
 
           </div>
@@ -260,6 +308,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#closure-闭包"><span class="nav-number">1.</span> <span class="nav-text">closure 闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#变量作用域："><span class="nav-number">1.1.</span> <span class="nav-text">变量作用域：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作用域链："><span class="nav-number">2.</span> <span class="nav-text">作用域链：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#js垃圾回收机制："><span class="nav-number">3.</span> <span class="nav-text">js垃圾回收机制：</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
