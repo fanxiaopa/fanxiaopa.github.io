@@ -50,18 +50,18 @@
   };
 </script>
 
-  <meta name="description" content="closure 闭包在JS中，变量的作用域属于函数作用域，在函数执行后作用域就会被清理、内存也随之回收，但是由于闭包是建立在一个函数内部的子函数，由于其可访问上级作用域的原因，即使上级函数执行完，作用域也不会随之销毁，这时的子函数——也就是闭包，便拥有了访问上级作用域中的变量的权限，即使上级函数执行完后作用域内的值也不会被销毁。 从以下几句话中来明确概念： 变量作用域：全局变量 在 全局范围内可用">
-<meta name="keywords" content="js">
+  <meta name="description" content="Web端即时通讯技术&amp;amp;emsp即时通讯技术简单的说就是实现这样一种功能：服务器端可以即时地将数据的更新或变化反应到客户端，例如消息即时推送等功能都是通过这种技术实现的。 　　但是在Web中，由于浏览器的限制，实现即时通讯需要借助一些方法。这种限制出现的主要原因是，一般的Web通信都是浏览器先发送请求到服务器，服务器再进行响应完成数据的现实更新。 实现Web端即时通讯的方法 &amp;amp;nbs">
+<meta name="keywords" content="web通信">
 <meta property="og:type" content="article">
-<meta property="og:title" content="closure">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;19&#x2F;closure&#x2F;index.html">
+<meta property="og:title" content="web实时通信">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;21&#x2F;web%E5%AE%9E%E6%97%B6%E9%80%9A%E4%BF%A1&#x2F;index.html">
 <meta property="og:site_name" content="嘿！~是小爬">
-<meta property="og:description" content="closure 闭包在JS中，变量的作用域属于函数作用域，在函数执行后作用域就会被清理、内存也随之回收，但是由于闭包是建立在一个函数内部的子函数，由于其可访问上级作用域的原因，即使上级函数执行完，作用域也不会随之销毁，这时的子函数——也就是闭包，便拥有了访问上级作用域中的变量的权限，即使上级函数执行完后作用域内的值也不会被销毁。 从以下几句话中来明确概念： 变量作用域：全局变量 在 全局范围内可用">
+<meta property="og:description" content="Web端即时通讯技术&amp;amp;emsp即时通讯技术简单的说就是实现这样一种功能：服务器端可以即时地将数据的更新或变化反应到客户端，例如消息即时推送等功能都是通过这种技术实现的。 　　但是在Web中，由于浏览器的限制，实现即时通讯需要借助一些方法。这种限制出现的主要原因是，一般的Web通信都是浏览器先发送请求到服务器，服务器再进行响应完成数据的现实更新。 实现Web端即时通讯的方法 &amp;amp;nbs">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-21T09:27:33.334Z">
+<meta property="og:updated_time" content="2019-11-21T12:17:19.102Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2019/11/19/closure/">
+<link rel="canonical" href="http://yoursite.com/2019/11/21/web%E5%AE%9E%E6%97%B6%E9%80%9A%E4%BF%A1/">
 
 
 <script id="page-configurations">
@@ -75,7 +75,7 @@
   };
 </script>
 
-  <title>closure | 嘿！~是小爬</title>
+  <title>web实时通信 | 嘿！~是小爬</title>
   
 
 
@@ -177,7 +177,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/19/closure/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/21/web%E5%AE%9E%E6%97%B6%E9%80%9A%E4%BF%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/1.jpg">
@@ -190,7 +190,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          closure
+          web实时通信
         </h1>
 
         <div class="post-meta">
@@ -199,16 +199,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2019-11-19 17:42:47" itemprop="dateCreated datePublished" datetime="2019-11-19T17:42:47+08:00">2019-11-19</time>
+              <time title="创建时间：2019-11-21 20:16:31 / 修改时间：20:17:19" itemprop="dateCreated datePublished" datetime="2019-11-21T20:16:31+08:00">2019-11-21</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-21 17:27:33" itemprop="dateModified" datetime="2019-11-21T17:27:33+08:00">2019-11-21</time>
-              </span>
 
           
 
@@ -221,11 +215,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="closure-闭包"><a href="#closure-闭包" class="headerlink" title="closure 闭包"></a>closure 闭包</h3><p>在JS中，变量的作用域属于函数作用域，在函数执行后作用域就会被清理、内存也随之回收，但是由于闭包是建立在一个函数内部的子函数，由于其可访问上级作用域的原因，即使上级函数执行完，作用域也不会随之销毁，这时的子函数——也就是闭包，便拥有了访问上级作用域中的变量的权限，即使上级函数执行完后作用域内的值也不会被销毁。</p>
-<p>从以下几句话中来明确概念：</p>
-<h4 id="变量作用域："><a href="#变量作用域：" class="headerlink" title="变量作用域："></a>变量作用域：</h4><p>全局变量 在 全局范围内可用，存在于全局作用域中，在js任何代码中可见<br>局部变量 只 存在 函数体内，在局部作用域中使用<br>函数作用域 在函数体内的所有变量可以使用</p>
-<h3 id="作用域链："><a href="#作用域链：" class="headerlink" title="作用域链："></a>作用域链：</h3><p>定义一个函数时， 会保存一个作用域链；<br>对于嵌套函数来说，每内调用一次外部函数，都会创建一个新的作用域链；<br>每次外部函数的调用，内部的代码相同，但其作用域链不同</p>
-<h3 id="js垃圾回收机制："><a href="#js垃圾回收机制：" class="headerlink" title="js垃圾回收机制："></a>js垃圾回收机制：</h3><p>js具有自动垃圾回收机制，会定期把不再使用的变量销毁，释放其占用的内存；<br>(只会销毁局部变量，全局变量的生命周期只有在页面或浏览器关闭时才会结束)</p>
+        <h3 id="Web端即时通讯技术"><a href="#Web端即时通讯技术" class="headerlink" title="Web端即时通讯技术"></a>Web端即时通讯技术</h3><p>&amp;emsp即时通讯技术简单的说就是实现这样一种功能：服务器端可以即时地将数据的更新或变化反应到客户端，例如消<br>息即时推送等功能都是通过这种技术实现的。</p>
+<p>　　但是在Web中，由于浏览器的限制，实现即时通讯需要借助一些方法。这种限制出现的主要原因是，一般的Web通信都是浏览器先发送请求到服务器，服务器再进行响应完成数据的现实更新。</p>
+<h3 id="实现Web端即时通讯的方法"><a href="#实现Web端即时通讯的方法" class="headerlink" title="实现Web端即时通讯的方法"></a>实现Web端即时通讯的方法</h3><p> &amp;nbsp它们大体可以分为两类，一种是在HTTP基础上实现的，包括短轮询、长轮询(comet)和SSE；</p>
+<p> &amp;nbsp另一种不是在HTTP基础上实现是，即WebSocket。</p>
+<h4 id="1-短轮询"><a href="#1-短轮询" class="headerlink" title="1.短轮询"></a>1.短轮询</h4><p>短轮询的基本思路就是浏览器每隔一段时间向浏览器发送http请求，服务器端在收到请求后，不论是否有数据更新，都直接进行响应。这种方式实现的即时通信，本质上还是浏览器发送请求，服务器接受请求的一个过程，通过让客户端不断的进行请求，使得客户端能够模拟实时地收到服务器端的数据的变化。</p>
+<p>这种方式的优点是比较简单，易于理解，实现起来也没有什么技术难点。缺点是显而易见的，这种方式由于需要不断的建立http连接，严重浪费了服务器端和客户端的资源。尤其是在客户端，距离来说，如果有数量级想对比较大的人同时位于基于短轮询的应用中，那么每一个用户的客户端都会疯狂的向服务器端发送http请求，而且不会间断。人数越多，服务器端压力越大，这是很不合理的。</p>
+<p>因此短轮询不适用于那些同时在线用户数量比较大，并且很注重性能的Web应用。</p>
+<h4 id="2-长轮询-comet"><a href="#2-长轮询-comet" class="headerlink" title="2.长轮询(comet)"></a>2.长轮询(comet)</h4><p>comet指的是，当服务器收到客户端发来的请求后，不会直接进行响应，而是先将这个请求挂起，然后判断服务器端数据是否有更新。如果有更新，则进行响应，如果一直没有数据，则到达一定的时间限制(服务器端设置)后关闭连接。</p>
+<p>长轮询和短轮询比起来，明显减少了很多不必要的http请求次数，相比之下节约了资源。长轮询的缺点在于，连接挂起也会导致资源的浪费。</p>
+<h4 id="3-SSE"><a href="#3-SSE" class="headerlink" title="3.SSE"></a>3.SSE</h4><p>SSE是HTML5新增的功能，全称为Server-SentEvents。它可以允许服务推送数据到客户端。SSE在本质上就与之前的长轮询、短轮询不同，虽然都是基于http协议的，但是轮询需要客户端先发送请求。</p>
+<p>而SSE最大的特点就是不需要客户端发送请求，可以实现只要服务器端数据有更新，就可以马上发送到客户端。</p>
+<p>SSE的优势很明显，它不需要建立或保持大量的客户端发往服务器端的请求，节约了很多资源，提升应用性能。</p>
+<h4 id="4-WebSocket"><a href="#4-WebSocket" class="headerlink" title="4.WebSocket"></a>4.WebSocket</h4><p>WebSocket是HTML5定义的一个新协议，与传统的http协议不同，该协议可以实现服务器与客户端之间全双工通信。</p>
+<p>简单来说，首先需要在客户端和服务器端建立起一个连接，这部分需要http。连接一旦建立，客户端和服务器端就处于平等的地位，可以相互发送数据，不存在请求和响应的区别。</p>
+<p>WebSocket的优点是实现了双向通信，缺点是服务器端的逻辑非常复杂。现在针对不同的后台语言有不同的插件可以使用。</p>
+<h3 id="4四种Web即时通信技术比较"><a href="#4四种Web即时通信技术比较" class="headerlink" title="4四种Web即时通信技术比较"></a>4四种Web即时通信技术比较</h3><p>从兼容性角度考虑，短轮询&gt;长轮询&gt;长连接SSE&gt;WebSocket</p>
+<p>从性能方面考虑，WebSocket&gt;长连接SSE&gt;长轮询&gt;短轮询</p>
 
     </div>
 
@@ -261,24 +267,21 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/js/" rel="tag"># js</a>
+              <a href="/tags/web%E9%80%9A%E4%BF%A1/" rel="tag"># web通信</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/11/19/%E4%BA%8B%E4%BB%B6%E9%98%9F%E5%88%97/" rel="next" title="事件队列">
-                  <i class="fa fa-chevron-left"></i> 事件队列
+                <a href="/2019/11/20/vue%E4%B8%ADcomputed%E5%92%8Cwatch%E7%9A%84%E6%AF%94%E8%BE%83/" rel="next" title="vue中computed和watch的比较">
+                  <i class="fa fa-chevron-left"></i> vue中computed和watch的比较
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/11/20/vue%E4%B8%ADcomputed%E5%92%8Cwatch%E7%9A%84%E6%AF%94%E8%BE%83/" rel="prev" title="vue中computed和watch的比较">
-                  vue中computed和watch的比较 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -317,7 +320,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#closure-闭包"><span class="nav-number">1.</span> <span class="nav-text">closure 闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#变量作用域："><span class="nav-number">1.1.</span> <span class="nav-text">变量作用域：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作用域链："><span class="nav-number">2.</span> <span class="nav-text">作用域链：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#js垃圾回收机制："><span class="nav-number">3.</span> <span class="nav-text">js垃圾回收机制：</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Web端即时通讯技术"><span class="nav-number">1.</span> <span class="nav-text">Web端即时通讯技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现Web端即时通讯的方法"><span class="nav-number">2.</span> <span class="nav-text">实现Web端即时通讯的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-短轮询"><span class="nav-number">2.1.</span> <span class="nav-text">1.短轮询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-长轮询-comet"><span class="nav-number">2.2.</span> <span class="nav-text">2.长轮询(comet)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-SSE"><span class="nav-number">2.3.</span> <span class="nav-text">3.SSE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-WebSocket"><span class="nav-number">2.4.</span> <span class="nav-text">4.WebSocket</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4四种Web即时通信技术比较"><span class="nav-number">3.</span> <span class="nav-text">4四种Web即时通信技术比较</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
