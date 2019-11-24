@@ -50,28 +50,32 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="嘿！~是小爬">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;index.html">
+  <meta name="description" content="在正规的公司开发中很少用 this.$store.commit(“xxx”),this.$store.dispatch(“xxx”),this.$store.state.xxx,因为这样显得十分累赘，所以此时就推荐用辅助函数来替代。 以下三个例子都公用一个store.js 12345678910111213141516171819202122232425262728import Vue from">
+<meta name="keywords" content="vuex">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vuex中辅助函数">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;24&#x2F;vuex%E4%B8%AD%E8%BE%85%E5%8A%A9%E5%87%BD%E6%95%B0&#x2F;index.html">
 <meta property="og:site_name" content="嘿！~是小爬">
+<meta property="og:description" content="在正规的公司开发中很少用 this.$store.commit(“xxx”),this.$store.dispatch(“xxx”),this.$store.state.xxx,因为这样显得十分累赘，所以此时就推荐用辅助函数来替代。 以下三个例子都公用一个store.js 12345678910111213141516171819202122232425262728import Vue from">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-24T15:22:21.046Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/">
+<link rel="canonical" href="http://yoursite.com/2019/11/24/vuex%E4%B8%AD%E8%BE%85%E5%8A%A9%E5%87%BD%E6%95%B0/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false,
+    isHome: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>嘿！~是小爬</title>
+  <title>vuex中辅助函数 | 嘿！~是小爬</title>
   
 
 
@@ -169,10 +173,10 @@
             
 
   <div class="posts-expand">
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/24/vuex%E4%B8%AD%E8%BE%85%E5%8A%A9%E5%87%BD%E6%95%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -186,8 +190,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/24/vuex%E4%B8%AD%E8%BE%85%E5%8A%A9%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">vuex中辅助函数</a>
+          vuex中辅助函数
         </h1>
 
         <div class="post-meta">
@@ -212,7 +215,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>在正规的公司开发中很少用 this.$store.commit(“xxx”),this.$store.dispatch(“xxx”),this.$store.state.xxx,因为这样显得十分累赘，所以此时就推荐用辅助函数来替代。</p>
+        <p>在正规的公司开发中很少用 this.$store.commit(“xxx”),this.$store.dispatch(“xxx”),this.$store.state.xxx,因为这样显得十分累赘，所以此时就推荐用辅助函数来替代。</p>
 <p>以下三个例子都公用一个store.js</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">"axios"</span></span><br><span class="line"></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">  state: &#123;</span><br><span class="line">    uname:<span class="string">""</span></span><br><span class="line">  &#125;,</span><br><span class="line">  mutations: &#123; <span class="comment">//专门负责修改state中的变量</span></span><br><span class="line">    setUname(state,uname)&#123;</span><br><span class="line">      state.uname=uname;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  actions: &#123; <span class="comment">//专门负责发送异步ajax请求，从服务器端获取数据</span></span><br><span class="line">    login(context,user)&#123; <span class="comment">//context代表整个vuex对象</span></span><br><span class="line">      (<span class="keyword">async</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> result=<span class="keyword">await</span> axios.get(<span class="string">"/users/signin"</span>,&#123;</span><br><span class="line">          params:user</span><br><span class="line">        &#125;);</span><br><span class="line">        context.commit(<span class="string">"setUname"</span>,result.data.uname);</span><br><span class="line">      &#125;)()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  modules: &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
@@ -223,205 +226,65 @@
 
 
 
-      
     </div>
 
     
     
     
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="cheney wechat" style="width: 200px; max-width: 100%;">
+  <div>是范范范小爬的微信公众号</div>
+</div>
+
+      
+        <div class="reward-container">
+  <div>喜欢就给我点鼓励吧😄</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="cheney 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="cheney 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/vuex/" rel="tag"># vuex</a>
+          </div>
 
         
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/23/json-server/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/1.jpg">
-      <meta itemprop="name" content="cheney">
-      <meta itemprop="description" content="">
-    </span>
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/23/json-server/" rel="next" title="json-server">
+                  <i class="fa fa-chevron-left"></i> json-server
+                </a>
+            </div>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="嘿！~是小爬">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/23/json-server/" class="post-title-link" itemprop="url">json-server</a>
-        </h1>
+            <span class="post-nav-divider"></span>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2019-11-23 22:17:12 / 修改时间：23:04:23" itemprop="dateCreated datePublished" datetime="2019-11-23T22:17:12+08:00">2019-11-23</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a href="https://blog.csdn.net/lhjuejiang/article/details/81475993" target="_blank" rel="noopener">别人家的博客</a></p>
-<h3 id="什么是json-server"><a href="#什么是json-server" class="headerlink" title="什么是json-server"></a>什么是json-server</h3><p>一个在前端本地运行，专门模拟后端接口地址的可以存储json数据的简易版server。</p>
-<ul>
-<li>今后，都是前后端分离方式开发</li>
-<li>前后端是完全独立的两个项目</li>
-<li>前后端两个项目是并行开发，也就是说前端项目开发时，后端接口还没开发好呢</li>
-</ul>
-<h3 id="json-server的安装"><a href="#json-server的安装" class="headerlink" title="json-server的安装"></a>json-server的安装</h3><p>全局环境下安装</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g json-server</span><br></pre></td></tr></table></figure>
-
-<h3 id="json-server的使用"><a href="#json-server的使用" class="headerlink" title="json-server的使用"></a>json-server的使用</h3><h4 id="1-定义db-json文件"><a href="#1-定义db-json文件" class="headerlink" title="1.定义db.json文件"></a>1.定义db.json文件</h4><p>基本格式如下</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    <span class="string">"接口名1"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            第一个数据对象的属性和值</span><br><span class="line">		&#125;,</span><br><span class="line">        ... ...</span><br><span class="line">    ],</span><br><span class="line">    <span class="string">"接口名2"</span>:[</span><br><span class="line">        &#123;</span><br><span class="line">            数据对象的属性和值</span><br><span class="line">         &#125;,</span><br><span class="line">         ... ...</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在db.json文件所在目录，运行json-server</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">json-server --watch --port <span class="number">5050</span> db.json</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-get请求"><a href="#2-get请求" class="headerlink" title="2.get请求"></a>2.get请求</h4><p>get请求专门用于查询数据直接输入：<a href="http://localhost:5050/index" target="_blank" rel="noopener">http://localhost:5050/index</a></p>
-<p>当get请求携带参数时</p>
-<ul>
-<li><a href="http://localhost:5050/details/1，直接只返回id为1的一个商品对象" target="_blank" rel="noopener">http://localhost:5050/details/1，直接只返回id为1的一个商品对象</a></li>
-<li><a href="http://localhost:5050/details?id=1，却返回一个数组，包含查询到的结果对象" target="_blank" rel="noopener">http://localhost:5050/details?id=1，却返回一个数组，包含查询到的结果对象</a></li>
-</ul>
-<p>解决：定义一个路由翻译文件：<span style="color:red">routes.json</span>，他可以将服务器端的路由翻译成json-server的路由</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//routes.json文件中</span></span><br><span class="line"> &#123;</span><br><span class="line">  <span class="string">"/details\\?id=:id"</span>: <span class="string">"/details/:id"</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<p>但是服务器端不是用id检索的，都是用lid检索的，为了和服务器端的接口统一应该写成：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> <span class="string">"/details\\?lid=:id"</span>: <span class="string">"/details/:id"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><span style="color:red">注意：启动json-server时加载自定义路由</span></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">json-server --watch --port <span class="number">5050</span> --routes routes.json db.json</span><br></pre></td></tr></table></figure>
-
-<p><span style="font-size:25px">模糊检索</span></p>
-<p>如果希望与服务器端kws参数保持一致，也可用自定义路由将title_like转化为kws:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="string">"/products\\?kws=:a"</span>:<span class="string">"/products?title_like=:a"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="3-post请求"><a href="#3-post请求" class="headerlink" title="3.post请求"></a>3.post请求</h4><p>该请求专门用于插入数据</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#postBtn"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        type: <span class="string">'post'</span>,</span><br><span class="line">        url: <span class="string">'http://localhost:3003/fruits'</span>,</span><br><span class="line">        data: &#123;</span><br><span class="line">            name:  $(<span class="string">"#fruitName"</span>).val(),</span><br><span class="line">            price: $(<span class="string">"#fruitPrice"</span>).val()</span><br><span class="line">        &#125;,</span><br><span class="line">        success: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"post success"</span>)</span><br><span class="line">        &#125;,</span><br><span class="line">        error:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            alert(<span class="string">"post error"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-put请求"><a href="#4-put请求" class="headerlink" title="4.put请求"></a>4.put请求</h4><p>该请求专门用于修改数据</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#putBtn"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        type: <span class="string">'put'</span>,</span><br><span class="line">        url: <span class="string">'http://localhost:3003/fruits/'</span>+ $(<span class="string">"#putId"</span>).val(),</span><br><span class="line">        data: &#123;</span><br><span class="line">            price: $(<span class="string">"#putPrice"</span>).val()</span><br><span class="line">        &#125;,</span><br><span class="line">        success: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"put success"</span>)</span><br><span class="line">        &#125;,</span><br><span class="line">        error:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            alert(<span class="string">"put error"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-delete请求"><a href="#5-delete请求" class="headerlink" title="5.delete请求"></a>5.delete请求</h4><p>专门用于删除数据</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#delOne"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        type: <span class="string">'delete'</span>,</span><br><span class="line">        url: <span class="string">'http://localhost:3003/fruits/'</span>+ $(<span class="string">"#delId"</span>).val(),</span><br><span class="line">        success: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"del success"</span>)</span><br><span class="line">        &#125;,</span><br><span class="line">        error:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            alert(<span class="string">"del error"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h3 id="强调"><a href="#强调" class="headerlink" title="强调"></a>强调</h3><ul>
-<li>如果只是修改json文件的内容，不用重启服务器</li>
-<li>post,put,delete操作都是直接修改硬盘上的db.json文件，所以，修改前，一定做好备份！</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
       </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/21/web%E5%AE%9E%E6%97%B6%E9%80%9A%E4%BF%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/1.jpg">
-      <meta itemprop="name" content="cheney">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="嘿！~是小爬">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/21/web%E5%AE%9E%E6%97%B6%E9%80%9A%E4%BF%A1/" class="post-title-link" itemprop="url">web实时通信</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2019-11-21 20:16:31 / 修改时间：20:33:09" itemprop="dateCreated datePublished" datetime="2019-11-21T20:16:31+08:00">2019-11-21</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="Web端即时通讯技术"><a href="#Web端即时通讯技术" class="headerlink" title="Web端即时通讯技术"></a>Web端即时通讯技术</h3><p>即时通讯技术简单的说就是实现这样一种功能：服务器端可以即时地将数据的更新或变化反应到客户端，例如消息即时推送等功能都是通过这种技术实现的。</p>
-<p>但是在Web中，由于浏览器的限制，实现即时通讯需要借助一些方法。这种限制出现的主要原因是，一般的Web通信都是浏览器先发送请求到服务器，服务器再进行响应完成数据的现实更新。</p>
-<h3 id="实现Web端即时通讯的方法"><a href="#实现Web端即时通讯的方法" class="headerlink" title="实现Web端即时通讯的方法"></a>实现Web端即时通讯的方法</h3><p>它们大体可以分为两类，一种是在<span style="color:red">HTTP基础</span>上实现的，包括短轮询、长轮询(comet)和SSE；</p>
-<p>另一种不是在HTTP基础上实现是，即WebSocket。</p>
-<h4 id="1-短轮询"><a href="#1-短轮询" class="headerlink" title="1.短轮询"></a>1.短轮询</h4><p>短轮询的基本思路就是<span style="color:#49b94d;">浏览器每隔一段时间向浏览器发送http请求，服务器端在收到请求后，不论是否有数据更新，都直接进行响应。</span>这种方式实现的即时通信，本质上还是浏览器发送请求，服务器接受请求的一个过程，通过让客户端不断的进行请求，使得客户端能够模拟实时地收到服务器端的数据的变化。</p>
-<p>这种方式的优点是比较简单，易于理解，实现起来也没有什么技术难点。缺点是显而易见的，这种方式由于需要不断的建立http连接，严重浪费了服务器端和客户端的资源。尤其是在客户端，距离来说，如果有数量级想对比较大的人同时位于基于短轮询的应用中，那么每一个用户的客户端都会疯狂的向服务器端发送http请求，而且不会间断。人数越多，服务器端压力越大，这是很不合理的。</p>
-<p>因此短轮询不适用于那些同时在线用户数量比较大，并且很注重性能的Web应用。</p>
-<h4 id="2-长轮询-comet"><a href="#2-长轮询-comet" class="headerlink" title="2.长轮询(comet)"></a>2.长轮询(comet)</h4><p>comet指的是，<span style="color:#49b94d;">当服务器收到客户端发来的请求后，不会直接进行响应，而是先将这个请求挂起，然后判断服务器端数据是否有更新。如果有更新，则进行响应，如果一直没有数据，则到达一定的时间限制(服务器端设置)后关闭连接。</span></p>
-<p>长轮询和短轮询比起来，明显减少了很多不必要的http请求次数，相比之下节约了资源。长轮询的缺点在于，连接挂起也会导致资源的浪费。</p>
-<h4 id="3-SSE"><a href="#3-SSE" class="headerlink" title="3.SSE"></a>3.SSE</h4><p>SSE是HTML5新增的功能，全称为<span style="color:red">Server-SentEvents</span>。它可以允许服务推送数据到客户端。SSE在本质上就与之前的长轮询、短轮询不同，虽然都是基于http协议的，但是轮询需要客户端先发送请求。</p>
-<p>而SSE最大的特点就是<span style="color:#49b94d;">不需要客户端发送请求，可以实现只要服务器端数据有更新，就可以马上发送到客户端</span>。</p>
-<p>SSE的优势很明显，它不需要建立或保持大量的客户端发往服务器端的请求，节约了很多资源，提升应用性能。</p>
-<h4 id="4-WebSocket"><a href="#4-WebSocket" class="headerlink" title="4.WebSocket"></a>4.WebSocket</h4><p>WebSocket是HTML5定义的一个新协议，与传统的http协议不同，<span style="color:red">该协议可以实现服务器与客户端之间全双工通信</span>。</p>
-<p>简单来说，<span style="color:#49b94d;">首先需要在客户端和服务器端建立起一个连接，这部分需要http,连接一旦建立，客户端和服务器端就处于平等的地位，可以相互发送数据，不存在请求和响应的区别。</span></p>
-<p>WebSocket的优点是实现了双向通信，缺点是服务器端的逻辑非常复杂。现在针对不同的后台语言有不同的插件可以使用。</p>
-<h3 id="4四种Web即时通信技术比较"><a href="#4四种Web即时通信技术比较" class="headerlink" title="4四种Web即时通信技术比较"></a>4四种Web即时通信技术比较</h3><p>从兼容性角度考虑，短轮询&gt;长轮询&gt;长连接SSE&gt;WebSocket</p>
-<p>从性能方面考虑，WebSocket&gt;长连接SSE&gt;长轮询&gt;短轮询</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
   </article>
   
   
   
 
   </div>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
-
 
 
           </div>
@@ -450,6 +313,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#mapState"><span class="nav-number">1.</span> <span class="nav-text">mapState</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mapMutation"><span class="nav-number">2.</span> <span class="nav-text">mapMutation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mapActions"><span class="nav-number">3.</span> <span class="nav-text">mapActions</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

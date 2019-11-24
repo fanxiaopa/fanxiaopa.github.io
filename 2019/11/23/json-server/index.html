@@ -50,15 +50,15 @@
   };
 </script>
 
-  <meta name="description" content="什么是json-server一个在前端本地运行，专门模拟后端接口地址的可以存储json数据的简易版server。  今后，都是前后端分离方式开发 前后端是完全独立的两个项目 前后端两个项目是并行开发，也就是说前端项目开发时，后端接口还没开发好呢  json-server的安装全局环境下安装 1npm install -g json-server  json-server的使用1.定义db.json">
+  <meta name="description" content="别人家的博客 什么是json-server一个在前端本地运行，专门模拟后端接口地址的可以存储json数据的简易版server。  今后，都是前后端分离方式开发 前后端是完全独立的两个项目 前后端两个项目是并行开发，也就是说前端项目开发时，后端接口还没开发好呢  json-server的安装全局环境下安装 1npm install -g json-server  json-server的使用1.定义">
 <meta name="keywords" content="json-server">
 <meta property="og:type" content="article">
 <meta property="og:title" content="json-server">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;23&#x2F;json-server&#x2F;index.html">
 <meta property="og:site_name" content="嘿！~是小爬">
-<meta property="og:description" content="什么是json-server一个在前端本地运行，专门模拟后端接口地址的可以存储json数据的简易版server。  今后，都是前后端分离方式开发 前后端是完全独立的两个项目 前后端两个项目是并行开发，也就是说前端项目开发时，后端接口还没开发好呢  json-server的安装全局环境下安装 1npm install -g json-server  json-server的使用1.定义db.json">
+<meta property="og:description" content="别人家的博客 什么是json-server一个在前端本地运行，专门模拟后端接口地址的可以存储json数据的简易版server。  今后，都是前后端分离方式开发 前后端是完全独立的两个项目 前后端两个项目是并行开发，也就是说前端项目开发时，后端接口还没开发好呢  json-server的安装全局环境下安装 1npm install -g json-server  json-server的使用1.定义">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-23T14:55:46.850Z">
+<meta property="og:updated_time" content="2019-11-23T15:04:23.262Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2019/11/23/json-server/">
@@ -201,7 +201,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2019-11-23 22:17:12 / 修改时间：22:55:46" itemprop="dateCreated datePublished" datetime="2019-11-23T22:17:12+08:00">2019-11-23</time>
+              <time title="创建时间：2019-11-23 22:17:12 / 修改时间：23:04:23" itemprop="dateCreated datePublished" datetime="2019-11-23T22:17:12+08:00">2019-11-23</time>
             </span>
 
           
@@ -215,7 +215,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="什么是json-server"><a href="#什么是json-server" class="headerlink" title="什么是json-server"></a>什么是json-server</h3><p>一个在前端本地运行，专门模拟后端接口地址的可以存储json数据的简易版server。</p>
+        <p><a href="https://blog.csdn.net/lhjuejiang/article/details/81475993" target="_blank" rel="noopener">别人家的博客</a></p>
+<h3 id="什么是json-server"><a href="#什么是json-server" class="headerlink" title="什么是json-server"></a>什么是json-server</h3><p>一个在前端本地运行，专门模拟后端接口地址的可以存储json数据的简易版server。</p>
 <ul>
 <li>今后，都是前后端分离方式开发</li>
 <li>前后端是完全独立的两个项目</li>
@@ -235,8 +236,8 @@
 <li><a href="http://localhost:5050/details/1，直接只返回id为1的一个商品对象" target="_blank" rel="noopener">http://localhost:5050/details/1，直接只返回id为1的一个商品对象</a></li>
 <li><a href="http://localhost:5050/details?id=1，却返回一个数组，包含查询到的结果对象" target="_blank" rel="noopener">http://localhost:5050/details?id=1，却返回一个数组，包含查询到的结果对象</a></li>
 </ul>
-<p>解决：定义一个路由翻译文件：routes.json，他可以将服务器端的路由翻译成json-server的路由</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> <span class="string">"/details\\?id=:id"</span>: <span class="string">"/details/:id"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>解决：定义一个路由翻译文件：<span style="color:red">routes.json</span>，他可以将服务器端的路由翻译成json-server的路由</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//routes.json文件中</span></span><br><span class="line"> &#123;</span><br><span class="line">  <span class="string">"/details\\?id=:id"</span>: <span class="string">"/details/:id"</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 <p>但是服务器端不是用id检索的，都是用lid检索的，为了和服务器端的接口统一应该写成：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> <span class="string">"/details\\?lid=:id"</span>: <span class="string">"/details/:id"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -309,6 +310,9 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
+                <a href="/2019/11/24/vuex%E4%B8%AD%E8%BE%85%E5%8A%A9%E5%87%BD%E6%95%B0/" rel="prev" title="vuex中辅助函数">
+                  vuex中辅助函数 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
       </footer>
@@ -363,14 +367,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
