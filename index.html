@@ -173,6 +173,78 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/27/React%E4%B8%AD%E7%9A%84%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/1.jpg">
+      <meta itemprop="name" content="cheney">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="嘿！~是小爬">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/27/React%E4%B8%AD%E7%9A%84%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" class="post-title-link" itemprop="url">React中的数据绑定</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-27 22:33:48" itemprop="dateCreated datePublished" datetime="2019-11-27T22:33:48+08:00">2019-11-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-28 22:26:49" itemprop="dateModified" datetime="2019-11-28T22:26:49+08:00">2019-11-28</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>React中没有指令的概念，故v-model、ngModel都没有；使用“受控组件”来实现双向数据绑定的功能</p>
+<h3 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h3><p>使用内容绑定一个函数（该函数中根据条件返回不同的JSX片段）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">printWelcome()&#123;</span><br><span class="line">if(...) return (<span class="tag">&lt;<span class="name">div</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span>)</span><br><span class="line">else  return (<span class="tag">&lt;<span class="name">p</span>&gt;</span>...<span class="tag">&lt;/<span class="name">p</span>&gt;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123; this.printWelcome() &#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>当然你在项目中也可以这样写：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>()&#123;</span><br><span class="line">    <span class="keyword">super</span>()</span><br><span class="line">    <span class="keyword">this</span>.state=&#123;</span><br><span class="line">      todoList:[<span class="string">"eat"</span>,<span class="string">"play"</span>,<span class="string">"dance"</span>,<span class="string">"xixi"</span>],</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span>(</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;代办事项列表&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">        &#123;</span></span><br><span class="line"><span class="regexp">          (()=&gt;&#123;</span></span><br><span class="line"><span class="regexp">            if(this.state.todoList.length===0)&#123;</span></span><br><span class="line"><span class="regexp">            /</span><span class="regexp">/可以采用匿名函数自调用的方式，返回一个JSX片段</span></span><br><span class="line"><span class="regexp">              return &lt;p&gt;当前没有代办事项&lt;/</span>p&gt;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;)()</span><br><span class="line">        &#125;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="循环渲染"><a href="#循环渲染" class="headerlink" title="循环渲染"></a>循环渲染</h3><p>前提：React中的内容绑定如果绑定了数组的话，会自动把每个元素提取出来作为当前父节点的子节点——利用此特性，只需要把数组转换为JSX数组直接做内容绑定即可</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>()&#123;</span><br><span class="line">    <span class="keyword">super</span>()</span><br><span class="line">    <span class="keyword">this</span>.state=&#123;</span><br><span class="line">      todoList:[<span class="string">"eat"</span>,<span class="string">"play"</span>,<span class="string">"dance"</span>,<span class="string">"xixi"</span>],</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span>(</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;代办事项列表&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">       &lt;ul&gt;</span></span><br><span class="line"><span class="regexp">          &#123;</span></span><br><span class="line"><span class="regexp">            this.state.todoList.map((todo,i)=&gt;&#123;</span></span><br><span class="line"><span class="regexp">            /</span><span class="regexp">/遍历数组实现循环渲染</span></span><br><span class="line"><span class="regexp">              return(</span></span><br><span class="line"><span class="regexp">                &lt;li key=&#123;i&#125;&gt;</span></span><br><span class="line"><span class="regexp">                  &#123;i+1&#125;-&#123;todo&#125;</span></span><br><span class="line"><span class="regexp">                &lt;/</span>li&gt;</span><br><span class="line">              )</span><br><span class="line">            &#125;)</span><br><span class="line">          &#125;</span><br><span class="line">        &lt;<span class="regexp">/ul&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="双向数据绑定"><a href="#双向数据绑定" class="headerlink" title="双向数据绑定"></a>双向数据绑定</h3><p>提示：React中没有指令的概念，故v-model、ngModel都没有；使用“受控组件”来实现双向数据绑定的功能<br>  方向1：Model=&gt;View，状态数据绑定到表单输入元素的value<br>constructor(){<br>super()<br>this.state = { userInput: ‘’ }<br>}<br>&lt;input  value={ this.state.userInput }/&gt;<br>  方向2：View=&gt;Model，表单输入事件反过来要影响状态<br>doChange = ( e )=&gt;{<br>this.setState({ userInput: e.target.value })<br>}<br>&lt;input  onChange={this.doChange}  value={ this.state.userInput }/&gt;</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/25/vue%E4%B8%AD%E7%9A%84watch-%E6%B7%B1%E5%BA%A6%E7%9B%91%E5%90%AC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -198,7 +270,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2019-11-25 23:04:05 / 修改时间：23:18:08" itemprop="dateCreated datePublished" datetime="2019-11-25T23:04:05+08:00">2019-11-25</time>
+              <time title="创建时间：2019-11-25 23:04:05 / 修改时间：23:24:55" itemprop="dateCreated datePublished" datetime="2019-11-25T23:04:05+08:00">2019-11-25</time>
             </span>
 
           
@@ -222,13 +294,14 @@
 <p>而immediate:true代表如果在 wacth 里声明了 firstName 之后，就会立即先去执行里面的handler方法，如果为 false就跟我们以前的效果一样，不会在绑定的时候就执行。</p>
 <h3 id="deep属性"><a href="#deep属性" class="headerlink" title="deep属性"></a>deep属性</h3><p>watch 里面还有一个属性 deep，默认值是 false，代表是否深度监听，比如我们 data 里有一个obj属性：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>obj.a: &#123;&#123;obj.a&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>obj.a: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"obj.a"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">new Vue(&#123;</span><br><span class="line">  el: '#root',</span><br><span class="line">  data: &#123;</span><br><span class="line">    obj: &#123;</span><br><span class="line">      a: 123</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  watch: &#123;</span><br><span class="line">    obj: &#123;</span><br><span class="line">      handler(newName, oldName) &#123;</span><br><span class="line">         console.log('obj.a changed');</span><br><span class="line">      &#125;,</span><br><span class="line">      immediate: true</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>当我们改变input框中的属性时，控制台不会输出’obj.a changed’，因为此时监听的是obj这个对象（地址一直为改变），所以obj里面的属性的添加或删除并不会触发监听</p>
+<p>当我们改变input框中的属性时，控制台不会输出’obj.a changed’，因为此时监听的是obj这个对象（地址一直未改变），所以obj里面的属性的添加或删除并不会触发监听</p>
 <p>当我们要满足这个需求时，deep属性就派上用场了！</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">watch: &#123;</span><br><span class="line">  obj: &#123;</span><br><span class="line">    handler(newName, oldName) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'obj.a changed'</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    immediate: <span class="literal">true</span>,</span><br><span class="line">    deep: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>deep的意思就是深入观察，监听器会一层层的往下遍历，给对象的所有属性都加上这个监听器，但是这样性能开销就会非常大了，任何修改obj里面任何一个属性都会触发这个监听器里的 handler。</p>
 <p>为了优化，我们可以使用字符串形式监听：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">watch: &#123;</span><br><span class="line">  <span class="string">'obj.a'</span>: &#123;</span><br><span class="line">    handler(newName, oldName) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'obj.a changed'</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    immediate: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">//deep: true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这样Vue.js才会一层一层解析下去，直到遇到属性a，然后才给a设置监听函数。</p>
+<p><a href="https://www.cnblogs.com/yesu/p/9546458.html" target="_blank" rel="noopener">戳此处👀别人家的博客</a></p>
 
       
     </div>
@@ -319,114 +392,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/23/json-server/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/1.jpg">
-      <meta itemprop="name" content="cheney">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="嘿！~是小爬">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/23/json-server/" class="post-title-link" itemprop="url">json-server</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2019-11-23 22:17:12 / 修改时间：23:04:23" itemprop="dateCreated datePublished" datetime="2019-11-23T22:17:12+08:00">2019-11-23</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a href="https://blog.csdn.net/lhjuejiang/article/details/81475993" target="_blank" rel="noopener">别人家的博客</a></p>
-<h3 id="什么是json-server"><a href="#什么是json-server" class="headerlink" title="什么是json-server"></a>什么是json-server</h3><p>一个在前端本地运行，专门模拟后端接口地址的可以存储json数据的简易版server。</p>
-<ul>
-<li>今后，都是前后端分离方式开发</li>
-<li>前后端是完全独立的两个项目</li>
-<li>前后端两个项目是并行开发，也就是说前端项目开发时，后端接口还没开发好呢</li>
-</ul>
-<h3 id="json-server的安装"><a href="#json-server的安装" class="headerlink" title="json-server的安装"></a>json-server的安装</h3><p>全局环境下安装</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g json-server</span><br></pre></td></tr></table></figure>
-
-<h3 id="json-server的使用"><a href="#json-server的使用" class="headerlink" title="json-server的使用"></a>json-server的使用</h3><h4 id="1-定义db-json文件"><a href="#1-定义db-json文件" class="headerlink" title="1.定义db.json文件"></a>1.定义db.json文件</h4><p>基本格式如下</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    <span class="string">"接口名1"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            第一个数据对象的属性和值</span><br><span class="line">		&#125;,</span><br><span class="line">        ... ...</span><br><span class="line">    ],</span><br><span class="line">    <span class="string">"接口名2"</span>:[</span><br><span class="line">        &#123;</span><br><span class="line">            数据对象的属性和值</span><br><span class="line">         &#125;,</span><br><span class="line">         ... ...</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在db.json文件所在目录，运行json-server</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">json-server --watch --port <span class="number">5050</span> db.json</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-get请求"><a href="#2-get请求" class="headerlink" title="2.get请求"></a>2.get请求</h4><p>get请求专门用于查询数据直接输入：<a href="http://localhost:5050/index" target="_blank" rel="noopener">http://localhost:5050/index</a></p>
-<p>当get请求携带参数时</p>
-<ul>
-<li><a href="http://localhost:5050/details/1，直接只返回id为1的一个商品对象" target="_blank" rel="noopener">http://localhost:5050/details/1，直接只返回id为1的一个商品对象</a></li>
-<li><a href="http://localhost:5050/details?id=1，却返回一个数组，包含查询到的结果对象" target="_blank" rel="noopener">http://localhost:5050/details?id=1，却返回一个数组，包含查询到的结果对象</a></li>
-</ul>
-<p>解决：定义一个路由翻译文件：<span style="color:red">routes.json</span>，他可以将服务器端的路由翻译成json-server的路由</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//routes.json文件中</span></span><br><span class="line"> &#123;</span><br><span class="line">  <span class="string">"/details\\?id=:id"</span>: <span class="string">"/details/:id"</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<p>但是服务器端不是用id检索的，都是用lid检索的，为了和服务器端的接口统一应该写成：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> <span class="string">"/details\\?lid=:id"</span>: <span class="string">"/details/:id"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><span style="color:red">注意：启动json-server时加载自定义路由</span></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">json-server --watch --port <span class="number">5050</span> --routes routes.json db.json</span><br></pre></td></tr></table></figure>
-
-<p><span style="font-size:25px">模糊检索</span></p>
-<p>如果希望与服务器端kws参数保持一致，也可用自定义路由将title_like转化为kws:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="string">"/products\\?kws=:a"</span>:<span class="string">"/products?title_like=:a"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="3-post请求"><a href="#3-post请求" class="headerlink" title="3.post请求"></a>3.post请求</h4><p>该请求专门用于插入数据</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#postBtn"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        type: <span class="string">'post'</span>,</span><br><span class="line">        url: <span class="string">'http://localhost:3003/fruits'</span>,</span><br><span class="line">        data: &#123;</span><br><span class="line">            name:  $(<span class="string">"#fruitName"</span>).val(),</span><br><span class="line">            price: $(<span class="string">"#fruitPrice"</span>).val()</span><br><span class="line">        &#125;,</span><br><span class="line">        success: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"post success"</span>)</span><br><span class="line">        &#125;,</span><br><span class="line">        error:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            alert(<span class="string">"post error"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-put请求"><a href="#4-put请求" class="headerlink" title="4.put请求"></a>4.put请求</h4><p>该请求专门用于修改数据</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#putBtn"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        type: <span class="string">'put'</span>,</span><br><span class="line">        url: <span class="string">'http://localhost:3003/fruits/'</span>+ $(<span class="string">"#putId"</span>).val(),</span><br><span class="line">        data: &#123;</span><br><span class="line">            price: $(<span class="string">"#putPrice"</span>).val()</span><br><span class="line">        &#125;,</span><br><span class="line">        success: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"put success"</span>)</span><br><span class="line">        &#125;,</span><br><span class="line">        error:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            alert(<span class="string">"put error"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-delete请求"><a href="#5-delete请求" class="headerlink" title="5.delete请求"></a>5.delete请求</h4><p>专门用于删除数据</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#delOne"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        type: <span class="string">'delete'</span>,</span><br><span class="line">        url: <span class="string">'http://localhost:3003/fruits/'</span>+ $(<span class="string">"#delId"</span>).val(),</span><br><span class="line">        success: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"del success"</span>)</span><br><span class="line">        &#125;,</span><br><span class="line">        error:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            alert(<span class="string">"del error"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h3 id="强调"><a href="#强调" class="headerlink" title="强调"></a>强调</h3><ul>
-<li>如果只是修改json文件的内容，不用重启服务器</li>
-<li>post,put,delete操作都是直接修改硬盘上的db.json文件，所以，修改前，一定做好备份！</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -472,14 +442,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
