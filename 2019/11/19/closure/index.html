@@ -20,7 +20,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Mist',
     version: '7.4.2',
     exturl: false,
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
@@ -50,13 +50,13 @@
   };
 </script>
 
-  <meta name="description" content="closure 闭包在JS中，变量的作用域属于函数作用域，在函数执行后作用域就会被清理、内存也随之回收，但是由于闭包是建立在一个函数内部的子函数，由于其可访问上级作用域的原因，即使上级函数执行完，作用域也不会随之销毁，这时的子函数——也就是闭包，便拥有了访问上级作用域中的变量的权限，即使上级函数执行完后作用域内的值也不会被销毁。 从以下几句话中来明确概念： 变量作用域：全局变量 在 全局范围内可用">
+  <meta name="description" content="closure 闭包在JS中，变量的作用域属于函数作用域，在函数执行后作用域就会被清理、内存也随之回收，但是由于闭包是建立在一个函数内部的子函数，由于其可访问上级作用域的原因，即使上级函数执行完，作用域也不会随之销毁，这时的子函数——也就是闭包，便拥有了访问上级作用域中的变量的权限，即使上级函数执行完后作用域内的值也不会被销毁。从以下几句话中来明确概念：变量作用域：全局变量 在 全局范围内可用，存">
 <meta name="keywords" content="js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="closure">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;19&#x2F;closure&#x2F;index.html">
 <meta property="og:site_name" content="嘿！~是小爬">
-<meta property="og:description" content="closure 闭包在JS中，变量的作用域属于函数作用域，在函数执行后作用域就会被清理、内存也随之回收，但是由于闭包是建立在一个函数内部的子函数，由于其可访问上级作用域的原因，即使上级函数执行完，作用域也不会随之销毁，这时的子函数——也就是闭包，便拥有了访问上级作用域中的变量的权限，即使上级函数执行完后作用域内的值也不会被销毁。 从以下几句话中来明确概念： 变量作用域：全局变量 在 全局范围内可用">
+<meta property="og:description" content="closure 闭包在JS中，变量的作用域属于函数作用域，在函数执行后作用域就会被清理、内存也随之回收，但是由于闭包是建立在一个函数内部的子函数，由于其可访问上级作用域的原因，即使上级函数执行完，作用域也不会随之销毁，这时的子函数——也就是闭包，便拥有了访问上级作用域中的变量的权限，即使上级函数执行完后作用域内的值也不会被销毁。从以下几句话中来明确概念：变量作用域：全局变量 在 全局范围内可用，存">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-11-21T09:27:33.334Z">
 <meta name="twitter:card" content="summary">
@@ -221,9 +221,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="closure-闭包"><a href="#closure-闭包" class="headerlink" title="closure 闭包"></a>closure 闭包</h3><p>在JS中，变量的作用域属于函数作用域，在函数执行后作用域就会被清理、内存也随之回收，但是由于闭包是建立在一个函数内部的子函数，由于其可访问上级作用域的原因，即使上级函数执行完，作用域也不会随之销毁，这时的子函数——也就是闭包，便拥有了访问上级作用域中的变量的权限，即使上级函数执行完后作用域内的值也不会被销毁。</p>
-<p>从以下几句话中来明确概念：</p>
-<h4 id="变量作用域："><a href="#变量作用域：" class="headerlink" title="变量作用域："></a>变量作用域：</h4><p>全局变量 在 全局范围内可用，存在于全局作用域中，在js任何代码中可见<br>局部变量 只 存在 函数体内，在局部作用域中使用<br>函数作用域 在函数体内的所有变量可以使用</p>
+        <h3 id="closure-闭包"><a href="#closure-闭包" class="headerlink" title="closure 闭包"></a>closure 闭包</h3><p>在JS中，变量的作用域属于函数作用域，在函数执行后作用域就会被清理、内存也随之回收，但是由于闭包是建立在一个函数内部的子函数，由于其可访问上级作用域的原因，即使上级函数执行完，作用域也不会随之销毁，这时的子函数——也就是闭包，便拥有了访问上级作用域中的变量的权限，即使上级函数执行完后作用域内的值也不会被销毁。</p><p>从以下几句话中来明确概念：</p><h4 id="变量作用域："><a href="#变量作用域：" class="headerlink" title="变量作用域："></a>变量作用域：</h4><p>全局变量 在 全局范围内可用，存在于全局作用域中，在js任何代码中可见<br>局部变量 只 存在 函数体内，在局部作用域中使用<br>函数作用域 在函数体内的所有变量可以使用</p><a id="more"></a>
+
+
 <h3 id="作用域链："><a href="#作用域链：" class="headerlink" title="作用域链："></a>作用域链：</h3><p>定义一个函数时， 会保存一个作用域链；<br>对于嵌套函数来说，每内调用一次外部函数，都会创建一个新的作用域链；<br>每次外部函数的调用，内部的代码相同，但其作用域链不同</p>
 <h3 id="js垃圾回收机制："><a href="#js垃圾回收机制：" class="headerlink" title="js垃圾回收机制："></a>js垃圾回收机制：</h3><p>js具有自动垃圾回收机制，会定期把不再使用的变量销毁，释放其占用的内存；<br>(只会销毁局部变量，全局变量的生命周期只有在页面或浏览器关闭时才会结束)</p>
 
@@ -394,7 +394,7 @@
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.2
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.4.2
   </div>
 
         
@@ -420,7 +420,7 @@
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
-<script src="/js/schemes/pisces.js"></script>
+<script src="/js/schemes/muse.js"></script>
 <script src="/js/next-boot.js"></script>
 
 

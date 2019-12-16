@@ -20,7 +20,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Mist',
     version: '7.4.2',
     exturl: false,
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
@@ -50,13 +50,13 @@
   };
 </script>
 
-  <meta name="description" content="在正规的公司开发中很少用: this.$store.commit(“xxx”),this.$store.dispatch(“xxx”),this.$store.state.xxx,因为这样显得十分累赘，所以此时就推荐用辅助函数来替代。 以下三个例子都公用一个store.js 12345678910111213141516171819202122232425262728import Vue from">
+  <meta name="description" content="在正规的公司开发中很少用:this.$store.commit(“xxx”),this.$store.dispatch(“xxx”),this.$store.state.xxx,因为这样显得十分累赘，所以此时就推荐用辅助函数来替代。以下三个例子都公用一个store.js12345678910111213141516171819202122232425262728import Vue from &amp;apos;v">
 <meta name="keywords" content="vuex">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vuex中辅助函数">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;24&#x2F;vuex%E4%B8%AD%E8%BE%85%E5%8A%A9%E5%87%BD%E6%95%B0&#x2F;index.html">
 <meta property="og:site_name" content="嘿！~是小爬">
-<meta property="og:description" content="在正规的公司开发中很少用: this.$store.commit(“xxx”),this.$store.dispatch(“xxx”),this.$store.state.xxx,因为这样显得十分累赘，所以此时就推荐用辅助函数来替代。 以下三个例子都公用一个store.js 12345678910111213141516171819202122232425262728import Vue from">
+<meta property="og:description" content="在正规的公司开发中很少用:this.$store.commit(“xxx”),this.$store.dispatch(“xxx”),this.$store.state.xxx,因为这样显得十分累赘，所以此时就推荐用辅助函数来替代。以下三个例子都公用一个store.js12345678910111213141516171819202122232425262728import Vue from &amp;apos;v">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-11-25T15:02:39.055Z">
 <meta name="twitter:card" content="summary">
@@ -221,10 +221,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><span>在正规的公司开发中很少用:</span></p>
-<p>this.$store.commit(“xxx”),this.$store.dispatch(“xxx”),this.$store.state.xxx,因为这样显得十分累赘，所以此时就推荐用辅助函数来替代。</p>
-<p>以下三个例子都公用一个store.js</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">"axios"</span></span><br><span class="line"></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">  state: &#123;</span><br><span class="line">    uname:<span class="string">""</span></span><br><span class="line">  &#125;,</span><br><span class="line">  mutations: &#123; <span class="comment">//专门负责修改state中的变量</span></span><br><span class="line">    setUname(state,uname)&#123;</span><br><span class="line">      state.uname=uname;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  actions: &#123; <span class="comment">//专门负责发送异步ajax请求，从服务器端获取数据</span></span><br><span class="line">    login(context,user)&#123; <span class="comment">//context代表整个vuex对象</span></span><br><span class="line">      (<span class="keyword">async</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> result=<span class="keyword">await</span> axios.get(<span class="string">"/users/signin"</span>,&#123;</span><br><span class="line">          params:user</span><br><span class="line">        &#125;);</span><br><span class="line">        context.commit(<span class="string">"setUname"</span>,result.data.uname);</span><br><span class="line">      &#125;)()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  modules: &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+        <p><span>在正规的公司开发中很少用:</span></p><p>this.$store.commit(“xxx”),this.$store.dispatch(“xxx”),this.$store.state.xxx,因为这样显得十分累赘，所以此时就推荐用辅助函数来替代。</p><p>以下三个例子都公用一个store.js</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">"axios"</span></span><br><span class="line"></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">  state: &#123;</span><br><span class="line">    uname:<span class="string">""</span></span><br><span class="line">  &#125;,</span><br><span class="line">  mutations: &#123; <span class="comment">//专门负责修改state中的变量</span></span><br><span class="line">    setUname(state,uname)&#123;</span><br><span class="line">      state.uname=uname;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  actions: &#123; <span class="comment">//专门负责发送异步ajax请求，从服务器端获取数据</span></span><br><span class="line">    login(context,user)&#123; <span class="comment">//context代表整个vuex对象</span></span><br><span class="line">      (<span class="keyword">async</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> result=<span class="keyword">await</span> axios.get(<span class="string">"/users/signin"</span>,&#123;</span><br><span class="line">          params:user</span><br><span class="line">        &#125;);</span><br><span class="line">        context.commit(<span class="string">"setUname"</span>,result.data.uname);</span><br><span class="line">      &#125;)()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  modules: &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
 
 <h3 id="mapState"><a href="#mapState" class="headerlink" title="mapState"></a>mapState</h3><p>当一个组件需要获取多个状态时候，将这些状态都声明为计算属性会有些重复和冗余。为了解决这个问题，我们可以使用 mapState 辅助函数帮助我们生成<span style="color:red">计算属性</span>，让你少按几次键：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-else</span>&gt;</span>Welcome &#123;&#123;uname&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> &#123;mapState&#125; <span class="keyword">from</span> <span class="string">"vuex"</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">  computed:&#123;</span><br><span class="line"><span class="actionscript">    <span class="comment">// 使用对象展开运算符将此对象混入到外部对象中</span></span></span><br><span class="line"><span class="actionscript">    ...mapState([<span class="string">"uname"</span>])</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -400,7 +400,7 @@
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.2
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.4.2
   </div>
 
         
@@ -426,7 +426,7 @@
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
-<script src="/js/schemes/pisces.js"></script>
+<script src="/js/schemes/muse.js"></script>
 <script src="/js/next-boot.js"></script>
 
 

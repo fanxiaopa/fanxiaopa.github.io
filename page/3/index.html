@@ -20,7 +20,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Mist',
     version: '7.4.2',
     exturl: false,
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
@@ -213,26 +213,14 @@
 
       
           <h3 id="computed："><a href="#computed：" class="headerlink" title="computed："></a>computed：</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; reversedMessage &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="actionscript">        name: <span class="string">'test1'</span>,</span></span><br><span class="line">        data () &#123;</span><br><span class="line"><span class="actionscript">            <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">            message: <span class="string">'hello world'</span>,</span></span><br><span class="line">            number: 1</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        computed: &#123;</span><br><span class="line"><span class="actionscript">            <span class="comment">// 字符串反转</span></span></span><br><span class="line">            reversedMessage () &#123;</span><br><span class="line"><span class="actionscript">            <span class="keyword">return</span> <span class="keyword">this</span>.message.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>) + <span class="keyword">this</span>.number</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>在computed中定义的每一个计算属性，都会被<strong style="color:red">缓存</strong>起来，只有当计算属性里面依赖的一个或多个属性变化了，才会重新计算当前计算属性的值。上面的代码片段中，在reversedMessage中，它依赖了message和number这两个属性，一旦其中一个变化了，reversedMessage会立刻重新计算输出新值。</p>
-<p> vue会缓存计算属性的计算结果，只要依赖的其它属性值不变，即使多次使用计算属性，就不会重复计算,效率更高。</p>
-<p> 而vue不会缓存函数的执行结果，所以如果多次调用函数，会导致重复计算！</p>
-<p>watch是属性监听器，一般用来监听属性的变化（也可以用来监听计算属性函数），并做一些逻辑。</p>
-<h3 id="watch："><a href="#watch：" class="headerlink" title="watch："></a>watch：</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; this.number &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="actionscript">  name: <span class="string">'test1'</span>,</span></span><br><span class="line">  data () &#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line">      number: 1</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  created () &#123;</span><br><span class="line"><span class="javascript">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="actionscript">      <span class="keyword">this</span>.number = <span class="number">100</span></span></span><br><span class="line">    &#125;, 2000)</span><br><span class="line">  &#125;,</span><br><span class="line">  watch: &#123;</span><br><span class="line">    number (newVal, oldVal) &#123;</span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(<span class="string">'number has changed: '</span>, newVal)</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>watch是专门监听一个变量的变化，只要变量值发生变化，就自动触发的函数。</p>
-<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>computed和watch的使用场景并不一样，</p>
-<ul>
-<li><p>computed的话是<span style="color:red">通过几个数据的变化，来影响一个数据</span>，computed是在HTML DOM加载后马上执行的，如赋值；</p>
-</li>
-<li><p>而watch的话，<span style="color:red">是可以一个数据的变化，去影响多个数据</span>。watch用于观察Vue实例上的数据变动。对应一个对象，键是观察表达式，值是对应回调。</p>
-</li>
-<li><p>另外，methods则必须要有<span style="color:red">一定的触发条件才能执行</span>，如点击事件</p>
-</li>
-<li><p>如果更关心执行过程时，<span style="color:red">不关心结果时，首选函数！</span></p>
-</li>
-<li><p>如果更关心计算结果，<span style="color:red">不关心过程时，首选计算属性。</span></p>
-</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/20/vue%E4%B8%ADcomputed%E5%92%8Cwatch%E7%9A%84%E6%AF%94%E8%BE%83/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -296,12 +284,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="closure-闭包"><a href="#closure-闭包" class="headerlink" title="closure 闭包"></a>closure 闭包</h3><p>在JS中，变量的作用域属于函数作用域，在函数执行后作用域就会被清理、内存也随之回收，但是由于闭包是建立在一个函数内部的子函数，由于其可访问上级作用域的原因，即使上级函数执行完，作用域也不会随之销毁，这时的子函数——也就是闭包，便拥有了访问上级作用域中的变量的权限，即使上级函数执行完后作用域内的值也不会被销毁。</p>
-<p>从以下几句话中来明确概念：</p>
-<h4 id="变量作用域："><a href="#变量作用域：" class="headerlink" title="变量作用域："></a>变量作用域：</h4><p>全局变量 在 全局范围内可用，存在于全局作用域中，在js任何代码中可见<br>局部变量 只 存在 函数体内，在局部作用域中使用<br>函数作用域 在函数体内的所有变量可以使用</p>
-<h3 id="作用域链："><a href="#作用域链：" class="headerlink" title="作用域链："></a>作用域链：</h3><p>定义一个函数时， 会保存一个作用域链；<br>对于嵌套函数来说，每内调用一次外部函数，都会创建一个新的作用域链；<br>每次外部函数的调用，内部的代码相同，但其作用域链不同</p>
-<h3 id="js垃圾回收机制："><a href="#js垃圾回收机制：" class="headerlink" title="js垃圾回收机制："></a>js垃圾回收机制：</h3><p>js具有自动垃圾回收机制，会定期把不再使用的变量销毁，释放其占用的内存；<br>(只会销毁局部变量，全局变量的生命周期只有在页面或浏览器关闭时才会结束)</p>
-
+          <h3 id="closure-闭包"><a href="#closure-闭包" class="headerlink" title="closure 闭包"></a>closure 闭包</h3><p>在JS中，变量的作用域属于函数作用域，在函数执行后作用域就会被清理、内存也随之回收，但是由于闭包是建立在一个函数内部的子函数，由于其可访问上级作用域的原因，即使上级函数执行完，作用域也不会随之销毁，这时的子函数——也就是闭包，便拥有了访问上级作用域中的变量的权限，即使上级函数执行完后作用域内的值也不会被销毁。</p><p>从以下几句话中来明确概念：</p><h4 id="变量作用域："><a href="#变量作用域：" class="headerlink" title="变量作用域："></a>变量作用域：</h4><p>全局变量 在 全局范围内可用，存在于全局作用域中，在js任何代码中可见<br>局部变量 只 存在 函数体内，在局部作用域中使用<br>函数作用域 在函数体内的所有变量可以使用</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/19/closure/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -365,18 +356,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="首先-单线程、多线程"><a href="#首先-单线程、多线程" class="headerlink" title="首先 单线程、多线程"></a>首先 单线程、多线程</h3><p>浏览器解释引擎 对js 脚本进行解析</p>
-<p>主要执行交互行为 对 dom 节点进行操作</p>
-<p>js为单线程，不会存在同时对一个dom元素进行多种同时操作</p>
-<p>但js脚本可创建多线程，子线程受浏览器主线程操作，进入任务队列排队，等待调用</p>
-<h3 id="任务队列"><a href="#任务队列" class="headerlink" title="任务队列"></a>任务队列</h3><p>单线程导致一个任务结束，才能执行下一个任务</p>
-<p>任务队列排队 空闲，会导致 CPU 闲置 ，因此将任务分为两种：同步、异步</p>
-<p>任务队列或又称为消息队列, 回调函数、ajax、事件函数、定时器 都存放在任务队列中</p>
-<p>任务队列：先进先出，某些事件在调用时，才会进入主线程</p>
-<h3 id="同步、异步"><a href="#同步、异步" class="headerlink" title="同步、异步"></a>同步、异步</h3><p>同步指一件事情完成、才会执行下一件事情</p>
-<p>异步指浏览器解释引擎 在做一件事的同时，调用闲置的CPU 处理另外一件事情 如：ajax 请求</p>
-<p>浏览器主进程会 执行 同步任务 ，闲置CPU 调取 任务队列，加载异步 事件 或 函数 进入执行栈 ，执行。</p>
-
+          <h3 id="首先-单线程、多线程"><a href="#首先-单线程、多线程" class="headerlink" title="首先 单线程、多线程"></a>首先 单线程、多线程</h3><p>浏览器解释引擎 对js 脚本进行解析</p><p>主要执行交互行为 对 dom 节点进行操作</p><p>js为单线程，不会存在同时对一个dom元素进行多种同时操作</p><p>但js脚本可创建多线程，子线程受浏览器主线程操作，进入任务队列排队，等待调用</p><h3 id="任务队列"><a href="#任务队列" class="headerlink" title="任务队列"></a>任务队列</h3><p>单线程导致一个任务结束，才能执行下一个任务</p><p>任务队列排队 空闲，会导致 CPU 闲置 ，因此将任务分为两种：同步、异步</p><p>任务队列或又称为消息队列, 回调函数、ajax、事件函数、定时器 都存放在任务队列中</p><p>任务队列：先进先出，某些事件在调用时，才会进入主线程</p><h3 id="同步、异步"><a href="#同步、异步" class="headerlink" title="同步、异步"></a>同步、异步</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/19/%E4%BA%8B%E4%BB%B6%E9%98%9F%E5%88%97/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -502,7 +490,7 @@
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.2
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.4.2
   </div>
 
         
@@ -528,7 +516,7 @@
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
-<script src="/js/schemes/pisces.js"></script>
+<script src="/js/schemes/muse.js"></script>
 <script src="/js/next-boot.js"></script>
 
 
