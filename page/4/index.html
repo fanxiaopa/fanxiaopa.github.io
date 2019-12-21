@@ -173,6 +173,72 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/20/vue%E4%B8%ADcomputed%E5%92%8Cwatch%E7%9A%84%E6%AF%94%E8%BE%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/1.jpg">
+      <meta itemprop="name" content="cheney">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="嘿！~是小爬">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/20/vue%E4%B8%ADcomputed%E5%92%8Cwatch%E7%9A%84%E6%AF%94%E8%BE%83/" class="post-title-link" itemprop="url">vue中computed和watch的比较</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-11-20 21:58:21 / 修改时间：22:33:00" itemprop="dateCreated datePublished" datetime="2019-11-20T21:58:21+08:00">2019-11-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="computed："><a href="#computed：" class="headerlink" title="computed："></a>computed：</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; reversedMessage &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="actionscript">        name: <span class="string">'test1'</span>,</span></span><br><span class="line">        data () &#123;</span><br><span class="line"><span class="actionscript">            <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">            message: <span class="string">'hello world'</span>,</span></span><br><span class="line">            number: 1</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        computed: &#123;</span><br><span class="line"><span class="actionscript">            <span class="comment">// 字符串反转</span></span></span><br><span class="line">            reversedMessage () &#123;</span><br><span class="line"><span class="actionscript">            <span class="keyword">return</span> <span class="keyword">this</span>.message.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>) + <span class="keyword">this</span>.number</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/20/vue%E4%B8%ADcomputed%E5%92%8Cwatch%E7%9A%84%E6%AF%94%E8%BE%83/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/19/closure/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -313,75 +379,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/10/vue%E4%B8%AD%E7%9A%84%E7%BB%91%E5%AE%9A%E8%AF%AD%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/1.jpg">
-      <meta itemprop="name" content="cheney">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="嘿！~是小爬">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/10/vue%E4%B8%AD%E7%9A%84%E7%BB%91%E5%AE%9A%E8%AF%AD%E6%B3%95/" class="post-title-link" itemprop="url">vue中的绑定语法</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2019-11-10 21:51:45 / 修改时间：22:35:27" itemprop="dateCreated datePublished" datetime="2019-11-10T21:51:45+08:00">2019-11-10</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="一、绑定语法："><a href="#一、绑定语法：" class="headerlink" title="一、绑定语法："></a>一、绑定语法：</h1><ol>
-<li>什么是绑定语法: 就是在HTML中标记可能发生变化的位置的语法——学名: Interpolation 插值语法</li>
-<li>何时: 只要元素的内容中，某个位置可能随变量自动变化时，就要用绑定语法标记</li>
-</ol><h1 id="二、指令"><a href="#二、指令" class="headerlink" title="二、指令:"></a>二、指令:</h1><ol>
-<li>v-bind:<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">    &lt;h1&gt;空气净化器&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">    &lt;h2&gt;&#123;&#123;pm25&#125;&#125;&lt;/</span>h2&gt;</span><br><span class="line">    &lt;h2&gt;&#123;&#123;pm25&lt;<span class="number">100</span>?<span class="string">'img/1.png'</span>:</span><br><span class="line">      pm25&lt;<span class="number">200</span>?<span class="string">'img/2.png'</span>:</span><br><span class="line">      pm25&lt;<span class="number">300</span>?<span class="string">'img/3.png'</span>:</span><br><span class="line">                <span class="string">'img/4.png'</span>&#125;&#125;&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">     /</span><span class="regexp">/属性名前有："就变成了&#123;&#125;</span></span><br><span class="line"><span class="regexp">    &lt;img :src="pm25&lt;100?'img/</span><span class="number">1.</span>png<span class="string">':</span></span><br><span class="line"><span class="string">                pm25&lt;200?'</span>img/<span class="number">2.</span>png<span class="string">':</span></span><br><span class="line"><span class="string">                pm25&lt;300?'</span>img/<span class="number">3.</span>png<span class="string">':</span></span><br><span class="line"><span class="string">                         '</span>img/<span class="number">4.</span>png<span class="string">'"&gt;</span></span><br><span class="line"><span class="string">  &lt;/div&gt;</span></span><br><span class="line"><span class="string">  &lt;script&gt;</span></span><br><span class="line"><span class="string">    var vm=new Vue(&#123;</span></span><br><span class="line"><span class="string">      el:"#app",</span></span><br><span class="line"><span class="string">      data:&#123;</span></span><br><span class="line"><span class="string">        pm25:180</span></span><br><span class="line"><span class="string">      &#125;</span></span><br><span class="line"><span class="string">    &#125;);</span></span><br><span class="line"><span class="string">    setInterval(function()&#123;</span></span><br><span class="line"><span class="string">    //vm.data.pm25=</span></span><br><span class="line"><span class="string">      vm.pm25=Math.random()*400</span></span><br><span class="line"><span class="string">    &#125;,2000)</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure></li>
-<li>控制显示隐藏:<br>控制两个元素根据条件二选一显示隐藏<br>&lt;元素1  v-if=”条件”&gt;<br>&lt;元素2  v-else&gt;<br> a. 结果: 每当new Vue扫描页面时，或者data中变量发生更改时，都会自动计算v-if=后的条件表达式的值。如果v-if=”true”，则显示元素1，不显示元素2。否则如果v-if=”false”，则不显示元素1，改为显示元素2<br> b. 原理: 如果v-if=”true”，则删除元素2，保留元素1<ul>
-<li>如果v-if=”false”，则删除元素1，保留元素2<br>c. 强调:</li>
-<li>v-else后不要写=和属性值！</li>
-<li>v-if和v-else两个元素之间禁止插入其他元素！</li>
-</ul>
-</li>
-</ol>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -432,14 +429,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
