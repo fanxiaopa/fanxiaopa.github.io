@@ -1018,6 +1018,7 @@ pre .javascript .function {
   margin-top: 20px;
   padding-left: 0;
   text-align: center;
+  font-size: 1.15rem;
 }
 .menu-item {
   display: inline-block;
@@ -1146,7 +1147,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #d171af;
+  background: #c62e00;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1511,7 +1512,7 @@ body {
     opacity: 0.9;
   }
   .content {
-    padding-top: 15px !important;
+    padding-top: 20px !important;
   }
   .posts-expand {
     margin: 0px !important;
@@ -1521,6 +1522,7 @@ body {
   opacity: 0.2;
 }
 .post-body {
+  font-size: 0.98rem !important;
   overflow-wrap: break-word;
   word-wrap: break-word;
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
