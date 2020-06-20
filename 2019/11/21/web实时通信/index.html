@@ -50,13 +50,13 @@
   };
 </script>
 
-  <meta name="description" content="Web端即时通讯技术即时通讯技术简单的说就是实现这样一种功能：服务器端可以即时地将数据的更新或变化反应到客户端，例如消息即时推送等功能都是通过这种技术实现的。但是在Web中，由于浏览器的限制，实现即时通讯需要借助一些方法。这种限制出现的主要原因是，一般的Web通信都是浏览器先发送请求到服务器，服务器再进行响应完成数据的现实更新。">
+  <meta name="description" content="Web端即时通讯技术即时通讯技术简单的说就是实现这样一种功能：服务器端可以即时地将数据的更新或变化反应到客户端，例如消息即时推送等功能都是通过这种技术实现的。">
 <meta name="keywords" content="web通信">
 <meta property="og:type" content="article">
 <meta property="og:title" content="web实时通信">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;21&#x2F;web%E5%AE%9E%E6%97%B6%E9%80%9A%E4%BF%A1&#x2F;index.html">
 <meta property="og:site_name" content="嘿！~是小爬">
-<meta property="og:description" content="Web端即时通讯技术即时通讯技术简单的说就是实现这样一种功能：服务器端可以即时地将数据的更新或变化反应到客户端，例如消息即时推送等功能都是通过这种技术实现的。但是在Web中，由于浏览器的限制，实现即时通讯需要借助一些方法。这种限制出现的主要原因是，一般的Web通信都是浏览器先发送请求到服务器，服务器再进行响应完成数据的现实更新。">
+<meta property="og:description" content="Web端即时通讯技术即时通讯技术简单的说就是实现这样一种功能：服务器端可以即时地将数据的更新或变化反应到客户端，例如消息即时推送等功能都是通过这种技术实现的。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-11-21T12:33:09.163Z">
 <meta name="twitter:card" content="summary">
@@ -229,8 +229,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="Web端即时通讯技术"><a href="#Web端即时通讯技术" class="headerlink" title="Web端即时通讯技术"></a>Web端即时通讯技术</h3><p>即时通讯技术简单的说就是实现这样一种功能：服务器端可以即时地将数据的更新或变化反应到客户端，例如消息即时推送等功能都是通过这种技术实现的。</p><p>但是在Web中，由于浏览器的限制，实现即时通讯需要借助一些方法。这种限制出现的主要原因是，一般的Web通信都是浏览器先发送请求到服务器，服务器再进行响应完成数据的现实更新。</p><a id="more"></a>
-
+        <h3 id="Web端即时通讯技术"><a href="#Web端即时通讯技术" class="headerlink" title="Web端即时通讯技术"></a>Web端即时通讯技术</h3><p>即时通讯技术简单的说就是实现这样一种功能：服务器端可以即时地将数据的更新或变化反应到客户端，例如消息即时推送等功能都是通过这种技术实现的。</p><a id="more"></a>
+<p>但是在Web中，由于浏览器的限制，实现即时通讯需要借助一些方法。这种限制出现的主要原因是，一般的Web通信都是浏览器先发送请求到服务器，服务器再进行响应完成数据的现实更新。</p>
 <h3 id="实现Web端即时通讯的方法"><a href="#实现Web端即时通讯的方法" class="headerlink" title="实现Web端即时通讯的方法"></a>实现Web端即时通讯的方法</h3><p>它们大体可以分为两类，一种是在<span style="color:red">HTTP基础</span>上实现的，包括短轮询、长轮询(comet)和SSE；</p>
 <p>另一种不是在HTTP基础上实现是，即WebSocket。</p>
 <h4 id="1-短轮询"><a href="#1-短轮询" class="headerlink" title="1.短轮询"></a>1.短轮询</h4><p>短轮询的基本思路就是<span style="color:#49b94d;">浏览器每隔一段时间向浏览器发送http请求，服务器端在收到请求后，不论是否有数据更新，都直接进行响应。</span>这种方式实现的即时通信，本质上还是浏览器发送请求，服务器接受请求的一个过程，通过让客户端不断的进行请求，使得客户端能够模拟实时地收到服务器端的数据的变化。</p>
@@ -462,7 +462,7 @@ NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
     notify: false,
     appId: 'AGrJP3tUCktoWpoiRigqj3zy-gzGzoHsz',
     appKey: 'r0u61FlVNs3yvXwGYocWG3qm',
-    placeholder: "欢迎大佬指正~",
+    placeholder: "请多多指教~",
     avatar: 'wavatar',
     meta: guest,
     pageSize: '10' || 10,

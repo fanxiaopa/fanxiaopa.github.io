@@ -50,13 +50,13 @@
   };
 </script>
 
-  <meta name="description" content="什么是泛型软件工程中，我们不仅要创建一致的定义良好的API，同时也要考虑可重用性。 组件不仅能够支持当前的数据类型，同时也能支持未来的数据类型，这在创建大型系统时为你提供了十分灵活的功能。在像C#和Java这样的语言中，可以使用泛型来创建可重用的组件，一个组件可以支持多种类型的数据。 这样用户就可以以自己的数据类型来使用组件。">
+  <meta name="description" content="什么是泛型软件工程中，我们不仅要创建一致的定义良好的API，同时也要考虑可重用性。 组件不仅能够支持当前的数据类型，同时也能支持未来的数据类型，这在创建大型系统时为你提供了十分灵活的功能。">
 <meta name="keywords" content="TypeScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TypeScript中的泛型">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;24&#x2F;TypeScript%E4%B8%AD%E7%9A%84%E6%B3%9B%E5%9E%8B&#x2F;index.html">
 <meta property="og:site_name" content="嘿！~是小爬">
-<meta property="og:description" content="什么是泛型软件工程中，我们不仅要创建一致的定义良好的API，同时也要考虑可重用性。 组件不仅能够支持当前的数据类型，同时也能支持未来的数据类型，这在创建大型系统时为你提供了十分灵活的功能。在像C#和Java这样的语言中，可以使用泛型来创建可重用的组件，一个组件可以支持多种类型的数据。 这样用户就可以以自己的数据类型来使用组件。">
+<meta property="og:description" content="什么是泛型软件工程中，我们不仅要创建一致的定义良好的API，同时也要考虑可重用性。 组件不仅能够支持当前的数据类型，同时也能支持未来的数据类型，这在创建大型系统时为你提供了十分灵活的功能。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-12-24T14:17:40.375Z">
 <meta name="twitter:card" content="summary">
@@ -229,8 +229,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="什么是泛型"><a href="#什么是泛型" class="headerlink" title="什么是泛型"></a>什么是泛型</h3><p>软件工程中，我们不仅要创建一致的定义良好的API，同时也要考虑可重用性。 组件不仅能够支持当前的数据类型，同时也能支持未来的数据类型，这在创建大型系统时为你提供了十分灵活的功能。</p><p>在像C#和Java这样的语言中，可以使用泛型来创建可重用的组件，一个组件可以支持多种类型的数据。 这样用户就可以以自己的数据类型来使用组件。</p><a id="more"></a>
-
+        <h3 id="什么是泛型"><a href="#什么是泛型" class="headerlink" title="什么是泛型"></a>什么是泛型</h3><p>软件工程中，我们不仅要创建一致的定义良好的API，同时也要考虑可重用性。 组件不仅能够支持当前的数据类型，同时也能支持未来的数据类型，这在创建大型系统时为你提供了十分灵活的功能。</p><a id="more"></a>
+<p>在像C#和Java这样的语言中，可以使用泛型来创建可重用的组件，一个组件可以支持多种类型的数据。 这样用户就可以以自己的数据类型来使用组件。</p>
 <p>通俗理解：泛型就是解决 类 接口 方法的复用性、以及对不特定数据类型的支持(类型校验)</p>
 <p>我们用 T 来表示泛型，当然也可以用其他字母表示</p>
 <h3 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h3><p>我们举一个例子，找数组中最小的元素，它可以是number，也可以是string</p>
@@ -457,7 +457,7 @@ NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
     notify: false,
     appId: 'AGrJP3tUCktoWpoiRigqj3zy-gzGzoHsz',
     appKey: 'r0u61FlVNs3yvXwGYocWG3qm',
-    placeholder: "欢迎大佬指正~",
+    placeholder: "请多多指教~",
     avatar: 'wavatar',
     meta: guest,
     pageSize: '10' || 10,

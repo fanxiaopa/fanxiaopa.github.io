@@ -398,7 +398,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="首先-单线程、多线程"><a href="#首先-单线程、多线程" class="headerlink" title="首先 单线程、多线程"></a>首先 单线程、多线程</h3><p>浏览器解释引擎 对js 脚本进行解析</p><p>主要执行交互行为 对 dom 节点进行操作</p><p>js为单线程，不会存在同时对一个dom元素进行多种同时操作</p><p>但js脚本可创建多线程，子线程受浏览器主线程操作，进入任务队列排队，等待调用</p><h3 id="任务队列"><a href="#任务队列" class="headerlink" title="任务队列"></a>任务队列</h3><p>单线程导致一个任务结束，才能执行下一个任务</p><p>任务队列排队 空闲，会导致 CPU 闲置 ，因此将任务分为两种：同步、异步</p>
+          <h3 id="首先-单线程、多线程"><a href="#首先-单线程、多线程" class="headerlink" title="首先 单线程、多线程"></a>首先 单线程、多线程</h3><p>浏览器解释引擎 对js 脚本进行解析</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/11/19/%E4%BA%8B%E4%BB%B6%E9%98%9F%E5%88%97/#more" rel="contents">
@@ -481,15 +481,15 @@
           <h1 id="一、绑定语法："><a href="#一、绑定语法：" class="headerlink" title="一、绑定语法："></a>一、绑定语法：</h1><ol>
 <li>什么是绑定语法: 就是在HTML中标记可能发生变化的位置的语法——学名: Interpolation 插值语法</li>
 <li>何时: 只要元素的内容中，某个位置可能随变量自动变化时，就要用绑定语法标记</li>
-</ol><h1 id="二、指令"><a href="#二、指令" class="headerlink" title="二、指令:"></a>二、指令:</h1><ol>
-<li>v-bind:<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">    &lt;h1&gt;空气净化器&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">    &lt;h2&gt;&#123;&#123;pm25&#125;&#125;&lt;/</span>h2&gt;</span><br><span class="line">    &lt;h2&gt;&#123;&#123;pm25&lt;<span class="number">100</span>?<span class="string">'img/1.png'</span>:</span><br><span class="line">      pm25&lt;<span class="number">200</span>?<span class="string">'img/2.png'</span>:</span><br><span class="line">      pm25&lt;<span class="number">300</span>?<span class="string">'img/3.png'</span>:</span><br><span class="line">                <span class="string">'img/4.png'</span>&#125;&#125;&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">     /</span><span class="regexp">/属性名前有："就变成了&#123;&#125;</span></span><br><span class="line"><span class="regexp">    &lt;img :src="pm25&lt;100?'img/</span><span class="number">1.</span>png<span class="string">':</span></span><br><span class="line"><span class="string">                pm25&lt;200?'</span>img/<span class="number">2.</span>png<span class="string">':</span></span><br><span class="line"><span class="string">                pm25&lt;300?'</span>img/<span class="number">3.</span>png<span class="string">':</span></span><br><span class="line"><span class="string">                         '</span>img/<span class="number">4.</span>png<span class="string">'"&gt;</span></span><br><span class="line"><span class="string">  &lt;/div&gt;</span></span><br><span class="line"><span class="string">  &lt;script&gt;</span></span><br><span class="line"><span class="string">    var vm=new Vue(&#123;</span></span><br><span class="line"><span class="string">      el:"#app",</span></span><br><span class="line"><span class="string">      data:&#123;</span></span><br><span class="line"><span class="string">        pm25:180</span></span><br><span class="line"><span class="string">      &#125;</span></span><br><span class="line"><span class="string">    &#125;);</span></span><br><span class="line"><span class="string">    setInterval(function()&#123;</span></span><br><span class="line"><span class="string">    //vm.data.pm25=</span></span><br><span class="line"><span class="string">      vm.pm25=Math.random()*400</span></span><br><span class="line"><span class="string">    &#125;,2000)</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure></li>
-<li>控制显示隐藏:<br>控制两个元素根据条件二选一显示隐藏<br>&lt;元素1  v-if=”条件”&gt;<br>&lt;元素2  v-else&gt;<br> a. 结果: 每当new Vue扫描页面时，或者data中变量发生更改时，都会自动计算v-if=后的条件表达式的值。如果v-if=”true”，则显示元素1，不显示元素2。否则如果v-if=”false”，则不显示元素1，改为显示元素2<br> b. 原理: 如果v-if=”true”，则删除元素2，保留元素1<ul>
-<li>如果v-if=”false”，则删除元素1，保留元素2<br>c. 强调:</li>
-<li>v-else后不要写=和属性值！</li>
-<li>v-if和v-else两个元素之间禁止插入其他元素！</li>
-</ul>
-</li>
 </ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/10/vue%E4%B8%AD%E7%9A%84%E7%BB%91%E5%AE%9A%E8%AF%AD%E6%B3%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -688,7 +688,7 @@ NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
     notify: false,
     appId: 'AGrJP3tUCktoWpoiRigqj3zy-gzGzoHsz',
     appKey: 'r0u61FlVNs3yvXwGYocWG3qm',
-    placeholder: "欢迎大佬指正~",
+    placeholder: "请多多指教~",
     avatar: 'wavatar',
     meta: guest,
     pageSize: '10' || 10,

@@ -50,13 +50,13 @@
   };
 </script>
 
-  <meta name="description" content="commander.js 是 express 框架的开发者号称无所不能的 TJ 大神写的工具包，用于快捷开发命令行工具，提高项目的开发效率。commander.js 官网地址初识命令行工具下面是npm安装全局包的实例1npm install commander -g上述命令行代码由三部分组成： npm 命令行工具名称 install 指令，后面的 commander 为该指令携带的参数 -g 选项">
+  <meta name="description" content="commander.js 是 express 框架的开发者号称无所不能的 TJ 大神写的工具包，用于快捷开发命令行工具，提高项目的开发效率。commander.js 官网地址">
 <meta name="keywords" content="commander">
 <meta property="og:type" content="article">
 <meta property="og:title" content="初识commander.js">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;17&#x2F;%E5%88%9D%E8%AF%86commander-js&#x2F;index.html">
 <meta property="og:site_name" content="嘿！~是小爬">
-<meta property="og:description" content="commander.js 是 express 框架的开发者号称无所不能的 TJ 大神写的工具包，用于快捷开发命令行工具，提高项目的开发效率。commander.js 官网地址初识命令行工具下面是npm安装全局包的实例1npm install commander -g上述命令行代码由三部分组成： npm 命令行工具名称 install 指令，后面的 commander 为该指令携带的参数 -g 选项">
+<meta property="og:description" content="commander.js 是 express 框架的开发者号称无所不能的 TJ 大神写的工具包，用于快捷开发命令行工具，提高项目的开发效率。commander.js 官网地址">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-12-17T04:24:42.610Z">
 <meta name="twitter:card" content="summary">
@@ -229,15 +229,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>commander.js 是 express 框架的开发者号称无所不能的 TJ 大神写的工具包，用于快捷开发命令行工具，提高项目的开发效率。<a href="https://github.com/tj/commander.js/blob/master/Readme_zh-CN.md" target="_blank" rel="noopener">commander.js 官网地址</a></p><h3 id="初识命令行工具"><a href="#初识命令行工具" class="headerlink" title="初识命令行工具"></a>初识命令行工具</h3><p>下面是npm安装全局包的实例</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install commander -g</span><br></pre></td></tr></table></figure><p>上述命令行代码由三部分组成：</p><ul>
+        <p>commander.js 是 express 框架的开发者号称无所不能的 TJ 大神写的工具包，用于快捷开发命令行工具，提高项目的开发效率。<a href="https://github.com/tj/commander.js/blob/master/Readme_zh-CN.md" target="_blank" rel="noopener">commander.js 官网地址</a></p><a id="more"></a>
+<h3 id="初识命令行工具"><a href="#初识命令行工具" class="headerlink" title="初识命令行工具"></a>初识命令行工具</h3><p>下面是npm安装全局包的实例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install commander -g</span><br></pre></td></tr></table></figure>
+<p>上述命令行代码由三部分组成：</p>
+<ul>
 <li>npm 命令行工具名称</li>
 <li>install 指令，后面的 commander 为该指令携带的参数</li>
 <li>-g 选项</li>
-</ul><a id="more"></a>
-
-
-
-
+</ul>
 <h3 id="定义命令行工具能够提供哪些选项"><a href="#定义命令行工具能够提供哪些选项" class="headerlink" title="定义命令行工具能够提供哪些选项"></a>定义命令行工具能够提供哪些选项</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> program = <span class="built_in">require</span>(<span class="string">'commander'</span>);</span><br><span class="line">program.option(flag, desc, fn, defaultValue)</span><br></pre></td></tr></table></figure>
 <p>通过 option 方法我们可以定义命令行工具提供哪些选项，这些选项可以带参数，我们可以对参数进行自定义的再处理，我们还可以给参数赋值默认值。</p>
 <ul>
@@ -471,7 +471,7 @@ NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
     notify: false,
     appId: 'AGrJP3tUCktoWpoiRigqj3zy-gzGzoHsz',
     appKey: 'r0u61FlVNs3yvXwGYocWG3qm',
-    placeholder: "欢迎大佬指正~",
+    placeholder: "请多多指教~",
     avatar: 'wavatar',
     meta: guest,
     pageSize: '10' || 10,
