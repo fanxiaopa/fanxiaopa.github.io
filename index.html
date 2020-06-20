@@ -226,7 +226,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>this在开发中的重要性这里就不说了，咱们直接来讨论出现this的几种情形</p>
+          <p>this在开发中的重要性这里就不说了，咱们直接来讨论出现this的几种情形</p><ul>
+<li>obj.fun()<br>fun函数中的this指向调用者obj</li>
+<li>fun()  或  (function(){ … })()  或 setTimeout(function(){ … }, ms)<br>里面的this指向window</li>
+<li>new Fun()<br>this指向正在创建的对象</li>
+<li>arr.forEach/map(() =&gt; {this})<br>这里面不管是普通函数还是箭头函数this都指向window</li>
+<li>btn.onclick=function(){ this-&gt;btn }<br>   btn.addEventListener(“click”,function(){ this-&gt;btn })<br>   $btn.on(“click”,function(){ this-&gt;btn })<br>   $btn.click(function(){ this-&gt;btn })</li>
+<li>Array.prototype.sum=function(){this}<br>this-&gt;将来调用sum的.前的数组家子对象</li>
+<li>只要new Vue中的this，一律指向当前的new Vue对象</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/06/15/this%E6%8C%87%E5%90%91/#more" rel="contents">
@@ -312,7 +320,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="事件模型"><a href="#事件模型" class="headerlink" title="事件模型"></a>事件模型</h3><h4 id="DOM：3个阶段"><a href="#DOM：3个阶段" class="headerlink" title="DOM：3个阶段"></a>DOM：3个阶段</h4>
+          <h3 id="事件模型"><a href="#事件模型" class="headerlink" title="事件模型"></a>事件模型</h3><h4 id="DOM：3个阶段"><a href="#DOM：3个阶段" class="headerlink" title="DOM：3个阶段"></a>DOM：3个阶段</h4><ul>
+<li>1.由外向内：捕获</li>
+<li>2.触发</li>
+<li>3.由内向外：冒泡</li>
+</ul><h4 id="IE8：2两个阶段"><a href="#IE8：2两个阶段" class="headerlink" title="IE8：2两个阶段"></a>IE8：2两个阶段</h4><ul>
+<li>1.触发</li>
+<li>2.由内向外：冒泡</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/02/10/DOM%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98/#more" rel="contents">
@@ -392,7 +407,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>实际开发时，遇到过这种情况，我们给data中的一个对象添加新属性时，视图层却不更新</p>
+          <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>实际开发时，遇到过这种情况，我们给data中的一个对象添加新属性时，视图层却不更新</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">    &lt;div v-<span class="keyword">for</span>=<span class="string">"(item, i) of user"</span> :key=<span class="string">"i"</span>&gt;</span><br><span class="line">        姓名：&#123;&#123;item.name&#125;&#125;</span><br><span class="line">        年龄：&#123;&#123;item.age&#125;&#125;</span><br><span class="line">        &lt;button @click=<span class="string">"change(i)"</span>&gt;爱好&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">        &lt;div v-if="item.love"&gt;</span></span><br><span class="line"><span class="regexp">            爱好：吃饭</span></span><br><span class="line"><span class="regexp">        &lt;/</span>div&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">var</span> vue = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">        el: <span class="string">'#app'</span>,</span><br><span class="line">        data () &#123;</span><br><span class="line">            <span class="keyword">return</span> &#123;</span><br><span class="line">                user:[</span><br><span class="line">                    &#123; <span class="attr">name</span>:<span class="string">'fan'</span>, <span class="attr">age</span>:<span class="number">20</span> &#125;,</span><br><span class="line">                    &#123; <span class="attr">name</span>:<span class="string">'lijing'</span>, <span class="attr">age</span>:<span class="number">30</span> &#125;,</span><br><span class="line">                    &#123; <span class="attr">name</span>:<span class="string">'yucheng'</span>, <span class="attr">age</span>:<span class="number">40</span> &#125;,</span><br><span class="line">                    &#123; <span class="attr">name</span>:<span class="string">'rongxin'</span>, <span class="attr">age</span>:<span class="number">50</span> &#125;</span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            change(i)&#123;</span><br><span class="line">                <span class="keyword">this</span>.user.forEach(<span class="function">(<span class="params">value, index</span>)=&gt;</span>&#123;</span><br><span class="line">                    <span class="keyword">if</span>(index === i)&#123;</span><br><span class="line">                        <span class="comment">//相当于添加一个新属性</span></span><br><span class="line">                        <span class="keyword">this</span>.user[i].love = !value.love</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/01/08/Vue-set%E8%A7%A3%E5%86%B3%E8%A7%86%E5%9B%BE%E4%B8%8D%E6%9B%B4%E6%96%B0/#more" rel="contents">
@@ -472,7 +487,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="keep-alive组件"><a href="#keep-alive组件" class="headerlink" title="keep-alive组件"></a>keep-alive组件</h3>
+          <h3 id="keep-alive组件"><a href="#keep-alive组件" class="headerlink" title="keep-alive组件"></a>keep-alive组件</h3><p>当组件在进行切换时，你有时候想保持这些组件的状态，以避免反复重渲染导致的性能问题。<br>keep-alive组件可以缓存组件的内容，避免组件反复加载，影响效率</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/01/06/keep-alive%E4%B8%8Eactivated/#more" rel="contents">

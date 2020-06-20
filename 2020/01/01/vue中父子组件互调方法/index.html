@@ -50,13 +50,13 @@
   };
 </script>
 
-  <meta name="description" content="在做项目时，只记得vue组件可以传递值，却忽略了组件之间也可以传递方法">
+  <meta name="description" content="在做项目时，只记得vue组件可以传递值，却忽略了组件之间也可以传递方法我们先说说ref这个特殊属性：ref 被用来给元素或子组件注册引用信息。引用信息将会注册在父组件的 $refs 对象上。如果在普通的 DOM 元素上使用，引用指向的就是 DOM 元素；如果用在子组件上，引用就指向组件实例官方文档解释">
 <meta name="keywords" content="vue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue中父子组件互调方法">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;01&#x2F;vue%E4%B8%AD%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E4%BA%92%E8%B0%83%E6%96%B9%E6%B3%95&#x2F;index.html">
 <meta property="og:site_name" content="嘿！~是小爬">
-<meta property="og:description" content="在做项目时，只记得vue组件可以传递值，却忽略了组件之间也可以传递方法">
+<meta property="og:description" content="在做项目时，只记得vue组件可以传递值，却忽略了组件之间也可以传递方法我们先说说ref这个特殊属性：ref 被用来给元素或子组件注册引用信息。引用信息将会注册在父组件的 $refs 对象上。如果在普通的 DOM 元素上使用，引用指向的就是 DOM 元素；如果用在子组件上，引用就指向组件实例官方文档解释">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2020-01-01T14:23:52.624Z">
 <meta name="twitter:card" content="summary">
@@ -229,8 +229,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>在做项目时，只记得vue组件可以传递值，却忽略了组件之间也可以传递方法</p><a id="more"></a>
-<p>我们先说说ref这个特殊属性：<br>ref 被用来给元素或子组件注册引用信息。引用信息将会注册在父组件的 $refs 对象上。如果在普通的 DOM 元素上使用，引用指向的就是 DOM 元素；如果用在子组件上，引用就指向组件实例<br><a href="https://cn.vuejs.org/v2/api/#ref" target="_blank" rel="noopener">官方文档解释</a></p>
+        <p>在做项目时，只记得vue组件可以传递值，却忽略了组件之间也可以传递方法</p><p>我们先说说ref这个特殊属性：<br>ref 被用来给元素或子组件注册引用信息。引用信息将会注册在父组件的 $refs 对象上。如果在普通的 DOM 元素上使用，引用指向的就是 DOM 元素；如果用在子组件上，引用就指向组件实例<br><a href="https://cn.vuejs.org/v2/api/#ref" target="_blank" rel="noopener">官方文档解释</a></p><a id="more"></a>
+
 <h3 id="父组件调用子组件的方法"><a href="#父组件调用子组件的方法" class="headerlink" title="父组件调用子组件的方法"></a>父组件调用子组件的方法</h3><p>当父调用子的方法时，要用到ref这个特殊属性<br>父组件：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;h1&gt;这是父组件&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">    &lt;button @click="go"&gt;调用子组件方法&lt;/</span>button&gt;</span><br><span class="line">    &lt;hr&gt;</span><br><span class="line">    &lt;child ref=<span class="string">"c"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">child</span>&gt;</span></span></span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">import</span> child <span class="keyword">from</span> <span class="string">'../components/child'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    components:&#123;</span><br><span class="line">        child</span><br><span class="line">    &#125;,</span><br><span class="line">    methods:&#123;</span><br><span class="line">        go()&#123;</span><br><span class="line">            <span class="comment">//this.$refs.c指向child这个组件</span></span><br><span class="line">            <span class="keyword">this</span>.$refs.c.childMethod()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
 <p>子组件：</p>

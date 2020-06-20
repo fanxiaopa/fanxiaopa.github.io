@@ -50,13 +50,13 @@
   };
 </script>
 
-  <meta name="description" content="this在开发中的重要性这里就不说了，咱们直接来讨论出现this的几种情形">
+  <meta name="description" content="this在开发中的重要性这里就不说了，咱们直接来讨论出现this的几种情形 obj.fun()fun函数中的this指向调用者obj fun()  或  (function(){ … })()  或 setTimeout(function(){ … }, ms)里面的this指向window new Fun()this指向正在创建的对象 arr.forEach&#x2F;map(() =&amp;gt; {this">
 <meta name="keywords" content="js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="this指向">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;06&#x2F;15&#x2F;this%E6%8C%87%E5%90%91&#x2F;index.html">
 <meta property="og:site_name" content="嘿！~是小爬">
-<meta property="og:description" content="this在开发中的重要性这里就不说了，咱们直接来讨论出现this的几种情形">
+<meta property="og:description" content="this在开发中的重要性这里就不说了，咱们直接来讨论出现this的几种情形 obj.fun()fun函数中的this指向调用者obj fun()  或  (function(){ … })()  或 setTimeout(function(){ … }, ms)里面的this指向window new Fun()this指向正在创建的对象 arr.forEach&#x2F;map(() =&amp;gt; {this">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2020-06-15T13:32:06.038Z">
 <meta name="twitter:card" content="summary">
@@ -229,8 +229,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>this在开发中的重要性这里就不说了，咱们直接来讨论出现this的几种情形</p><a id="more"></a>
-<ul>
+        <p>this在开发中的重要性这里就不说了，咱们直接来讨论出现this的几种情形</p><ul>
 <li>obj.fun()<br>fun函数中的this指向调用者obj</li>
 <li>fun()  或  (function(){ … })()  或 setTimeout(function(){ … }, ms)<br>里面的this指向window</li>
 <li>new Fun()<br>this指向正在创建的对象</li>
@@ -238,7 +237,8 @@
 <li>btn.onclick=function(){ this-&gt;btn }<br>   btn.addEventListener(“click”,function(){ this-&gt;btn })<br>   $btn.on(“click”,function(){ this-&gt;btn })<br>   $btn.click(function(){ this-&gt;btn })</li>
 <li>Array.prototype.sum=function(){this}<br>this-&gt;将来调用sum的.前的数组家子对象</li>
 <li>只要new Vue中的this，一律指向当前的new Vue对象</li>
-</ul>
+</ul><a id="more"></a>
+
 <p>这样直接看概念可能有点晦涩，这里上一个例子</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'window'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person1 = &#123;</span><br><span class="line">  name: <span class="string">'person1'</span>,</span><br><span class="line">  show1: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">  &#125;,</span><br><span class="line">  show2: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="keyword">this</span>.name),</span><br><span class="line">  show3: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  show4: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// console.log(this)</span></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person2 = &#123; <span class="attr">name</span>: <span class="string">'person2'</span> &#125;</span><br><span class="line"></span><br><span class="line">person1.show1() <span class="comment">// person1</span></span><br><span class="line">person1.show1.call(person2) <span class="comment">//person2</span></span><br><span class="line"></span><br><span class="line">person1.show2() <span class="comment">// window</span></span><br><span class="line">person1.show2.call(person2) <span class="comment">// window  </span></span><br><span class="line"></span><br><span class="line">person1.show3()() <span class="comment">// window</span></span><br><span class="line">person1.show3().call(person2) <span class="comment">// person2</span></span><br><span class="line">person1.show3.call(person2)() <span class="comment">// window</span></span><br><span class="line"></span><br><span class="line">person1.show4()() <span class="comment">// person1</span></span><br><span class="line">person1.show4().call(person2) <span class="comment">// person1  </span></span><br><span class="line">person1.show4.call(person2)() <span class="comment">// person2</span></span><br></pre></td></tr></table></figure>
 <p>答案既注释<br>我们来分析一下：<br>person1.show1()和person1.show1.call(person2)这两个都不用细说，前者this指向函数调用者‘person1’；后者使用call改变了this指向，相当于是用person2调用了person1的show1方法，故this指向调用者person2；</p>

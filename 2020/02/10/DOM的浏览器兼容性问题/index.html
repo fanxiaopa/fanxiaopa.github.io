@@ -50,13 +50,13 @@
   };
 </script>
 
-  <meta name="description" content="事件模型DOM：3个阶段">
+  <meta name="description" content="事件模型DOM：3个阶段 1.由外向内：捕获 2.触发 3.由内向外：冒泡 IE8：2两个阶段 1.触发 2.由内向外：冒泡">
 <meta name="keywords" content="DOM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DOM与IE在事件处理上的区别">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;10&#x2F;DOM%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98&#x2F;index.html">
 <meta property="og:site_name" content="嘿！~是小爬">
-<meta property="og:description" content="事件模型DOM：3个阶段">
+<meta property="og:description" content="事件模型DOM：3个阶段 1.由外向内：捕获 2.触发 3.由内向外：冒泡 IE8：2两个阶段 1.触发 2.由内向外：冒泡">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;DOM&amp;IE8.png">
 <meta property="og:updated_time" content="2020-02-11T02:31:49.944Z">
@@ -237,15 +237,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="事件模型"><a href="#事件模型" class="headerlink" title="事件模型"></a>事件模型</h3><h4 id="DOM：3个阶段"><a href="#DOM：3个阶段" class="headerlink" title="DOM：3个阶段"></a>DOM：3个阶段</h4><a id="more"></a><ul>
+        <h3 id="事件模型"><a href="#事件模型" class="headerlink" title="事件模型"></a>事件模型</h3><h4 id="DOM：3个阶段"><a href="#DOM：3个阶段" class="headerlink" title="DOM：3个阶段"></a>DOM：3个阶段</h4><ul>
 <li>1.由外向内：捕获</li>
 <li>2.触发</li>
 <li>3.由内向外：冒泡</li>
-</ul>
-<h4 id="IE8：2两个阶段"><a href="#IE8：2两个阶段" class="headerlink" title="IE8：2两个阶段"></a>IE8：2两个阶段</h4><ul>
+</ul><h4 id="IE8：2两个阶段"><a href="#IE8：2两个阶段" class="headerlink" title="IE8：2两个阶段"></a>IE8：2两个阶段</h4><ul>
 <li>1.触发</li>
 <li>2.由内向外：冒泡</li>
-</ul>
+</ul><a id="more"></a>
+
 <p>如图：DOM与IE8事件模型的比较<br><img src="/images/DOM&IE8.png"></p>
 <h3 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h3><p>在DOM中：elem.addEventListener(‘click’,function(){},false)<br>注意：第三个参数 capture：是否在捕获阶段就提前触发，默认为false，一般省略；</p>
 <p>在IE8中：elem.attachEvent(‘onclick’,function(){})</p>

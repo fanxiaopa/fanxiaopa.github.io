@@ -50,13 +50,13 @@
   };
 </script>
 
-  <meta name="description" content="让人容易忽视的是，watch中有两个属性，一个方法，分别是immediate，deep属性和handler方法">
+  <meta name="description" content="让人容易忽视的是，watch中有两个属性，一个方法，分别是immediate，deep属性和handler方法handler方法和immediate属性">
 <meta name="keywords" content="vue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue中的watch(深度监听)">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;25&#x2F;vue%E4%B8%AD%E7%9A%84watch-%E6%B7%B1%E5%BA%A6%E7%9B%91%E5%90%AC&#x2F;index.html">
 <meta property="og:site_name" content="嘿！~是小爬">
-<meta property="og:description" content="让人容易忽视的是，watch中有两个属性，一个方法，分别是immediate，deep属性和handler方法">
+<meta property="og:description" content="让人容易忽视的是，watch中有两个属性，一个方法，分别是immediate，deep属性和handler方法handler方法和immediate属性">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-12-31T15:13:27.377Z">
 <meta name="twitter:card" content="summary">
@@ -235,8 +235,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>让人容易忽视的是，watch中有两个属性，一个方法，分别是immediate，deep属性和handler方法</p><a id="more"></a>
-<h3 id="handler方法和immediate属性"><a href="#handler方法和immediate属性" class="headerlink" title="handler方法和immediate属性"></a>handler方法和immediate属性</h3><p>我们先来看一段代码</p>
+        <p>让人容易忽视的是，watch中有两个属性，一个方法，分别是immediate，deep属性和handler方法</p><h3 id="handler方法和immediate属性"><a href="#handler方法和immediate属性" class="headerlink" title="handler方法和immediate属性"></a>handler方法和immediate属性</h3><a id="more"></a>
+<p>我们先来看一段代码</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>FullName: &#123;&#123;fullName&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>FirstName: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"firstName"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">new Vue(&#123;</span><br><span class="line">  el: '#root',</span><br><span class="line">  data: &#123;</span><br><span class="line">    firstName: 'Dawei',</span><br><span class="line">    lastName: 'Lou',</span><br><span class="line">    fullName: ''</span><br><span class="line">  &#125;,</span><br><span class="line">  watch: &#123;</span><br><span class="line">    firstName(newName, oldName) &#123;</span><br><span class="line">      this.fullName = newName + ' ' + this.lastName;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>上面的代码的效果是，当我们输入firstName后，wacth监听每次修改变化的新值，然后计算输出fullName。</p>
 <p>这里 watch 的一个特点是，最初绑定的时候是不会执行的，要等到 firstName 改变时才执行监听计算。那我们想要一开始就让他最初绑定的时候就执行改怎么办呢？我们需要修改一下我们的 watch 写法，修改过后的 watch 代码如下：</p>
