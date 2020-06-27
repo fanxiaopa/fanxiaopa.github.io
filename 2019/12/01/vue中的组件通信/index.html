@@ -52,13 +52,13 @@
   };
 </script>
 
-  <meta name="description" content="vue中的组件通信无论是在做项目，还是笔试面试时都很重要下面我们来说一说vue组件通信的三种情况父-&amp;gt;子父子组件通信是利用自定义属性传值，该情形分为两步：">
+  <meta name="description" content="vue中的组件通信无论是在做项目，还是笔试面试时都很重要下面我们来说一说vue组件通信的三种情况父-&amp;gt;子父子组件通信是利用自定义属性传值，该情形分为两步： 1.在父组件中，将子组件需要的成员绑定给一个自定义的属性。 2.在子组件中，通过props获得父组件放在子组件中的自定义属性值。">
 <meta name="keywords" content="vue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue中的组件通信">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;01&#x2F;vue%E4%B8%AD%E7%9A%84%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1&#x2F;index.html">
 <meta property="og:site_name" content="嘿！~是小爬">
-<meta property="og:description" content="vue中的组件通信无论是在做项目，还是笔试面试时都很重要下面我们来说一说vue组件通信的三种情况父-&amp;gt;子父子组件通信是利用自定义属性传值，该情形分为两步：">
+<meta property="og:description" content="vue中的组件通信无论是在做项目，还是笔试面试时都很重要下面我们来说一说vue组件通信的三种情况父-&amp;gt;子父子组件通信是利用自定义属性传值，该情形分为两步： 1.在父组件中，将子组件需要的成员绑定给一个自定义的属性。 2.在子组件中，通过props获得父组件放在子组件中的自定义属性值。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-12-16T14:10:59.165Z">
 <meta name="twitter:card" content="summary">
@@ -237,13 +237,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>vue中的组件通信无论是在做项目，还是笔试面试时都很重要</p><p>下面我们来说一说vue组件通信的三种情况</p><h3 id="父-gt-子"><a href="#父-gt-子" class="headerlink" title="父-&gt;子"></a>父-&gt;子</h3><p>父子组件通信是利用自定义属性传值，该情形分为两步：</p><a id="more"></a>
-
-
-<ul>
+        <p>vue中的组件通信无论是在做项目，还是笔试面试时都很重要</p><p>下面我们来说一说vue组件通信的三种情况</p><h3 id="父-gt-子"><a href="#父-gt-子" class="headerlink" title="父-&gt;子"></a>父-&gt;子</h3><p>父子组件通信是利用自定义属性传值，该情形分为两步：</p><ul>
 <li>1.在父组件中，将子组件需要的成员绑定给一个自定义的属性。</li>
 <li>2.在子组件中，通过props获得父组件放在子组件中的自定义属性值。</li>
-</ul>
+</ul><a id="more"></a>
+
+
+
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//父组件</span></span><br><span class="line">Vue.component(<span class="string">'todo'</span>,&#123;</span><br><span class="line">    template:<span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;h1&gt;代办任务列表&lt;/h1&gt;</span></span><br><span class="line"><span class="string">            &lt;todo-add&gt;&lt;/todo-add&gt;</span></span><br><span class="line"><span class="string">            &lt;todo-list :msg='tasks'&gt;&lt;/todo-list&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span>,</span><br><span class="line">    data()&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            tasks:[<span class="string">"吃饭"</span>,<span class="string">"睡觉"</span>,<span class="string">"打亮亮"</span>]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    components:&#123;</span><br><span class="line">        todoAdd,</span><br><span class="line">        todoList</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//子组件</span></span><br><span class="line"><span class="keyword">var</span> todoList=&#123;</span><br><span class="line">    template:<span class="string">`</span></span><br><span class="line"><span class="string">        &lt;ul &gt;</span></span><br><span class="line"><span class="string">            &lt;todo-item v-for='(t,i) of tasks' :key='t' :t="t" :i="i"</span></span><br><span class="line"><span class="string">            :tasks="tasks"&gt;</span></span><br><span class="line"><span class="string">            &lt;/todo-item&gt;</span></span><br><span class="line"><span class="string">        &lt;/ul&gt;</span></span><br><span class="line"><span class="string">    `</span>,</span><br><span class="line">    props:[<span class="string">'msg'</span>],</span><br><span class="line">    components:&#123;</span><br><span class="line">        todoItem</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="子-gt-父"><a href="#子-gt-父" class="headerlink" title="子-&gt;父"></a>子-&gt;父</h3><p>子-&gt;父是自定义事件传值，分飞两步：</p>
@@ -348,7 +348,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

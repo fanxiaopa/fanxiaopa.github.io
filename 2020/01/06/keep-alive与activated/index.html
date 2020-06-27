@@ -52,13 +52,13 @@
   };
 </script>
 
-  <meta name="description" content="keep-alive组件当组件在进行切换时，你有时候想保持这些组件的状态，以避免反复重渲染导致的性能问题。keep-alive组件可以缓存组件的内容，避免组件反复加载，影响效率">
+  <meta name="description" content="keep-alive组件当组件在进行切换时，你有时候想保持这些组件的状态，以避免反复重渲染导致的性能问题。keep-alive组件可以缓存组件的内容，避免组件反复加载，影响效率比如：我们缓存一个页面在router.js或router&#x2F;index.js中，在需要缓存的路由上添加meta:{ keepAlive:true }">
 <meta name="keywords" content="vue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="keep-alive与activated">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;06&#x2F;keep-alive%E4%B8%8Eactivated&#x2F;index.html">
 <meta property="og:site_name" content="嘿！~是小爬">
-<meta property="og:description" content="keep-alive组件当组件在进行切换时，你有时候想保持这些组件的状态，以避免反复重渲染导致的性能问题。keep-alive组件可以缓存组件的内容，避免组件反复加载，影响效率">
+<meta property="og:description" content="keep-alive组件当组件在进行切换时，你有时候想保持这些组件的状态，以避免反复重渲染导致的性能问题。keep-alive组件可以缓存组件的内容，避免组件反复加载，影响效率比如：我们缓存一个页面在router.js或router&#x2F;index.js中，在需要缓存的路由上添加meta:{ keepAlive:true }">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2020-01-06T13:33:18.649Z">
 <meta name="twitter:card" content="summary">
@@ -231,8 +231,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="keep-alive组件"><a href="#keep-alive组件" class="headerlink" title="keep-alive组件"></a>keep-alive组件</h3><p>当组件在进行切换时，你有时候想保持这些组件的状态，以避免反复重渲染导致的性能问题。<br>keep-alive组件可以缓存组件的内容，避免组件反复加载，影响效率</p><a id="more"></a>
-<p>比如：我们缓存一个页面<br>在router.js或router/index.js中，在需要缓存的路由上添加meta:{ keepAlive:true }</p>
+        <h3 id="keep-alive组件"><a href="#keep-alive组件" class="headerlink" title="keep-alive组件"></a>keep-alive组件</h3><p>当组件在进行切换时，你有时候想保持这些组件的状态，以避免反复重渲染导致的性能问题。<br>keep-alive组件可以缓存组件的内容，避免组件反复加载，影响效率</p><p>比如：我们缓存一个页面<br>在router.js或router/index.js中，在需要缓存的路由上添加meta:{ keepAlive:true }</p><a id="more"></a>
+
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">const</span> routes = [</span><br><span class="line">...</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">'/'</span>,</span><br><span class="line">    name: <span class="string">'home'</span>,</span><br><span class="line">    component: Home,</span><br><span class="line">    meta:&#123;</span><br><span class="line">      keepAlive:<span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">...</span><br><span class="line">]</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <p>注意：meta不能改名，因为meta是路由对象专门定义，用来保存自定义属性值的配置项；但是keepAlive是自定义的属性名，可以改名。</p>
 <p>在App.vue中</p>
@@ -328,7 +328,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
