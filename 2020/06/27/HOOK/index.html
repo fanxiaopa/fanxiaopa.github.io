@@ -52,15 +52,15 @@
   };
 </script>
 
-  <meta name="description" content="Hook简介了解react的同鞋都知道，react组件有两种编写方式，即类组件和函数式组件。函数式组件代码看起来更简洁，但是没有办法维护自身状态，因此Hook的出现可以让我们在不编写class的情况下使用state以及其他的react特性。">
+  <meta name="description" content="Hook简介了解react的同鞋都知道，react组件有两种编写方式，即类组件和函数式组件。函数式组件代码看起来更简洁，但是没有办法维护自身状态,因此Hook的出现可以让我们在不编写class的情况下使用state以及其他的react特性。">
 <meta name="keywords" content="React">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hook">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;06&#x2F;27&#x2F;HOOK&#x2F;index.html">
 <meta property="og:site_name" content="嘿！~是小爬">
-<meta property="og:description" content="Hook简介了解react的同鞋都知道，react组件有两种编写方式，即类组件和函数式组件。函数式组件代码看起来更简洁，但是没有办法维护自身状态，因此Hook的出现可以让我们在不编写class的情况下使用state以及其他的react特性。">
+<meta property="og:description" content="Hook简介了解react的同鞋都知道，react组件有两种编写方式，即类组件和函数式组件。函数式组件代码看起来更简洁，但是没有办法维护自身状态,因此Hook的出现可以让我们在不编写class的情况下使用state以及其他的react特性。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-06-27T13:32:21.027Z">
+<meta property="og:updated_time" content="2020-06-28T14:30:40.252Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2020/06/27/HOOK/">
@@ -184,7 +184,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/1.jpg">
       <meta itemprop="name" content="cheney">
-      <meta itemprop="description" content="你要悄悄拔尖，惊艳所有人">
+      <meta itemprop="description" content="你要悄悄拔尖，然后惊艳所有人">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -201,10 +201,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-06-27 21:08:46 / 修改时间：21:32:21" itemprop="dateCreated datePublished" datetime="2020-06-27T21:08:46+08:00">2020-06-27</time>
+              <time title="创建时间：2020-06-27 21:08:46" itemprop="dateCreated datePublished" datetime="2020-06-27T21:08:46+08:00">2020-06-27</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-28 22:30:40" itemprop="dateModified" datetime="2020-06-28T22:30:40+08:00">2020-06-28</time>
+              </span>
 
           
   
@@ -231,7 +237,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="Hook简介"><a href="#Hook简介" class="headerlink" title="Hook简介"></a>Hook简介</h3><p>了解react的同鞋都知道，react组件有两种编写方式，即类组件和函数式组件。函数式组件代码看起来更简洁，但是没有办法维护自身状态，因此Hook的出现可以让我们在不编写class的情况下使用state以及其他的react特性。</p><a id="more"></a>
+        <h3 id="Hook简介"><a href="#Hook简介" class="headerlink" title="Hook简介"></a>Hook简介</h3><p>了解react的同鞋都知道，react组件有两种编写方式，即类组件和函数式组件。<br>函数式组件代码看起来更简洁，但是没有办法维护自身状态,因此Hook的出现可以让我们在不编写class的情况下使用state以及其他的react特性。</p><a id="more"></a>
 <h3 id="State-Hook"><a href="#State-Hook" class="headerlink" title="State Hook"></a>State Hook</h3><p>useState方法必须要从react中引入，该方法接收一个参数（state的初始值），会返回一个数组，数组中第一个元素是当前状态（state），第二个元素是更新状态的函数</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useState &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Example</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 声明一个叫 "count" 的 state 变量  </span></span><br><span class="line">  <span class="keyword">const</span> [count, setCount] = useState(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;p&gt;You clicked &#123;count&#125; times&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">      &lt;button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;</span></span><br><span class="line"><span class="regexp">        Click me</span></span><br><span class="line"><span class="regexp">      &lt;/</span>button&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
 <p>我们尝试这把这段代码转化成class写法：</p>
@@ -327,7 +333,7 @@
   <img class="site-author-image" itemprop="image" alt="cheney"
     src="/images/1.jpg">
   <p class="site-author-name" itemprop="name">cheney</p>
-  <div class="site-description" itemprop="description">你要悄悄拔尖，惊艳所有人</div>
+  <div class="site-description" itemprop="description">你要悄悄拔尖，然后惊艳所有人</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
