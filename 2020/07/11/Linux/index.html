@@ -52,18 +52,18 @@
   };
 </script>
 
-  <meta name="description" content="closure 闭包在JS中，变量的作用域属于函数作用域，在函数执行后作用域就会被清理、内存也随之回收，但是由于闭包是建立在一个函数内部的子函数，由于其可访问上级作用域的原因，即使上级函数执行完，作用域也不会随之销毁，这时的子函数——也就是闭包，便拥有了访问上级作用域中的变量的权限，即使上级函数执行完后作用域内的值也不会被销毁。">
-<meta name="keywords" content="js">
+  <meta name="description" content="前言今年因为疫情的影响，找工作似乎没有往年那么轻松（往年轻不轻松咱也不知道啊，毕竟没找过哈哈）。我们应届毕业生也面临着不小的压力，幸运的是，我经过一轮笔试，四轮面试终于被一家我自认为还比较满意的公司录取了。截至目前已经报道一个月了，其中有件事我，印象特别深刻。有一次把前端程序打包丢给后端部署在Linux服务器上，奈何项目怎么也启动不起来，为了排错，后端让我去Linux服务器上看日志，我当时就懵了，">
+<meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="closure">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;19&#x2F;closure&#x2F;index.html">
+<meta property="og:title" content="Linux">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;07&#x2F;11&#x2F;Linux&#x2F;index.html">
 <meta property="og:site_name" content="嘿！~是小爬">
-<meta property="og:description" content="closure 闭包在JS中，变量的作用域属于函数作用域，在函数执行后作用域就会被清理、内存也随之回收，但是由于闭包是建立在一个函数内部的子函数，由于其可访问上级作用域的原因，即使上级函数执行完，作用域也不会随之销毁，这时的子函数——也就是闭包，便拥有了访问上级作用域中的变量的权限，即使上级函数执行完后作用域内的值也不会被销毁。">
+<meta property="og:description" content="前言今年因为疫情的影响，找工作似乎没有往年那么轻松（往年轻不轻松咱也不知道啊，毕竟没找过哈哈）。我们应届毕业生也面临着不小的压力，幸运的是，我经过一轮笔试，四轮面试终于被一家我自认为还比较满意的公司录取了。截至目前已经报道一个月了，其中有件事我，印象特别深刻。有一次把前端程序打包丢给后端部署在Linux服务器上，奈何项目怎么也启动不起来，为了排错，后端让我去Linux服务器上看日志，我当时就懵了，">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-21T09:27:33.334Z">
+<meta property="og:updated_time" content="2020-07-11T14:36:23.961Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2019/11/19/closure/">
+<link rel="canonical" href="http://yoursite.com/2020/07/11/Linux/">
 
 
 <script id="page-configurations">
@@ -77,7 +77,7 @@
   };
 </script>
 
-  <title>closure | 嘿！~是小爬</title>
+  <title>Linux | 嘿！~是小爬</title>
   
 
 
@@ -179,7 +179,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/19/closure/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/11/Linux/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/me/head.jpg">
@@ -192,7 +192,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          closure
+          Linux
         </h1>
 
         <div class="post-meta">
@@ -201,16 +201,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2019-11-19 17:42:47" itemprop="dateCreated datePublished" datetime="2019-11-19T17:42:47+08:00">2019-11-19</time>
+              <time title="创建时间：2020-07-11 21:55:10 / 修改时间：22:36:23" itemprop="dateCreated datePublished" datetime="2020-07-11T21:55:10+08:00">2020-07-11</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-21 17:27:33" itemprop="dateModified" datetime="2019-11-21T17:27:33+08:00">2019-11-21</time>
-              </span>
 
           
   
@@ -221,8 +215,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2019/11/19/closure/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/19/closure/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/07/11/Linux/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/11/Linux/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -237,11 +231,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="closure-闭包"><a href="#closure-闭包" class="headerlink" title="closure 闭包"></a>closure 闭包</h3><p>在JS中，变量的作用域属于函数作用域，在函数执行后作用域就会被清理、内存也随之回收，但是由于闭包是建立在一个函数内部的子函数，由于其可访问上级作用域的原因，即使上级函数执行完，作用域也不会随之销毁，这时的子函数——也就是闭包，便拥有了访问上级作用域中的变量的权限，即使上级函数执行完后作用域内的值也不会被销毁。</p><a id="more"></a>
-<p>从以下几句话中来明确概念：</p>
-<h4 id="变量作用域："><a href="#变量作用域：" class="headerlink" title="变量作用域："></a>变量作用域：</h4><p>全局变量 在 全局范围内可用，存在于全局作用域中，在js任何代码中可见<br>局部变量 只 存在 函数体内，在局部作用域中使用<br>函数作用域 在函数体内的所有变量可以使用</p>
-<h3 id="作用域链："><a href="#作用域链：" class="headerlink" title="作用域链："></a>作用域链：</h3><p>定义一个函数时， 会保存一个作用域链；<br>对于嵌套函数来说，每内调用一次外部函数，都会创建一个新的作用域链；<br>每次外部函数的调用，内部的代码相同，但其作用域链不同</p>
-<h3 id="js垃圾回收机制："><a href="#js垃圾回收机制：" class="headerlink" title="js垃圾回收机制："></a>js垃圾回收机制：</h3><p>js具有自动垃圾回收机制，会定期把不再使用的变量销毁，释放其占用的内存；<br>(只会销毁局部变量，全局变量的生命周期只有在页面或浏览器关闭时才会结束)</p>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>今年因为疫情的影响，找工作似乎没有往年那么轻松（往年轻不轻松咱也不知道啊，毕竟没找过哈哈）。我们应届毕业生也面临着不小的压力，幸运的是，我经过一轮笔试，四轮面试终于被一家我自认为还比较满意的公司录取了。截至目前已经报道一个月了，其中有件事我，印象特别深刻。有一次把前端程序打包丢给后端部署在Linux服务器上，奈何项目怎么也启动不起来，为了排错，后端让我去Linux服务器上看日志，我当时就懵了，寻思着这操作我也没整过啊，急忙向导师求助，只见他三下五除二的功夫就将问题解决了。他告诉我：“早期程序员是不分前后端的，不要把自己局限在前端上，什么东西都要去接触一点，不然就只做前端这点事，以后会没饭吃的！” 我下来仔细一寻思，也确实是这么回事，所以近期的目标就放在了Linux身上。</p><a id="more"></a>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><h4 id="企业环境应用"><a href="#企业环境应用" class="headerlink" title="企业环境应用"></a>企业环境应用</h4><h5 id="网络服务器"><a href="#网络服务器" class="headerlink" title="网络服务器"></a>网络服务器</h5><p>这是Linux当前最热门的应用！Linux上面的网络功能特别的稳定与强大！此外，由于GNU计划与Linux的GPL授权模式，让很多的优秀软件在Linux上面发展，且这些在Linux上面的服务器软件几乎都是自由软件。因此，作为一部网络服务器，Linux绝对是上上之选，这也是Linux的强项。</p>
+<h5 id="金融数据库、大型企业网管环境"><a href="#金融数据库、大型企业网管环境" class="headerlink" title="金融数据库、大型企业网管环境"></a>金融数据库、大型企业网管环境</h5><p>目前很多金融业界都已经使用Linux来作为他们的关键任务应用。关键任务应用就是最重要的业务，比如投资者的账户数据，这些数据大都使用数据库系统来作为存取接口。很多金融业都把这么重要的任务交给Linux了。</p>
+<h5 id="学术机构的高效能运算任务"><a href="#学术机构的高效能运算任务" class="headerlink" title="学术机构的高效能运算任务"></a>学术机构的高效能运算任务</h5><p>由于学术机构的研究通常要自行开发软件，对开发环境的操作系统需求非常迫切。由于Linux的创造者本身就是个性能癖，所以Linux有强大的运算能力，并且Linux具有支持度相当广泛的GCC编译软件，因此Linux在这方面的优势相当明显。</p>
+<h4 id="个人环境应用"><a href="#个人环境应用" class="headerlink" title="个人环境应用"></a>个人环境应用</h4><p>个人环境的应用主要分三个方面：</p>
+<ul>
+<li>桌面计算机</li>
+<li>手持系统（PDA，手机）<br>Android其实就是Linux核心的一支；<br>现在手机的主流操作系统是Linux分支出来的Andriod；</li>
+<li>嵌入式系统<br>操作系统直接嵌入到产品中，用户不应该主动更改这个操作系统</li>
+</ul>
+<h4 id="云端应用"><a href="#云端应用" class="headerlink" title="云端应用"></a>云端应用</h4><p>分为两个方面：</p>
+<ul>
+<li>云程序<br>  云程序的底层就是Linux，而云程序搭建出来的虚拟机，内容也是Linux操作系统；<br>  虚拟机指的就是在一部实体主机上面仿真出多个逻辑上完全独立的硬件，这些硬件可以安装一部逻辑完全独立的操作系统；</li>
+<li>端设备</li>
+</ul>
 
     </div>
 
@@ -251,24 +255,21 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/js/" rel="tag"># js</a>
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/11/19/%E4%BA%8B%E4%BB%B6%E9%98%9F%E5%88%97/" rel="next" title="事件队列">
-                  <i class="fa fa-chevron-left"></i> 事件队列
+                <a href="/2020/06/27/HOOK/" rel="next" title="Hook">
+                  <i class="fa fa-chevron-left"></i> Hook
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/11/20/vue%E4%B8%ADcomputed%E5%92%8Cwatch%E7%9A%84%E6%AF%94%E8%BE%83/" rel="prev" title="vue中computed和watch的比较">
-                  vue中computed和watch的比较 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -308,7 +309,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#closure-闭包"><span class="nav-number">1.</span> <span class="nav-text">closure 闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#变量作用域："><span class="nav-number">1.1.</span> <span class="nav-text">变量作用域：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作用域链："><span class="nav-number">2.</span> <span class="nav-text">作用域链：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#js垃圾回收机制："><span class="nav-number">3.</span> <span class="nav-text">js垃圾回收机制：</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用场景"><span class="nav-number">2.</span> <span class="nav-text">应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#企业环境应用"><span class="nav-number">2.1.</span> <span class="nav-text">企业环境应用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#网络服务器"><span class="nav-number">2.1.1.</span> <span class="nav-text">网络服务器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#金融数据库、大型企业网管环境"><span class="nav-number">2.1.2.</span> <span class="nav-text">金融数据库、大型企业网管环境</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#学术机构的高效能运算任务"><span class="nav-number">2.1.3.</span> <span class="nav-text">学术机构的高效能运算任务</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#个人环境应用"><span class="nav-number">2.2.</span> <span class="nav-text">个人环境应用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#云端应用"><span class="nav-number">2.3.</span> <span class="nav-text">云端应用</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
