@@ -52,20 +52,20 @@
   };
 </script>
 
-  <meta name="description" content="事件模型DOM：3个阶段 1.由外向内：捕获 2.触发 3.由内向外：冒泡 IE8：2两个阶段 1.触发 2.由内向外：冒泡 如图：DOM与IE8事件模型的比较事件绑定在DOM中：elem.addEventListener(‘click’,function(){},false)注意：第三个参数 capture：是否在捕获阶段就提前触发，默认为false，一般省略；">
-<meta name="keywords" content="DOM">
+  <meta name="description" content="Promise三种状态 pending: 未解决，当调用任意一个任务函数时，暂时处于pending状态，是不会去执行下一个任务的。  resolve: 当前任务执行完，且执行成功，任务函数内部会手动调用resolve()函数。Promise对象会将任务的状态改为resolve状态。死循环发现状态变为resolve，则自动i++，找到集合中排在当前位移的下一个位置的任务函数执行。并在此将状态改为pe">
+<meta name="keywords" content="js,Promise">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DOM与IE在事件处理上的区别">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;10&#x2F;DOM%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98&#x2F;index.html">
+<meta property="og:title" content="Promise">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;08&#x2F;05&#x2F;Promise&#x2F;index.html">
 <meta property="og:site_name" content="嘿！~是小爬">
-<meta property="og:description" content="事件模型DOM：3个阶段 1.由外向内：捕获 2.触发 3.由内向外：冒泡 IE8：2两个阶段 1.触发 2.由内向外：冒泡 如图：DOM与IE8事件模型的比较事件绑定在DOM中：elem.addEventListener(‘click’,function(){},false)注意：第三个参数 capture：是否在捕获阶段就提前触发，默认为false，一般省略；">
+<meta property="og:description" content="Promise三种状态 pending: 未解决，当调用任意一个任务函数时，暂时处于pending状态，是不会去执行下一个任务的。  resolve: 当前任务执行完，且执行成功，任务函数内部会手动调用resolve()函数。Promise对象会将任务的状态改为resolve状态。死循环发现状态变为resolve，则自动i++，找到集合中排在当前位移的下一个位置的任务函数执行。并在此将状态改为pe">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;DOM&amp;IE8.png">
-<meta property="og:updated_time" content="2020-02-11T02:31:49.944Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;promise&#x2F;promise.jpg">
+<meta property="og:updated_time" content="2020-08-05T13:39:16.579Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;DOM&amp;IE8.png">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;promise&#x2F;promise.jpg">
 
-<link rel="canonical" href="http://yoursite.com/2020/02/10/DOM%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98/">
+<link rel="canonical" href="http://yoursite.com/2020/08/05/Promise/">
 
 
 <script id="page-configurations">
@@ -79,7 +79,7 @@
   };
 </script>
 
-  <title>DOM与IE在事件处理上的区别 | 嘿！~是小爬</title>
+  <title>Promise | 嘿！~是小爬</title>
   
 
 
@@ -206,7 +206,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/10/DOM%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/05/Promise/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/me/head.jpg">
@@ -219,7 +219,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          DOM与IE在事件处理上的区别
+          Promise
         </h1>
 
         <div class="post-meta">
@@ -228,16 +228,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-02-10 11:33:11" itemprop="dateCreated datePublished" datetime="2020-02-10T11:33:11+08:00">2020-02-10</time>
+              <time title="创建时间：2020-08-05 21:28:49 / 修改时间：21:39:16" itemprop="dateCreated datePublished" datetime="2020-08-05T21:28:49+08:00">2020-08-05</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-11 10:31:49" itemprop="dateModified" datetime="2020-02-11T10:31:49+08:00">2020-02-11</time>
-              </span>
 
           
   
@@ -248,8 +242,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/02/10/DOM%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/02/10/DOM%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/08/05/Promise/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/05/Promise/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -264,30 +258,37 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="事件模型"><a href="#事件模型" class="headerlink" title="事件模型"></a>事件模型</h3><h4 id="DOM：3个阶段"><a href="#DOM：3个阶段" class="headerlink" title="DOM：3个阶段"></a>DOM：3个阶段</h4><ul>
-<li>1.由外向内：捕获</li>
-<li>2.触发</li>
-<li>3.由内向外：冒泡</li>
-</ul><h4 id="IE8：2两个阶段"><a href="#IE8：2两个阶段" class="headerlink" title="IE8：2两个阶段"></a>IE8：2两个阶段</h4><ul>
-<li>1.触发</li>
-<li>2.由内向外：冒泡</li>
-</ul><p>如图：DOM与IE8事件模型的比较<br><img src="/images/DOM&IE8.png"></p><h3 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h3><p>在DOM中：elem.addEventListener(‘click’,function(){},false)<br>注意：第三个参数 capture：是否在捕获阶段就提前触发，默认为false，一般省略；</p><a id="more"></a>
+        <h3 id="Promise三种状态"><a href="#Promise三种状态" class="headerlink" title="Promise三种状态"></a>Promise三种状态</h3><ol>
+<li><p><code>pending</code>: 未解决，当调用任意一个任务函数时，暂时处于pending状态，是不会去执行下一个任务的。</p>
+</li>
+<li><p><code>resolve</code>: 当前任务执行完，且执行成功，任务函数内部会手动调用resolve()函数。Promise对象会将任务的状态改为resolve状态。死循环发现状态变为resolve，则自动i++，找到集合中排在当前位移的下一个位置的任务函数执行。并在此将状态改为pending。直到当前任务执行完，才判断是否可以继续。</p>
+</li>
+<li><p><code>reject</code>: 如果当前任务执行过程中出错了，无法继续向后执行，则任务函数中会先手动调用reject()函数。Promise对象将任务的状态转为reject。死循环发现任务的状态变为reject，则不再继续循环，而是退出循环，执行最后一个catch的内容。</p>
+</li>
+</ol><a id="more"></a>
+<h3 id="then的作用"><a href="#then的作用" class="headerlink" title=".then的作用"></a>.then的作用</h3><p>then不是调用函数的意思，是收集后面任务的作用。</p>
+<p>一边收集后面的函数，一边调用第一个函数。</p>
+<p>利用状态机制来顺序执行任务<br><img src="/images/promise/promise.jpg" style="width:80%;margin: 0 auto;"><br>执行过程是由状态来决定的：</p>
+<blockquote>
+<ol>
+<li>当调用第一个函数时，状态为pending，（我在执行着呢，后面两个函数给我等着）</li>
+<li>第一个函数执行完，调用door（resolve）函数（相当于只改变了状态），状态从pending变为fulfilled（办妥   了，解决了）或者resolve （解决）</li>
+<li>执行第二个ran函数，状态迅速从fulfilled改为pending,当ran里面调door（resolve）时，状态由pending改为fulfilled，接着调用第三个函数</li>
+<li>在执行函数中，有第二个门 reject，通常用于报告错误用的，reject里面包含错误信息（实参），并传递给catch里面的函数的形参e接收，后续的函数不执行</li>
+</ol>
+</blockquote>
+<h3 id="常用的Promise"><a href="#常用的Promise" class="headerlink" title="常用的Promise"></a>常用的Promise</h3><h4 id="Promise-all"><a href="#Promise-all" class="headerlink" title="Promise.all()"></a>Promise.all()</h4><p>多个异步任务同时执行，不必按顺序执行</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.all([work1(), work2(), work3()]).then(....)</span><br></pre></td></tr></table></figure>
 
+<h4 id="Promise-race"><a href="#Promise-race" class="headerlink" title="Promise.race()"></a>Promise.race()</h4><p>该方法同样是将多个Promise实例包装成一个新的Promise实例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="built_in">Promise</span>.race([p1, p2, p3]);</span><br></pre></td></tr></table></figure>
 
+<p>上面代码中，只要p1、p2、p3之中有一个实例率先改变状态，p的状态就跟着改变。那个率先改变的 Promise 实例的返回值，就传递给p的回调函数。</p>
+<p>栗子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="built_in">Promise</span>.race([</span><br><span class="line">  fetch(<span class="string">'/resource-that-may-take-a-while'</span>),</span><br><span class="line">  <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'request timeout'</span>)), <span class="number">5000</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line">p</span><br><span class="line">.then(<span class="built_in">console</span>.log)</span><br><span class="line">.catch(<span class="built_in">console</span>.error);</span><br></pre></td></tr></table></figure>
 
-<p>在IE8中：elem.attachEvent(‘onclick’,function(){})</p>
-<h3 id="事件移除"><a href="#事件移除" class="headerlink" title="事件移除"></a>事件移除</h3><p>在DOM中：ele.removeEventListener(‘click’,function(){},false)<br>在IE8中：ele.detachEvent(‘onclick’,function(){})</p>
-<h3 id="获得事件对象的方法"><a href="#获得事件对象的方法" class="headerlink" title="获得事件对象的方法"></a>获得事件对象的方法</h3><p>在DOM中：ele.addEventListener(‘click’,function(e){e-&gt;event})<br>在IE8中：不会自动传入时间对象e，事件对象event始终保持在一个全局变量window.event中<br>elem.attachEvent(‘onclick’,function(){ var e = window.event })</p>
-<h3 id="获得目标元素"><a href="#获得目标元素" class="headerlink" title="获得目标元素"></a>获得目标元素</h3><p>在DOM中：e.target<br>在IE8中：window.event.srcElement<br>兼容所有浏览器的写法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> target = e.target || <span class="built_in">window</span>.event.srcElement;</span><br></pre></td></tr></table></figure>
+<p>上面代码中，如果 5 秒之内fetch方法无法返回结果，变量p的状态就会变为rejected，从而触发catch方法指定的回调函数。</p>
 
-<h3 id="阻止冒泡"><a href="#阻止冒泡" class="headerlink" title="阻止冒泡"></a>阻止冒泡</h3><p>在DOM中：e.stopPropagation()<br>在IE8中：window.event.cancelBubble = true<br>兼容所有浏览器的写法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="built_in">window</span>.event.cancelBubble != <span class="literal">undefined</span>) &#123;</span><br><span class="line">    <span class="built_in">window</span>.event.cancelBubble = <span class="literal">true</span> <span class="comment">//IE8</span></span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">    e.stopProoagation() </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="阻止默认行为"><a href="#阻止默认行为" class="headerlink" title="阻止默认行为"></a>阻止默认行为</h3><p>在DOM中：e.preventDefault()<br>在IE8中：事件处理函数中：window.event.returnValue = false<br>兼容所有浏览器的写法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">typeof</span> e.preventDefault !== <span class="string">'function'</span>) &#123;</span><br><span class="line">   <span class="built_in">window</span>.event.returnValue = <span class="literal">false</span> <span class="comment">//IE8</span></span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">    e.preventDefault()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><p>定义一个函数，可以支持所有浏览器中的处理函数绑定</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bindEvent</span>(<span class="params">elem, eventName, handler</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> elem.attachEvent!==<span class="string">'function'</span>)&#123;</span><br><span class="line">         <span class="comment">//DOM</span></span><br><span class="line">        elem.addEventListener(eventName, handler)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123; <span class="comment">//IE8</span></span><br><span class="line">         elem.attachEvent(<span class="string">'on'</span>+eventName, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">             <span class="comment">//this -&gt; elem</span></span><br><span class="line">             <span class="keyword">var</span> e = <span class="built_in">window</span>.event</span><br><span class="line">             e.target = e.srcElement;</span><br><span class="line">             handler.call(<span class="keyword">this</span>,e)</span><br><span class="line">         &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">bindEvent(btn, <span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//this 当前事件冒泡到的父元素</span></span><br><span class="line">    <span class="keyword">var</span> target = e.target <span class="comment">//目标元素</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -296,24 +297,22 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/DOM/" rel="tag"># DOM</a>
+              <a href="/tags/js/" rel="tag"># js</a>
+              <a href="/tags/Promise/" rel="tag"># Promise</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2020/01/08/Vue-set%E8%A7%A3%E5%86%B3%E8%A7%86%E5%9B%BE%E4%B8%8D%E6%9B%B4%E6%96%B0/" rel="next" title="Vue.$set解决视图不更新">
-                  <i class="fa fa-chevron-left"></i> Vue.$set解决视图不更新
+                <a href="/2020/08/04/Linux%E4%B9%8B%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E4%B8%8E%E7%9B%AE%E5%BD%95%E9%85%8D%E7%BD%AE/" rel="next" title="Linux之文件权限与目录管理">
+                  <i class="fa fa-chevron-left"></i> Linux之文件权限与目录管理
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2020/06/15/this%E6%8C%87%E5%90%91/" rel="prev" title="this指向">
-                  this指向 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -353,7 +352,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#事件模型"><span class="nav-number">1.</span> <span class="nav-text">事件模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DOM：3个阶段"><span class="nav-number">1.1.</span> <span class="nav-text">DOM：3个阶段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IE8：2两个阶段"><span class="nav-number">1.2.</span> <span class="nav-text">IE8：2两个阶段</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件绑定"><span class="nav-number">2.</span> <span class="nav-text">事件绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件移除"><span class="nav-number">3.</span> <span class="nav-text">事件移除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获得事件对象的方法"><span class="nav-number">4.</span> <span class="nav-text">获得事件对象的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获得目标元素"><span class="nav-number">5.</span> <span class="nav-text">获得目标元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阻止冒泡"><span class="nav-number">6.</span> <span class="nav-text">阻止冒泡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阻止默认行为"><span class="nav-number">7.</span> <span class="nav-text">阻止默认行为</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#案例"><span class="nav-number">8.</span> <span class="nav-text">案例</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise三种状态"><span class="nav-number">1.</span> <span class="nav-text">Promise三种状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#then的作用"><span class="nav-number">2.</span> <span class="nav-text">.then的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用的Promise"><span class="nav-number">3.</span> <span class="nav-text">常用的Promise</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Promise-all"><span class="nav-number">3.1.</span> <span class="nav-text">Promise.all()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Promise-race"><span class="nav-number">3.2.</span> <span class="nav-text">Promise.race()</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
