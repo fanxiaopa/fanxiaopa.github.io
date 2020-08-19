@@ -60,7 +60,7 @@
 <meta property="og:site_name" content="嘿！~是小爬">
 <meta property="og:description" content="Hook简介了解react的同鞋都知道，react组件有两种编写方式，即类组件和函数式组件。函数式组件代码看起来更简洁，但是没有办法维护自身状态,因此Hook的出现可以让我们在不编写class的情况下使用state以及其他的react特性。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-07-26T05:39:50.949Z">
+<meta property="og:updated_time" content="2020-08-19T13:56:46.476Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2020/06/27/HOOK/">
@@ -234,7 +234,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-26 13:39:50" itemprop="dateModified" datetime="2020-07-26T13:39:50+08:00">2020-07-26</time>
+                <time title="修改时间：2020-08-19 21:56:46" itemprop="dateModified" datetime="2020-08-19T21:56:46+08:00">2020-08-19</time>
               </span>
 
           
@@ -271,7 +271,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [value, setValue] = useState(&#123;</span><br><span class="line">    valA: <span class="number">0</span>,</span><br><span class="line">    valB: <span class="number">1</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
 <h3 id="Effect-Hook"><a href="#Effect-Hook" class="headerlink" title="Effect Hook"></a>Effect Hook</h3><blockquote>
-<p>useEffect Hook 看做 componentDidMount，componentDidUpdate 和 componentWillUnmount 这三个函数的组合。</p>
+<p>useEffect Hook看做<code>componentDidMount</code>，<code>componentDidUpdate</code>和<code>componentWillUnmount</code>这三个函数的组合。</p>
 </blockquote>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useState, useEffect &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Example</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [count, setCount] = useState(<span class="number">0</span>);</span><br><span class="line">  useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;    <span class="built_in">document</span>.title = <span class="string">`You clicked <span class="subst">$&#123;count&#125;</span> times`</span>;  &#125;);</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;p&gt;You clicked &#123;count&#125; times&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">      &lt;button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;</span></span><br><span class="line"><span class="regexp">        Click me</span></span><br><span class="line"><span class="regexp">      &lt;/</span>button&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
 
@@ -285,6 +285,17 @@
 </blockquote>
 <blockquote>
 <p><strong>useEffect 会在每次渲染后都执行吗？</strong><br>是的，默认情况下，它在第一次渲染之后和每次更新之后都会执行。（我们稍后会谈到如何控制它。）你可能会更容易接受 effect 发生在“渲染之后”这种概念，不用再去考虑“挂载”还是“更新”。React 保证了每次运行 effect 的同时，DOM 都已经更新完毕。</p>
+</blockquote>
+<h4 id="需清楚的effect"><a href="#需清楚的effect" class="headerlink" title="需清楚的effect"></a>需清楚的effect</h4><p>useEffect可以替代生命周期的 <code>componentDidMount</code>，<code>componentDidUpdate</code>和<code>componentWillUnmount</code><br>常常会遇到这种情形：在 componentDidMount 中监听resize事件，那么在组件卸载时，必须移除resize事件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123;useState, useEffect&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">UseEffect</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> [count, setCount] = useState(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">const</span> resize = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'窗口改变啦'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">window</span>.addEventListener(<span class="string">'resize'</span>, resize)</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="built_in">window</span>.removeEventListener(<span class="string">'resize'</span>, resize);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &lt;h2&gt;</span><br><span class="line">            useeffect测试</span><br><span class="line">        &lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">export default UseEffect</span></span><br></pre></td></tr></table></figure>
+<p>等价的class组件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">resize = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'窗口改变啦'</span>);</span><br><span class="line">&#125;</span><br><span class="line">componentDidMount()&#123;</span><br><span class="line">     <span class="built_in">window</span>.addEventListener(<span class="string">'resize'</span>,<span class="keyword">this</span>.resize)</span><br><span class="line">&#125;</span><br><span class="line">componentWillUnmount()&#123;</span><br><span class="line">     <span class="built_in">window</span>.removeEventListener(<span class="string">'resize'</span>, resize);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里useEffect方法中的参数（箭头函数）里返回了一个函数，这就是effect的清除机制</p>
+<blockquote>
+<p><strong>为什么要在 effect 中返回一个函数？</strong><br>这是 effect 可选的清除机制。每个 effect 都可以返回一个清除函数。如此可以将添加和移除订阅的逻辑放在一起。它们都属于 effect 的一部分。</p>
+</blockquote>
+<blockquote>
+<p><strong>React 何时清除 effect？</strong><br> React 会在组件卸载的时候执行清除操作。正如之前学到的，effect 在每次渲染的时候都会执行。这就是为什么 React 会在执行当前 effect 之前对上一个 effect 进行清除。我们稍后将讨论为什么这将助于避免 bug以及如何在遇到性能问题时跳过此行为。</p>
 </blockquote>
 
     </div>
@@ -352,7 +363,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hook简介"><span class="nav-number">1.</span> <span class="nav-text">Hook简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#State-Hook"><span class="nav-number">2.</span> <span class="nav-text">State Hook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Effect-Hook"><span class="nav-number">3.</span> <span class="nav-text">Effect Hook</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hook简介"><span class="nav-number">1.</span> <span class="nav-text">Hook简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#State-Hook"><span class="nav-number">2.</span> <span class="nav-text">State Hook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Effect-Hook"><span class="nav-number">3.</span> <span class="nav-text">Effect Hook</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#需清楚的effect"><span class="nav-number">3.1.</span> <span class="nav-text">需清楚的effect</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
