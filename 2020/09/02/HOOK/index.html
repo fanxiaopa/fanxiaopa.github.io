@@ -56,14 +56,14 @@
 <meta name="keywords" content="React">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hook">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;06&#x2F;27&#x2F;HOOK&#x2F;index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;09&#x2F;02&#x2F;HOOK&#x2F;index.html">
 <meta property="og:site_name" content="嘿！~是小爬">
 <meta property="og:description" content="Hook简介了解react的同鞋都知道，react组件有两种编写方式，即类组件和函数式组件。函数式组件代码看起来更简洁，但是没有办法维护自身状态,因此Hook的出现可以让我们在不编写class的情况下使用state以及其他的react特性。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-08-31T14:18:26.829Z">
+<meta property="og:updated_time" content="2020-09-02T14:28:31.714Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2020/06/27/HOOK/">
+<link rel="canonical" href="http://yoursite.com/2020/09/02/HOOK/">
 
 
 <script id="page-configurations">
@@ -204,7 +204,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/27/HOOK/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/02/HOOK/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/me/head.jpg">
@@ -226,16 +226,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-06-27 21:08:46" itemprop="dateCreated datePublished" datetime="2020-06-27T21:08:46+08:00">2020-06-27</time>
+              <time title="创建时间：2020-09-02 21:08:46 / 修改时间：22:28:31" itemprop="dateCreated datePublished" datetime="2020-09-02T21:08:46+08:00">2020-09-02</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-31 22:18:26" itemprop="dateModified" datetime="2020-08-31T22:18:26+08:00">2020-08-31</time>
-              </span>
 
           
   
@@ -246,8 +240,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/06/27/HOOK/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/27/HOOK/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/09/02/HOOK/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/02/HOOK/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -302,6 +296,27 @@
 <p>只有在state中的count改变时，才修改document的title<br>在hook中实现：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">document</span>.title = <span class="string">`You clicked <span class="subst">$&#123;count&#125;</span> times`</span>;</span><br><span class="line">&#125;, [count]); <span class="comment">// 仅在 count 更改时更新</span></span><br></pre></td></tr></table></figure>
 <p>上面这个示例中，我们传入 [count] 作为第二个参数。这个参数是什么作用呢？如果 count 的值是 5，而且我们的组件重渲染的时候 count 还是等于 5，React 将对前一次渲染的 [5] 和后一次渲染的 [5] 进行比较。因为数组中的所有元素都是相等的(5 === 5)，React 会跳过这个 effect，这就实现了性能的优化。</p>
+<h3 id="useMemo-amp-memo"><a href="#useMemo-amp-memo" class="headerlink" title="useMemo &amp; memo"></a>useMemo &amp; memo</h3><p><code>useMemo()</code>和<code>memo</code>方法总是让我有点分不清楚</p>
+<ul>
+<li><code>memo()</code>指的是一个组件是否重复渲染，可以优化性能</li>
+<li><code>useMemo()</code>指的是一段函数逻辑是否重复执行</li>
+</ul>
+<h4 id="memo"><a href="#memo" class="headerlink" title="memo"></a>memo</h4><p>父组件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Father</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> [count, setCount] = useState(<span class="number">0</span>);</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        setCount(count + <span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &lt;&gt;</span><br><span class="line">            父组件：计数：&#123;count&#125;</span><br><span class="line">            &lt;button onClick=&#123;add&#125;&gt;加一&lt;<span class="regexp">/button&gt; &lt;br/</span>&gt;</span><br><span class="line">            &lt;Son /&gt;</span><br><span class="line">        &lt;<span class="regexp">/&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">export default Father</span></span><br></pre></td></tr></table></figure>
+<p>子组件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; memo, useMemo &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">const</span> Son =  memo(<span class="function">(<span class="params">prop</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'子组件渲染了'</span>);</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &lt;&gt;  </span><br><span class="line">            这是子组件</span><br><span class="line">        &lt;<span class="regexp">/&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">&#125;)</span></span><br><span class="line"><span class="regexp">export default Son</span></span><br></pre></td></tr></table></figure>
+<p>效果：点击加一按钮，控制台没有输出，因为子组件没有重复渲染</p>
+<blockquote>
+<p>分析：正常情况下，父组件中的state改变了，会引起re-render，不管子组件有没有依赖父组件的状态，都会被re-render,<br>  但是这里用了memo()方法,子组件不依赖于父组件的状态，即使父组件状态更新了，子组件也能保持不变，不用重复渲染，因此节约性能</p>
+</blockquote>
+<h4 id="useMemo"><a href="#useMemo" class="headerlink" title="useMemo"></a>useMemo</h4><p>父组件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Father</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> [count, setCount] = useState(<span class="number">0</span>);</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        setCount(count + <span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &lt;&gt;</span><br><span class="line">            父组件：计数：&#123;count&#125;</span><br><span class="line">            &lt;button onClick=&#123;add&#125;&gt;加一&lt;<span class="regexp">/button&gt; &lt;br/</span>&gt;</span><br><span class="line">            &lt;Son count=&#123;count&#125;/&gt;</span><br><span class="line">        &lt;<span class="regexp">/&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">export default Father</span></span><br></pre></td></tr></table></figure>
+<p>子组件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; memo, useMemo &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">const</span> Son =  memo(<span class="function">(<span class="params">prop</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">const</span> [anotherCount, setAnotherCount] = useState(<span class="number">0</span>);</span><br><span class="line">    	<span class="built_in">console</span>.log(<span class="string">'子组件渲染了'</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">const</span> useMemoTest = useMemo(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'useMemo方法执行了'</span>)</span><br><span class="line">	&#125;, [anotherCount])</span><br><span class="line">	</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &lt;&gt;  </span><br><span class="line">            这是子组件&#123;useMemoTest()&#125;</span><br><span class="line">        &lt;<span class="regexp">/&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">&#125;)</span></span><br><span class="line"><span class="regexp">export default Son</span></span><br></pre></td></tr></table></figure>
+<p>效果：点击加一按钮，控制台输出：’子组件渲染了’</p>
+<blockquote>
+<p>分析：子组件依赖了父组件的count，所以父组件的count改变时，引起子组件的re-render;<br>    正常情况re-render会调用useMemoTest()方法，但是却没有打印信息；<br>    因为这里用了useMemo()方法，它只有在第二个参数[anotherCount]改变时，才执行useMemoTest()</p>
+</blockquote>
 
     </div>
 
@@ -318,17 +333,14 @@
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2020/06/15/this%E6%8C%87%E5%90%91/" rel="next" title="this指向">
-                  <i class="fa fa-chevron-left"></i> this指向
+                <a href="/2020/08/09/%E9%9B%8F%E9%B9%B0%E9%AB%98%E9%A3%9E/" rel="next" title="雏鹰起飞">
+                  <i class="fa fa-chevron-left"></i> 雏鹰起飞
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2020/07/11/Linux/" rel="prev" title="Linux">
-                  Linux <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -368,7 +380,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hook简介"><span class="nav-number">1.</span> <span class="nav-text">Hook简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#State-Hook"><span class="nav-number">2.</span> <span class="nav-text">State Hook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Effect-Hook"><span class="nav-number">3.</span> <span class="nav-text">Effect Hook</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#需清楚的effect"><span class="nav-number">3.1.</span> <span class="nav-text">需清楚的effect</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#跳过Effect进行性能优化"><span class="nav-number">3.2.</span> <span class="nav-text">跳过Effect进行性能优化</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hook简介"><span class="nav-number">1.</span> <span class="nav-text">Hook简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#State-Hook"><span class="nav-number">2.</span> <span class="nav-text">State Hook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Effect-Hook"><span class="nav-number">3.</span> <span class="nav-text">Effect Hook</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#需清楚的effect"><span class="nav-number">3.1.</span> <span class="nav-text">需清楚的effect</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#跳过Effect进行性能优化"><span class="nav-number">3.2.</span> <span class="nav-text">跳过Effect进行性能优化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#useMemo-amp-memo"><span class="nav-number">4.</span> <span class="nav-text">useMemo &amp; memo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#memo"><span class="nav-number">4.1.</span> <span class="nav-text">memo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#useMemo"><span class="nav-number">4.2.</span> <span class="nav-text">useMemo</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
