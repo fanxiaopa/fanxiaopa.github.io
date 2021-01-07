@@ -1,15 +1,512 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png"><link rel="icon" type="image/png" href="/img/me/title.jpg"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta http-equiv="x-ua-compatible" content="ie=edge"><meta name="description" content="你要悄悄学web，然后惊艳所有人"><meta name="author" content="cheney"><meta name="keywords" content=""><title>嘿！~是小爬</title><link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"><link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"><link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"><link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"><link rel="stylesheet" href="https://at.alicdn.com/t/font_1067060_qzomjdt8bmp.css"><link rel="stylesheet" href="/lib/prettify/github-v2.min.css"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"></head><body><header style="height:100vh"><nav id="navbar" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"><div class="container"> <a class="navbar-brand" href="/">&nbsp;<strong>嘿！~是小爬</strong>&nbsp;</a> <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><div class="animated-icon"><span></span><span></span><span></span></div></button><div class="collapse navbar-collapse" id="navbarSupportedContent"><ul class="navbar-nav ml-auto text-center"><li class="nav-item"> <a class="nav-link" href="/">首页</a></li><li class="nav-item"> <a class="nav-link" href="/archives/">归档</a></li><li class="nav-item"> <a class="nav-link" href="/tags/">标签</a></li><li class="nav-item"> <a class="nav-link" href="/about/">关于我</a></li><li class="nav-item" id="search-btn"> <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i class="iconfont icon-search"></i>&nbsp;&nbsp;</a></li></ul></div></div></nav><div class="view intro-2" id="background" style="background:url(/img/background/index.jpg) no-repeat center center;background-size:cover;background-attachment:fixed"><div class="full-bg-img"><div class="mask rgba-black-light flex-center"><div class="container text-center white-text fadeInUp"><span class="h2" id="subtitle"></span></div><div class="scroll-down-bar"><i class="fa fa-angle-down scroll-down-arrow"></i></div></div></div></div></header><main><div class="container nopadding-md"><div class="py-5 z-depth-3" id="board"><div class="container"><div class="row"><div class="col-12 col-md-10 m-auto"><div class="row mb-4 mx-auto"><div class="col-12 col-md-8 m-auto"><a href="/2019/11/19/closure/"><p class="h4 index-header">closure</p><div class="index-excerpt"><div class="index-text mb-1">closure 闭包在JS中，变量的作用域属于函数作用域，在函数执行后作用域就会被清理、内存也随之回收，但是由于闭包是建立在一个函数内部的子函数，由于其可访问上级作用域的原因，即使上级函数执行完，作用域也不会随之销毁，这时的子函数——也就是闭包，便拥有了访问上级作用域中的变量的权限，即使上级函数执行完后作用域内的值也不会被销毁。 从以下几句话中来明确概念： 变量作用域：全局变量 在 全局范围内可用，存在于全局作用域中，在js任何代码中可见局部变量 只 存在 函数体内，在局部作用域中使用函数作用域 在函数体内的所有变量可以使用 作用域链：定义一个函数时， 会保存一个作用域链；对于嵌套函数来说，每内调用一次外部函数，都会创建一个新的作用域链；每次外部函数的调用，内部的代码相同，但其作用域链不同 js垃圾回收机制：js具有自动垃圾回收机制，会定期把不再使用的变量销毁，释放其占用的内存；(只会销毁局部变量，全局变量的生命周期只有在页面或浏览器关闭时才会结束)</div></div></a><div><i class="iconfont icon-riqi2"></i> &nbsp;2019-11-19&nbsp;&nbsp;<i class="iconfont icon-tag"></i> <a href="/tags/js">js</a>&nbsp;</div></div></div><div class="row mb-4 mx-auto"><div class="col-12 col-md-8 m-auto"><a href="/2019/11/19/%E4%BA%8B%E4%BB%B6%E9%98%9F%E5%88%97/"><p class="h4 index-header">事件队列</p><div class="index-excerpt"><div class="index-text mb-1">首先 单线程、多线程浏览器解释引擎 对js 脚本进行解析 主要执行交互行为 对 dom 节点进行操作 js为单线程，不会存在同时对一个dom元素进行多种同时操作 但js脚本可创建多线程，子线程受浏览器主线程操作，进入任务队列排队，等待调用 任务队列单线程导致一个任务结束，才能执行下一个任务 任务队列排队 空闲，会导致 CPU 闲置 ，因此将任务分为两种：同步、异步 任务队列或又称为消息队列, 回调函数、ajax、事件函数、定时器 都存放在任务队列中 任务队列：先进先出，某些事件在调用时，才会进入主线程 同步、异步同步指一件事情完成、才会执行下一件事情 异步指浏览器解释引擎 在做一件事的同时，调用闲置的CPU 处理另外一件事情 如：ajax 请求 浏览器主进程会 执行 同步任务 ，闲置CPU 调取 任务队列，加载异步 事件 或 函数 进入执行栈 ，执行。</div></div></a><div><i class="iconfont icon-riqi2"></i> &nbsp;2019-11-19&nbsp;&nbsp;<i class="iconfont icon-tag"></i> <a href="/tags/js">js</a>&nbsp;</div></div></div><div class="row mb-4 mx-auto"><div class="col-12 col-md-8 m-auto"><a href="/2019/11/10/vue%E4%B8%AD%E7%9A%84%E7%BB%91%E5%AE%9A%E8%AF%AD%E6%B3%95/"><p class="h4 index-header">vue中的绑定语法</p><div class="index-excerpt"><div class="index-text mb-1">一、绑定语法： 什么是绑定语法: 就是在HTML中标记可能发生变化的位置的语法——学名: Interpolation 插值语法 何时: 只要元素的内容中，某个位置可能随变量自动变化时，就要用绑定语法标记 二、指令: v-bind:12345678910111213141516171819202122232425&lt;div id="app"&gt; &lt;h1&gt;空气净化器&lt;/h1&gt; &lt;h2&gt;&#123;&#123;pm25&#125;&#125;&lt;/h2&gt; &lt;h2&gt;&#123;&#123;pm25&lt;100?'img/1.png': pm25&lt;200?'img/2.png': pm25&lt;300?'img/3.png': 'img/4.png'&#125;&#125;&lt;/h2&gt; //属性名前有："就变成了&#123;&#125; &lt;img :src="pm25&lt;100?'img/1.png':</div></div></a><div><i class="iconfont icon-riqi2"></i> &nbsp;2019-11-10&nbsp;&nbsp;<i class="iconfont icon-tag"></i> <a href="/tags/vue">vue</a>&nbsp;</div></div></div><div class="row mb-4 mx-auto"><div class="col-12 col-md-8 m-auto"><a href="/2019/10/27/vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"><p class="h4 index-header">vue的生命周期</p><div class="index-excerpt"><div class="index-text mb-1"> 1. 什么是组件的生命周期: 每个组件在加载过程中所经历的阶段 2. 为什么使用组件的生命周期: 我们经常需要在组件加载过程中自动执行一项操作，比如: 希望组件加载完，自动发送ajax请求获取数据但是在单页面中，因为只有一个index.html页面在首次加载，之后更换”页面”, index.html是不换的，且DOM树也不需要整棵更新，所以DOMContentLoaded和window.onload都不能用，都不会反复触发！ 3.何时使用？ 今后，只要希望在组件加载的过程中自动执行一项任务时，都要在对应的生命周期中执行操作，而不是在页面的加载后执行。 4.包括以下几个阶段？ (1). 创建阶段(create): a. 创建组件对象，同时创建组件中的data对象。此时已经可以发送ajax请求了 b. 暂时还未创建虚拟DOM树，所以，在这个阶段不能执行DOM操作！注意：此阶段只有data对象，没有虚拟dom树 (2). 挂载阶段(mount): 创建虚拟DOM树，将数据内容渲染到页面上显示。此时既可以发ajax请求，又可以执行DOM操作。 *****首次加载到</div></div></a><div><i class="iconfont icon-riqi2"></i> &nbsp;2019-10-27&nbsp;&nbsp;<i class="iconfont icon-tag"></i> <a href="/tags/vue">vue</a>&nbsp;</div></div></div><nav aria-label="index posts navigation"><ul class="pagination pg-blue justify-content-center mt-5"><li class="page-item"> <a class="page-link" href="/page/3/#board">上一页</a></li></ul></nav></div></div></div></div></div></main><a class="z-depth-1" id="scroll-top-button" href="#" role="button"><i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i></a><div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable modal-lg" role="document"><div class="modal-content"><div class="modal-header text-center"><h4 class="modal-title w-100 font-weight-bold">搜索</h4> <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span></button></div><div class="modal-body mx-3"><div class="md-form mb-5"> <input type="text" id="local-search-input" class="form-control validate"> <label data-error="x" data-success="v" for="local-search-input">关键词</label></div><div class="list-group" id="local-search-result"></div></div></div></div></div><footer class="mt-5"><div class="text-center py-3"> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a><i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><b>Fluid</b></a><br></div></footer><script src="/lib/jquery/jquery.min.js"></script><script src="/lib/popper/popper.min.js"></script><script src="/lib/bootstrap/js/bootstrap.min.js"></script><script src="/lib/mdbootstrap/js/mdb.min.js"></script><script src="/js/main.js"></script><script src="/js/lazyload.js"></script><script src="/lib/prettify/prettify.min.js"></script><script>$(document).ready(function(){$("pre").addClass("prettyprint  linenums"),prettyPrint()})</script><script src="/lib/typed/typed.min.js"></script><script>var typed=new Typed("#subtitle",{strings:["  ","兴隆湖打工人&nbsp;"],cursorChar:"_",typeSpeed:70,loop:!1});typed.stop(),$(document).ready(function(){$(".typed-cursor").addClass("h2"),typed.start()})</script><script src="/lib/anchor/anchor.min.js"></script><script>
-    anchors.options = {
-      placement: "left",
-      visible: "true",
-      
-      icon: "#"
-      
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="你要悄悄学web，然后惊艳所有人">
+  <meta name="author" content="cheney">
+  <meta name="keywords" content="">
+  <title>嘿！~是小爬</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="An elegant Material-Design theme for Hexo">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/11/19/closure/">closure</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/11/19/closure/">
+          
+          
+            
+          
+          closure 闭包在JS中，变量的作用域属于函数作用域，在函数执行后作用域就会被清理、内存也随之回收，但是由于闭包是建立在一个函数内部的子函数，由于其可访问上级作用域的原因，即使上级函数执行完，作用域也不会随之销毁，这时的子函数——也就是闭包，便拥有了访问上级作用域中的变量的权限，即使上级函数执行完后作用域内的值也不会被销毁。
+从以下几句话中来明确概念：
+变量作用域：全局变量 在 全局范围内可用
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-11-19 17:42" pubdate>
+              2019-11-19
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/js/">js</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/11/19/%E4%BA%8B%E4%BB%B6%E9%98%9F%E5%88%97/">事件队列</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/11/19/%E4%BA%8B%E4%BB%B6%E9%98%9F%E5%88%97/">
+          
+          
+            
+          
+          首先 单线程、多线程浏览器解释引擎 对js 脚本进行解析
+主要执行交互行为 对 dom 节点进行操作
+js为单线程，不会存在同时对一个dom元素进行多种同时操作
+但js脚本可创建多线程，子线程受浏览器主线程操作，进入任务队列排队，等待调用
+任务队列单线程导致一个任务结束，才能执行下一个任务
+任务队列排队 空闲，会导致 CPU 闲置 ，因此将任务分为两种：同步、异步
+任务队列或又称为消息队列, 回调
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-11-19 17:17" pubdate>
+              2019-11-19
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/js/">js</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/11/10/vue%E4%B8%AD%E7%9A%84%E7%BB%91%E5%AE%9A%E8%AF%AD%E6%B3%95/">vue中的绑定语法</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/11/10/vue%E4%B8%AD%E7%9A%84%E7%BB%91%E5%AE%9A%E8%AF%AD%E6%B3%95/">
+          
+          
+            
+          
+          一、绑定语法：
+什么是绑定语法: 就是在HTML中标记可能发生变化的位置的语法——学名: Interpolation 插值语法
+何时: 只要元素的内容中，某个位置可能随变量自动变化时，就要用绑定语法标记
+
+二、指令:
+v-bind:12345678910111213141516171819202122232425&lt;div id="app"&gt;    &lt;h1&gt;空气净化器&lt;
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-11-10 21:51" pubdate>
+              2019-11-10
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/vue/">vue</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/10/27/vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">vue的生命周期</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/10/27/vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
+          
+          
+            
+          
+          
+1. 什么是组件的生命周期:  每个组件在加载过程中所经历的阶段
+
+2. 为什么使用组件的生命周期:  我们经常需要在组件加载过程中自动执行一项操作，比如: 希望组件加载完，自动发送ajax请求获取数据但是在单页面中，因为只有一个index.html页面在首次加载，之后更换”页面”, index.html是不换的，且DOM树也不需要整棵更新，所以DOMContentLoaded和window.o
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-10-27 21:48" pubdate>
+              2019-10-27
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/vue/">vue</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/3/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
     }
-    anchors.add(res.join(", "))
-  </script><script src="/js/local-search.js"></script><script>var path="/local-search.xml",inputArea=document.querySelector("#local-search-input");inputArea.onclick=function(){getSearchFile(path),this.onclick=null}</script><script src="/lib/fancybox/jquery.fancybox.min.js"></script><script>$("#post").find("img").each(function(){var a=$(this),t=a.attr("src");a.wrap('<a data-fancybox="images" href="'+t+'" ></a>')})</script><script src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({pluginRootPath:"live2dw/",pluginJsPath:"lib/",pluginModelPath:"assets/",tagMode:!1,debug:!1,model:{jsonPath:"/live2dw/assets/hijiki.model.json"},display:{position:"right",width:150,height:300},mobile:{show:!0},log:!1})</script></body></html>
+  </script>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>

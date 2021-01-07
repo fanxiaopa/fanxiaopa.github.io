@@ -1,1 +1,70 @@
-!function(o){var r=Array.prototype.slice.call(document.querySelectorAll("img[srcset]"));function n(){for(var i=0;i<r.length;i++)t=r[i],void 0,e=t.getBoundingClientRect(),n=o.innerHeight||document.documentElement.clientHeight,0<=e.top&&0<=e.left&&e.top<=1.5*n&&function(){var t,e,n,o,c=r[i];t=c,e=function(){r=r.filter(function(t){return c!==t})},n=new Image,o=t.getAttribute("src"),n.onload=function(){t.srcset=o,e&&e()},n.srcset=o}();var t,e,n}n(),o.addEventListener("scroll",function(){var t,e;t=n,e=o,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},200)})}(void 0);
+/* global Debouncer */
+
+(function(window, document) {
+  var runningOnBrowser = typeof window !== 'undefined';
+  var supportsIntersectionObserver = runningOnBrowser && 'IntersectionObserver' in window;
+
+  var images = Array.prototype.slice.call(document.querySelectorAll('img[srcset]'));
+  if (!images || images.length === 0) {
+    return;
+  }
+
+  if (supportsIntersectionObserver) {
+    var io = new IntersectionObserver(function(changes) {
+      changes.forEach(({ target, isIntersecting }) => {
+        if (!isIntersecting) return;
+        target.setAttribute('srcset', target.src);
+        target.onload = target.onerror = () => io.unobserve(target);
+      });
+    }, {
+      threshold : [0],
+      rootMargin: (window.innerHeight || document.documentElement.clientHeight) + 'px'
+    });
+    images.map((item) => io.observe(item));
+  } else {
+    // eslint-disable-next-line no-inner-declarations
+    function elementInViewport(el) {
+      var rect = el.getBoundingClientRect();
+      var height = window.innerHeight || document.documentElement.clientHeight;
+      var top = rect.top;
+      return (top >= 0 && top <= height * 3) || (top <= 0 && top <= -(height * 2) - rect.height);
+    }
+
+    // eslint-disable-next-line no-inner-declarations
+    function loadImage(el, fn) {
+      var img = new Image();
+      var src = el.getAttribute('src');
+      img.onload = function() {
+        el.srcset = src;
+        fn && fn();
+      };
+      img.srcset = src;
+    }
+
+    var lazyLoader = new Debouncer(processImages);
+
+    // eslint-disable-next-line no-inner-declarations
+    function processImages() {
+      for (var i = 0; i < images.length; i++) {
+        if (elementInViewport(images[i])) {
+          // eslint-disable-next-line no-loop-func
+          (function(index) {
+            var loadingImage = images[index];
+            loadImage(loadingImage, function() {
+              images = images.filter(function(t) {
+                return loadingImage !== t;
+              });
+            });
+          })(i);
+        }
+      }
+      if (images.length === 0) {
+        window.removeEventListener('scroll', lazyLoader, false);
+      }
+    }
+
+    window.addEventListener('scroll', lazyLoader, false);
+    lazyLoader.handleEvent();
+  }
+
+})(window, document);
