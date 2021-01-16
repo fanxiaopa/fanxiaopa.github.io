@@ -4,6 +4,27 @@
   
   
   <entry>
+    <title>视口相关的宽高度</title>
+    <link href="/2021/01/16/%E8%A7%86%E5%8F%A3%E7%9B%B8%E5%85%B3%E7%9A%84%E5%AE%BD%E9%AB%98%E5%BA%A6/"/>
+    <url>/2021/01/16/%E8%A7%86%E5%8F%A3%E7%9B%B8%E5%85%B3%E7%9A%84%E5%AE%BD%E9%AB%98%E5%BA%A6/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>屏幕的高宽度</p></blockquote><div style="text-align: center; margin-bottom: 20px">    <img src="/images/shikou/screen_width_z.png" srcset="/img/loading.gif" style="width:500px;margin: 0 auto;" /></div><blockquote><p>window.innerWidth / innerHeight 浏览器窗口可视区域大小，包括滚动条</p></blockquote><div style="text-align: center; margin-bottom: 20px">    <img src="/images/shikou/inner_width_z.png" srcset="/img/loading.gif" style="width:500px;margin: 0 auto;" /></div><blockquote><p>document.documentElement.clientWidth 视口尺寸，不包含滚动条</p></blockquote><div style="text-align: center;margin-bottom: 20px">    <img src="/images/shikou/client_width_z.png" srcset="/img/loading.gif" style="width:500px;margin: 0 auto;" /></div><blockquote><p>document.documentElement.offsetWidth / offsetHeight<br><code>&lt;html&gt;</code> 元素真实尺寸；但是在IE中，表示视口尺寸；</p></blockquote><div style="text-align: center;margin-bottom: 20px">    <img src="/images/shikou/offset_width_z.png" srcset="/img/loading.gif" style="width:500px;margin: 0 auto;" /></div><blockquote><p>window.pageXOffset 页面滚动的偏移量</p></blockquote><div style="text-align: center;margin-bottom: 20px">    <img src="/images/shikou/page_offset_z.png" srcset="/img/loading.gif" style="width:500px;margin: 0 auto;" /></div><p class="note note-info">参考文章：https://www.quirksmode.org/mobile/viewports.html</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>视口</tag>
+      
+      <tag>浏览器</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>《代码整洁之道-边界》</title>
     <link href="/2021/01/11/page/"/>
     <url>/2021/01/11/page/</url>
