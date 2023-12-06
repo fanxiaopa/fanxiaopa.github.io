@@ -13,7 +13,7 @@
   },
   "engines": {
     "node": "20.x"
-  } 
+  }, 
   "dependencies": {
     "hexo": "^5.0.0",
     "hexo-deployer-git": "^3.0.0",
