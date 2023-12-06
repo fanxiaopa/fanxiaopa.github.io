@@ -1,0 +1,590 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;light&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/me/title.jpg">
+  <link rel="icon" type="image/png" href="/img/me/title.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="你要悄悄学web，然后惊艳所有人">
+  <meta name="author" content="yxfan">
+  <meta name="keywords" content="">
+  <title>迭代器模式 - yxfan</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3","placement":"right","visible":"always","Option":"§ |","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":20},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"AGrJP3tUCktoWpoiRigqj3zy-gzGzoHsz","app_key":"r0u61FlVNs3yvXwGYocWG3qm","server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>yxfan</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/background/lu_bule.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="迭代器模式">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-08-03 19:04" pubdate>
+        2021年8月3日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      14
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">迭代器模式</h1>
+            
+            <div class="markdown-body">
+              <h2 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h2><h3 id="Iterator（迭代器）"><a href="#Iterator（迭代器）" class="headerlink" title="Iterator（迭代器）"></a>Iterator（迭代器）</h3><p>要成为可迭代对象，必须要实现<code>@iterator</code>方法，这个方法可以通过<code>Symbol.iterator</code>属性（可能在原型对象上）访问到。</p>
+<p>因此可以通过有没有<code>Symbol.iterator</code>属性来判断是能不能进行遍历。</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>属性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Symbol.itarator</td>
+<td>一个无参数的函数，返回一个满足迭代器协议的可迭代对象（遍历器）</td>
+</tr>
+</tbody></table>
+<p>下面这些语法要使用可迭代对象</p>
+<ul>
+<li>for…of..循环</li>
+<li>展开语法（数组、函数参数）</li>
+<li>yield *</li>
+<li>结构赋值</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 以yield* 为例</span>
+<span class="hljs-keyword">let</span> generator = <span class="hljs-function"><span class="hljs-keyword">function</span>* (<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">yield</span>* obj; <span class="hljs-comment">// obj是个可迭代对象，obj为代码块3定义的</span>
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">5</span>;
+&#125;;
+
+<span class="hljs-keyword">var</span> iterator = generator();
+iterator.next(); <span class="hljs-comment">// &#123;value: 1, done: false&#125;</span>
+iterator.next(); <span class="hljs-comment">// &#123;value: &#x27;yxfan&#x27;, done: false&#125;</span>
+iterator.next(); <span class="hljs-comment">// &#123;value: 18, done: false&#125;</span>
+iterator.next(); <span class="hljs-comment">// &#123;value: 5, done: false&#125;</span></code></pre></div>
+
+
+
+<p>下面这些数据结构内置可迭代对象，他们的原型对象都实现了<code>@iterator</code>方法</p>
+<ul>
+<li>String</li>
+<li>Array</li>
+<li>Map</li>
+<li>Set</li>
+<li>函数的arguments对象</li>
+<li>NodeList (document.querySelectorAll)</li>
+<li>HTMLCollection (document.getElementBy….)</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>TypedArray</code></a></li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> arr = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>]; <span class="hljs-comment">// 1</span>
+<span class="hljs-keyword">const</span> iterator = arr[<span class="hljs-built_in">Symbol</span>.iterator](); <span class="hljs-comment">// 2</span>
+iterator.next(); <span class="hljs-comment">// &#123; value: &#x27;a&#x27;, done: false &#125;</span>
+iterator.next(); <span class="hljs-comment">// &#123; value: &#x27;b&#x27;, done: false &#125;</span>
+iterator.next(); <span class="hljs-comment">// &#123; value: &#x27;c&#x27;, done: false &#125;</span>
+iterator.next(); <span class="hljs-comment">// &#123; value: undefined, done: true &#125;</span></code></pre></div>
+
+<p>由于Array原生就具备遍历器接口，所以在2处可以通过<code>Symbol.iterator</code>属性访问到生成遍历器的函数，并调用，得到遍历器<code>iterator</code> </p>
+<p>因为对象没有内置遍历器接口，因此要用<code>for...of</code>在对象上，就得手动实现<code>Symbol.iterator</code></p>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> obj = &#123;
+    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;yxfan&#x27;</span>, 
+    <span class="hljs-attr">age</span>: <span class="hljs-number">18</span>
+&#125;;
+obj[<span class="hljs-built_in">Symbol</span>.iterator] = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-keyword">const</span> keys = <span class="hljs-built_in">Object</span>.keys(obj);
+    <span class="hljs-keyword">let</span> index = <span class="hljs-number">0</span>; <span class="hljs-comment">// 老必包了</span>
+    <span class="hljs-keyword">return</span> &#123;
+        <span class="hljs-attr">next</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+          <span class="hljs-keyword">const</span> object = &#123;
+              <span class="hljs-attr">value</span>: obj[keys[index]],
+              <span class="hljs-attr">done</span>: index &lt; keys.length ? <span class="hljs-literal">false</span> : <span class="hljs-literal">true</span>
+          &#125;
+          index++;
+          <span class="hljs-keyword">return</span> object;
+        &#125;
+    &#125;
+&#125;
+<span class="hljs-keyword">const</span> iterator = obj[<span class="hljs-built_in">Symbol</span>.iterator]();
+<span class="hljs-built_in">console</span>.log(iterator.next()); <span class="hljs-comment">// &#123;value: &quot;yxfan&quot;, done: false&#125;</span>
+<span class="hljs-built_in">console</span>.log(iterator.next()); <span class="hljs-comment">// &#123;value: 18, done: false&#125;</span>
+<span class="hljs-built_in">console</span>.log(iterator.next()); <span class="hljs-comment">// &#123;value: 18, done: true&#125;</span>
+<span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> o <span class="hljs-keyword">of</span> obj) &#123;
+  	<span class="hljs-built_in">console</span>.log(o); <span class="hljs-comment">// 依次打印 yxfan  18</span>
+&#125;</code></pre></div>
+
+<p>上面这个例子中，手动的给<code>obj</code>对象设置了<code>Symbol.iterator</code>属性，其值为一个生成器函数。这样我们就可以像<code>for..of..</code>数组一样，去<code>for...of...</code>对象啦！</p>
+<h3 id="Generator（生成器）"><a href="#Generator（生成器）" class="headerlink" title="Generator（生成器）"></a>Generator（生成器）</h3><h4 id="与Iterator接口的关系"><a href="#与Iterator接口的关系" class="headerlink" title="与Iterator接口的关系"></a>与Iterator接口的关系</h4><p>任意一个对象的<code>[Symbol.iterator]</code>方法，等于该对象的遍历器生成函数，调用生成函数，会返回一个遍历器对象。</p>
+<p>而<code>generator</code>函数就是遍历器生成函数，因此可以把<code>generator</code>函数赋值给<code>[Symbol.iterator]</code> </p>
+<p>来改造上一个例子：</p>
+<div class="code-wrapper"><pre><code class="hljs javascript"> <span class="hljs-keyword">const</span> obj = &#123;
+   <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;yxfan&#x27;</span>, 
+   <span class="hljs-attr">age</span>: <span class="hljs-number">18</span>,
+   * [<span class="hljs-built_in">Symbol</span>.iterator]() &#123;
+        <span class="hljs-keyword">let</span> index = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">const</span> keys = <span class="hljs-built_in">Object</span>.keys(<span class="hljs-built_in">this</span>);
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> k <span class="hljs-keyword">of</span> keys) &#123;
+        		<span class="hljs-keyword">yield</span> [k, <span class="hljs-built_in">this</span>[k]];
+        &#125;
+   &#125;
+ &#125;;
+<span class="hljs-keyword">const</span> iterator = obj[<span class="hljs-built_in">Symbol</span>.iterator]();
+<span class="hljs-built_in">console</span>.log(iterator.next()); <span class="hljs-comment">// &#123;value: [&#x27;name&#x27;, &#x27;yxfan&#x27;], done: false&#125;</span>
+<span class="hljs-built_in">console</span>.log(iterator.next()); <span class="hljs-comment">// &#123;value: [&#x27;age&#x27;, 18], done: false&#125;</span>
+<span class="hljs-built_in">console</span>.log(iterator.next()); <span class="hljs-comment">// &#123;value: undefined, done: true&#125;</span>
+<span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> [key, value] <span class="hljs-keyword">of</span> obj) &#123;
+  	<span class="hljs-built_in">console</span>.log(key, value); <span class="hljs-comment">// name yxfan age 18</span>
+&#125;</code></pre></div>
+
+<p>利用<code>generator</code>我们不用在<code>[Symbol.iterator]</code>中部署<code>next</code>方法直接用<code>yield</code>给出每一步的返回值即可</p>
+<p><code>generator</code>方法会返回一个遍历器，遍历器的<code>next</code>方法运行逻辑如下</p>
+<ol>
+<li>遇到<code>yield</code>表达式，就暂停执行后面的操作，并将紧跟在<code>yield</code>后面表达式的值，作为返回对象的<code>value</code></li>
+<li>下一次调用<code>next</code>方法时，继续往下执行，直到遇到下一个<code>yield</code>表达式</li>
+<li>如果没有遇到新的<code>yield</code>表达式值，就一直运行到函数结束，直到<code>return</code>语句为止，并将<code>return</code>语句后面的表达式的值，作为返回的对象的<code>value</code>属性值。</li>
+<li>如果该函数没有<code>return</code>语句，则返回的对象的<code>value</code>属性值为<code>undefined</code>。</li>
+</ol>
+<p><code>generator</code>函数不会立即执行</p>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> * <span class="hljs-title">g</span>(<span class="hljs-params"></span>) </span>&#123;
+		<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;我不会立即执行喔&#x27;</span>);
+&#125;
+<span class="hljs-keyword">const</span> iterator = g();
+<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
+		<span class="hljs-built_in">console</span>.log(iterator.next());  	
+&#125;, <span class="hljs-number">2000</span>);</code></pre></div>
+
+<p>如果<code>g()</code>是个普通函数，一经调用则会马上输出log，但是这个是个<code>generator</code>函数，调用时会返回遍历器对象，我尝试着打印一下<code>iterator</code></p>
+<img src="/images/js设计模式/迭代器模式.png" srcset="/img/loading.gif" alt="image-20210803174539826" style="zoom:67%;" />
+
+<p>只有调用<code>next</code>时函数<code>g</code>才会执行</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>该篇主要是说<code>迭代器模式</code>，因此<code>Iterator</code>和<code>generator</code>只是稍微提了一下，跟详实的可看<a target="_blank" rel="noopener" href="https://es6.ruanyifeng.com/#docs/generator#next-%E6%96%B9%E6%B3%95%E7%9A%84%E5%8F%82%E6%95%B0">ES6</a></p>
+<p>by the way，迭代器模式在实际开发中用的并不多，但还是得知道是怎么实现的（方便面试）</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/js%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">js设计模式</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/08/10/js%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%B0%8F%E7%BB%93/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">设计模式小结</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/07/30/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/">
+                        <span class="hidden-mobile">观察者模式</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

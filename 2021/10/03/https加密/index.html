@@ -1,0 +1,511 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;light&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/me/title.jpg">
+  <link rel="icon" type="image/png" href="/img/me/title.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="你要悄悄学web，然后惊艳所有人">
+  <meta name="author" content="yxfan">
+  <meta name="keywords" content="">
+  <title>https - yxfan</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3","placement":"right","visible":"always","Option":"§ |","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":20},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"AGrJP3tUCktoWpoiRigqj3zy-gzGzoHsz","app_key":"r0u61FlVNs3yvXwGYocWG3qm","server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>yxfan</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/background/lu_bule.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="https">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-10-03 16:56" pubdate>
+        2021年10月3日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      14
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">https</h1>
+            
+            <div class="markdown-body">
+              <h3 id="对称加密"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密</h3><p>起初yxfan和cheney之间的通信都是明文的，这无疑是在网络上裸奔啊。任何一个人都能监听他们之间的通信，打开数据包，窥探隐私。</p>
+<p>后来yxfan说，要不我们在发送消息之前，先把消息加密，到我们手里时再用密钥解密，这样就算被中间人劫持了他也看不懂。</p>
+<p>接发双方用同一个密钥的加密方式就叫<code>对称加密</code>。如图所示：</p>
+<img style="display: block ;margin: 0 auto;height: 15rem" src="/images/https加密/对称加密.png" srcset="/img/loading.gif"/>
+
+<p>这有点像谍战片里接发电报，双方事先约定好一套密码本，通信时都用的数字代码，这样一来就算被敌人拦截，他们也无从下手。</p>
+<p>万一被叛徒出卖，密码本被敌人发现了，之前约定的方式肯定有暴露的风险，现在急需一套新的密码本，但是怎么传给远在潜伏区的同志们呢？只能派人携带密码本突破重重封锁，带到潜伏区。</p>
+<p>当然了，现在传送密钥不用流血牺牲，但成本也是不小的，因为你不能直接将密钥通过网络传输，有暴露的风险，在传输过程中。一旦被中间人劫持到密钥，接发双方之间的通信内容，也会被中间人一收眼底。难道就没有更好更安全到方法了吗？</p>
+<h3 id="非对称加密（RSA）"><a href="#非对称加密（RSA）" class="headerlink" title="非对称加密（RSA）"></a>非对称加密（RSA）</h3><p>和对称加密不同的是，RSA算法有一对密钥，分别为<code>公钥</code>和<code>私钥</code>，顾名思义公钥是大家都知道的，咱地球人都知道；私钥可得保存好了，只有咱自个儿知道。有趣的是，用公钥加密的数据，只有对应的私钥才能解；用私钥加密的数据，只有对应的公钥才能解。</p>
+<img style="display: block ;margin: 0 auto;height: 15rem" src="/images/https加密/公钥和私钥.png" srcset="/img/loading.gif"/>
+
+<p>现在我们可以用这种方式安全的通信了。以yxfan给cheney发消息为例，</p>
+<ul>
+<li>1、cheney先把自己的公钥发给yxfan，</li>
+<li>2、yxfan拿到了cheney的公钥后，yxfan将消息用公钥加密，传输给cheney，传输过程中就算被中间人劫持了，也无法解密，因为他没有私钥啊，傻眼了吧</li>
+<li>3、cheney收到消息后，用自个儿的私钥解密，成功读取到数据</li>
+</ul>
+<img style="display: block ;margin: 0 auto;height: 25rem" src="/images/https加密/非对称加密.png" srcset="/img/loading.gif"/>
+
+<p>RSA算法也有弊端，加密和解密的速度有点慢，与对称加密算法相比要慢百倍有余</p>
+<h3 id="非对称加密-对称加密"><a href="#非对称加密-对称加密" class="headerlink" title="非对称加密+对称加密"></a>非对称加密+对称加密</h3><p>回到最初的问题上，我们就是想要一个密钥来加密通信而已，对称加密的加解密比较快，但是对称密钥可能被截取，而非对称加解密较安全，但速度堪忧。那为啥不把两者相结合呢：</p>
+<ul>
+<li>我生成一个密钥，通过RSA方式安全的传送给你</li>
+<li>你收到密钥后，我们后续就用这个密钥来对称加密通信</li>
+</ul>
+<p>如此，即解决了密钥的传输问题，有解决了RSA速度慢的问题</p>
+<h3 id="中间人劫持"><a href="#中间人劫持" class="headerlink" title="中间人劫持"></a>中间人劫持</h3><p>如果cheney给yxfan发公钥的时候，被一个中间人截取了cheney的公钥，然后把自己的公钥发给了yxfan，冒充cheney。导致yxfan发的消息都用了中间人的公钥加密，中间人马上就能通过自己的私钥解密，这不就看到消息了吗？</p>
+<p>这个中间人解密后，还可以用cheney的公钥加密，发给cheney，cheney和yxfan根本意识不到通信已被窥探，还以为在安全传输呢。</p>
+<img style="display: block ;margin: 0 auto;height: 25rem" src="/images/https加密/中间人劫持.png" srcset="/img/loading.gif"/>
+
+<p>问题是出在公钥的分发上，虽然公钥是公开的，但是别有用心的人还是可以截取干坏事。</p>
+<h3 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h3><p>回到最初的问题上：怎么安全保护密钥？这一次的公钥是公开的，必须保证这个公钥一定得是cheney的，而不是别人的。</p>
+<p>我们现实生活中有公证中心，我们也可以模拟一个具有公信力的认证中心，给cheney颁发一个证书，里面就包括了公钥，如此一来我们直接获取证书就可以了。</p>
+<p>有了以上的经验，万一在证书传输过程中，被中间人篡改了怎么办？（这些坏人总是无孔不入！）</p>
+<p>数字签名闪亮✨登场</p>
+<p>cheney把自己的公钥和个人信息，通过一种Hash算法生成一个消息摘要。这种Hash有种特性，只要输入数据有一点变化，生成的消息摘要就有巨变，这样可以防止别人篡改原有内容。</p>
+<p>尽管不能篡改了，中间人索性把整个原始信息都给替换了，我们仍然分辨不出来啊。</p>
+<p>可恶的中间人，真是坏透了。方法总比困难多，cheney让有公信力的认证中心（CA）把自己生成的消息摘要通过CA私钥加密生成数字签名。</p>
+<p>除此之外，认证中心还能够把原始信息和数字签名合在一起形成数字证书。流程如下图：</p>
+<img style="display: block ;margin: 0 auto;height: 20rem" src="/images/https加密/数字证书.png" srcset="/img/loading.gif"/>
+
+<p>当cheney把自己的证书发给yxfan时，yxfan用同样的Hash算法把证书中的原始信息生成一个消息摘要，紧接着用CA的公钥对证书中的签名进行解密，用新的消息摘要和解密后的消息摘要两者对比，如果一样，则没有被篡改，就可以顺利拿到cheney的公钥了，如此一来公钥的分发就解决啦！后续的加密工作就可以开始了。</p>
+<img style="display: block ;margin: 0 auto;height: 10rem" src="/images/https加密/验证数字证书.png" srcset="/img/loading.gif"/>
+
+
+
+<h3 id="https流程图"><a href="#https流程图" class="headerlink" title="https流程图"></a>https流程图</h3><p>一个简化版的HTTPS流程图如下图所示：</p>
+<img style="display: block ;margin: 0 auto;height: 30rem" src="/images/https加密/https流程图.png" srcset="/img/loading.gif"/>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/https/">https</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/10/24/Notice/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">公告</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/09/17/useEffect-useLayoutEffect%E7%9A%84%E5%8C%BA%E5%88%AB/">
+                        <span class="hidden-mobile">useEffect & useLayoutEffect的区别</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

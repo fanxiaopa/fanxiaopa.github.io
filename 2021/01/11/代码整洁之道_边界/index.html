@@ -1,0 +1,593 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;light&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/me/title.jpg">
+  <link rel="icon" type="image/png" href="/img/me/title.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="你要悄悄学web，然后惊艳所有人">
+  <meta name="author" content="yxfan">
+  <meta name="keywords" content="">
+  <title>读《代码整洁之道-边界》 - yxfan</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3","placement":"right","visible":"always","Option":"§ |","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":20},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"AGrJP3tUCktoWpoiRigqj3zy-gzGzoHsz","app_key":"r0u61FlVNs3yvXwGYocWG3qm","server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>yxfan</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/background/lu_bule.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="读《代码整洁之道-边界》">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-01-11 20:16" pubdate>
+        2021年1月11日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      17
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">读《代码整洁之道-边界》</h1>
+            
+            <div class="markdown-body">
+              <p>最近公司的leader们在组织我们新员工读《代码整洁之道》这本书，希望几年后公司的整体代码质量上升一个新台阶。每人领取一章并分享，而我领的章节是《边界》</p>
+<h3>使用第三方代码</h3>
+
+<p>在开发中，我们经常要使用第三方API提供的能力，第三方要求广度（普适性），而我们往往只用来满足一些特定的需求（集中性）。</p>
+<p>以ECMAScript 6 中的 MAp 为例。Map有着以下广阔的API和丰富的功能。</p>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-built_in">Map</span>.prototype.set(key, value);
+<span class="hljs-built_in">Map</span>.prototype.get(key);
+<span class="hljs-built_in">Map</span>.prototype.delete(key);
+<span class="hljs-built_in">Map</span>.prototype.clear();
+...</code></pre></div>
+<p>简单场景：生成一个Map对象，设置一个键值对，并获取它</p>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 代码一</span>
+<span class="hljs-keyword">const</span> p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+p.set(<span class="hljs-string">&#x27;name&#x27;</span>, <span class="hljs-string">&#x27;yxfan&#x27;</span>);
+p.get(<span class="hljs-string">&#x27;name&#x27;</span>);
+
+<span class="hljs-comment">// 代码二</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span>&#123;
+        <span class="hljs-built_in">this</span>.person = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+    &#125;
+    <span class="hljs-function"><span class="hljs-title">set</span>(<span class="hljs-params"></span>)</span> &#123;
+        <span class="hljs-built_in">this</span>.person.set(<span class="hljs-string">&#x27;name&#x27;</span>, <span class="hljs-string">&#x27;yxfan&#x27;</span>);
+    &#125;
+    <span class="hljs-function"><span class="hljs-title">get</span>(<span class="hljs-params"></span>)</span> &#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.person.get(<span class="hljs-string">&#x27;name&#x27;</span>);
+    &#125;
+&#125;
+<span class="hljs-keyword">const</span> p = <span class="hljs-keyword">new</span> Person();
+p.set();
+p.get(<span class="hljs-string">&#x27;name&#x27;</span>);</code></pre></div>
+<p>思考：代码一和代码二的区别？代码二有什么好处？<br>代码一的Map提供了太多的可操作空间<br>代码二将丰富的接口隐藏了，只保留了满足特定需求的接口，从而避免了误用<br>就正如书中所说：如果你要使用类似Map这样的边界接口，就把它保留在类或近亲类中。避免从公共API中返回边界接口，或将边界接口作为参数传递给公共API。</p>
+<h3>浏览和学习边界</h3>
+
+<p>在开发过程中，我们往往都要使用到第三方库。我们没有测试第三方代码的职责，但也要使用第三方代码编写小测试，以此来更好的理解第三方代码，比如写一个echart栗子</p>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> myChart = echarts.init(<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;echart-container&#x27;</span>));
+<span class="hljs-keyword">const</span> option = &#123;
+    <span class="hljs-attr">title</span>: &#123;
+        <span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;ECharts 入门示例&#x27;</span>
+    &#125;,
+    <span class="hljs-attr">tooltip</span>: &#123;&#125;,
+    <span class="hljs-attr">legend</span>: &#123;
+        <span class="hljs-attr">data</span>: [<span class="hljs-string">&#x27;销量&#x27;</span>]
+    &#125;,
+    <span class="hljs-attr">xAxis</span>: &#123;
+        <span class="hljs-attr">data</span>: [<span class="hljs-string">&quot;衬衫&quot;</span>, <span class="hljs-string">&quot;羊毛衫&quot;</span>, <span class="hljs-string">&quot;雪纺衫&quot;</span>, <span class="hljs-string">&quot;裤子&quot;</span>, <span class="hljs-string">&quot;高跟鞋&quot;</span>, <span class="hljs-string">&quot;袜子&quot;</span>]
+    &#125;,
+    <span class="hljs-attr">yAxis</span>: &#123;&#125;,
+    <span class="hljs-attr">series</span>: [&#123;
+        <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;销量&#x27;</span>,
+        <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;bar&#x27;</span>,
+        <span class="hljs-attr">data</span>: [<span class="hljs-number">5</span>, <span class="hljs-number">20</span>, <span class="hljs-number">36</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">20</span>]
+    &#125;]
+&#125;
+myChart.setOption(option);</code></pre></div>
+<p>写完这个测试我们就知道怎么去使用echarts了，包括怎么样去初始化和配置它，然后我们就可以按照所学到的知识把echarts封装成一个我们自己的类，这样的它的边界就变成我们想要的样子。</p>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Echart</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">container</span>)</span> &#123;
+        <span class="hljs-built_in">this</span>.myChart = echarts.init(container);
+    &#125;
+    <span class="hljs-function"><span class="hljs-title">setOption</span>(<span class="hljs-params">option</span>)</span> &#123;
+        <span class="hljs-built_in">this</span>.myChart.setOption(option);
+    &#125;
+    <span class="hljs-function"><span class="hljs-title">clear</span>(<span class="hljs-params"></span>)</span> &#123;
+        <span class="hljs-built_in">this</span>.myChart.clear();
+    &#125;
+
+&#125;
+<span class="hljs-keyword">const</span> myChart = <span class="hljs-keyword">new</span> Echart(<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;echart-container&#x27;</span>));
+myChart.setOption(option);</code></pre></div>
+<h3>设配器模式</h3>
+
+<p>适配器模式定义：将一个类的接口转换成客户希望的另外一个接口，使得原本由于接口不兼容而不能一起工作的那些类能一起工作。<br>在开发中有许多这样的场景：当试图调用模块或者对象的某个接口时，却发现这个接口的格式并不符合目前的需求。这时候有两种解决办法，第一种是修改原来的接口实现，但如果原来的模块很复杂，或者拿到的模块是一段别人编写的经过压缩的代码，修改原接口就显得不太现实了。第二种办法是创建一个适配器，将原接口转换为我们希望的另一个接口，我们只需要和适配器打交道。</p>
+<p>例子1：</p>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 老接口</span>
+<span class="hljs-keyword">const</span> oldStudent = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+    <span class="hljs-keyword">return</span> [
+        &#123;
+            <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Tom&#x27;</span>,
+            <span class="hljs-attr">age</span>: <span class="hljs-number">22</span>
+        &#125;,
+        &#123;
+            <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;yxfan&#x27;</span>,
+            <span class="hljs-attr">age</span>: <span class="hljs-number">18</span>
+        &#125;
+    ]
+&#125;)()
+<span class="hljs-comment">// 期望的新接口是以下形式</span>
+&#123;
+    <span class="hljs-attr">Tom</span>: <span class="hljs-number">22</span>,
+    <span class="hljs-attr">yxfan</span>: <span class="hljs-number">18</span>
+&#125;
+<span class="hljs-comment">// 采用适配器思想</span>
+<span class="hljs-keyword">const</span> adapter = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">oldStudent</span>) </span>&#123;
+    <span class="hljs-keyword">const</span> obj = &#123;&#125;;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> student <span class="hljs-keyword">of</span> oldStudent) &#123;
+        obj[student.name] = student.age;
+    &#125;
+&#125;
+<span class="hljs-built_in">console</span>.log(adapter(oldStudent));</code></pre></div>
+<p>例子2：我们要用到Phone这个工具类，但是目前Phone工具类并不符合我们现在的需求，因此我们要创建一个适配器（PhoneAdapter），在原有功能的基础上，添加新功能</p>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Phone</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">name</span>)</span> &#123;
+        <span class="hljs-built_in">this</span>.phoneName = name;
+    &#125;
+    <span class="hljs-function"><span class="hljs-title">photo</span>(<span class="hljs-params"></span>)</span> &#123;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.phoneName&#125;</span>有拍照功能`</span>);
+    &#125;
+    <span class="hljs-function"><span class="hljs-title">call</span>(<span class="hljs-params"></span>)</span> &#123;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.phoneName&#125;</span>有打电话功能`</span>);
+    &#125;
+&#125;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PhoneAdapter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Phone</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">name</span>)</span> &#123;
+        <span class="hljs-built_in">super</span>(name);
+    &#125;
+    <span class="hljs-function"><span class="hljs-title">batteryCharger</span>(<span class="hljs-params"></span>)</span> &#123;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.phoneName&#125;</span>有充电器`</span>);
+    &#125;
+&#125;
+<span class="hljs-keyword">const</span> phone = <span class="hljs-keyword">new</span> PhoneAdapter(<span class="hljs-string">&#x27;iphone12&#x27;</span>);
+phone.photo(); <span class="hljs-comment">// iphone12有拍照功能</span>
+phone.call(); <span class="hljs-comment">//  iphone12有打电话功能</span>
+phone.batteryCharger(); <span class="hljs-comment">// iphone12有充电器</span></code></pre></div>
+<p>优点：<br>1、可以让任何两个没有关联的类一起运行<br>2、提高类的复用性<br>3、灵活性好</p>
+<p>缺点：过多地使用适配器，会让系统非常零乱，不易整体进行把握。<br>适配器模式本质上是一个亡羊补牢的模式，它解决的是现存的两个接口之间不兼容的问题，我们不应该在软件的初期开发阶段就使用该模式；如果在设计之初我们就能够统筹的规划好接口的一致性，那么适配器就应该尽量减少使用。</p>
+<h3>总结</h3>
+1、学习性测试毫无成本，我们不要在生产代码中试验新东西，而是编写测试来遍历和理解第三方代码，帮助我们对API的理解
+
+<p>2、要想边界整洁，不能过多的依靠第三方代码，我们可以通过代码中少数几处引用第三方边界接口的位置来管理第三方边界，免得日后受第三方代码控制<br>3、处理边界问题时，我们可以用新类包装第三方api，用Adapter模式将第三方提供的接口转化为我们自己的接口；</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E4%B9%A6%E7%B1%8D/">书籍</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/01/16/%E8%A7%86%E5%8F%A3%E7%9B%B8%E5%85%B3%E7%9A%84%E5%AE%BD%E9%AB%98%E5%BA%A6/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">视口相关的宽高度</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/12/16/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
+                        <span class="hidden-mobile">React不常用的生命周期</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

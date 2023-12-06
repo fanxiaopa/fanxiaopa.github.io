@@ -1,0 +1,578 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;light&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/me/title.jpg">
+  <link rel="icon" type="image/png" href="/img/me/title.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="你要悄悄学web，然后惊艳所有人">
+  <meta name="author" content="yxfan">
+  <meta name="keywords" content="">
+  <title>装饰器模式 - yxfan</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3","placement":"right","visible":"always","Option":"§ |","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":20},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"AGrJP3tUCktoWpoiRigqj3zy-gzGzoHsz","app_key":"r0u61FlVNs3yvXwGYocWG3qm","server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>yxfan</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/background/lu_bule.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="装饰器模式">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-07-22 16:00" pubdate>
+        2021年7月22日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      14
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">装饰器模式</h1>
+            
+            <div class="markdown-body">
+              <h2 id="装饰器模式"><a href="#装饰器模式" class="headerlink" title="装饰器模式"></a>装饰器模式</h2><h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>当对象不能满足现有的功能时，和类一样遵守“开放封闭”原则。只能扩展，不能修改。</p>
+<p>此时可以用装饰器模式，能够给对象添加额外的功能。对象加上它，就像开了挂！</p>
+<p>在使用react+dva时，经常会这么写</p>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+<span class="hljs-keyword">import</span> &#123; connect &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-redux&quot;</span>;
+@connect(<span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> (&#123;
+		<span class="hljs-attr">data</span>: state[namespace].data
+&#125;))
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Demo</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">component</span> </span>&#123;...&#125;</code></pre></div>
+
+<p>第一次见到这种写法时，内心直呼：这是什么牛马！静下心来仔细一想，嗨！这不就是装饰器嘛。</p>
+<h3 id="装饰类"><a href="#装饰类" class="headerlink" title="装饰类"></a>装饰类</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addStatic</span>(<span class="hljs-params">key, value</span>) </span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">target</span>) </span>&#123;
+        target[key] = value;
+    &#125;    
+&#125;
+@addStatic(<span class="hljs-string">&#x27;chip&#x27;</span>, <span class="hljs-string">&#x27;m1&#x27;</span>)
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Mac</span> </span>&#123;&#125;
+<span class="hljs-built_in">console</span>.log(Mac.chip); <span class="hljs-comment">// m1</span></code></pre></div>
+
+<p>可以看到addStatic方法有两个参数，目的是给类设置一个静态属性。Mac类本身可没有这个功能喔，完全是装饰器赋予它的。</p>
+<p><code>addStatic</code>里面又return了一个function，这个function的形参target就是我们的Mac类。巧妙的用了必包的方式将参数传递给了目标类。</p>
+<blockquote>
+<p>装饰器对类的行为的改变，是代码编译时发生的，而不是在运行时。这意味着装饰器能够在编译阶段运行代码。可以这么说，装饰器本身就是编译时执行的函数。</p>
+</blockquote>
+<h3 id="装饰方法"><a href="#装饰方法" class="headerlink" title="装饰方法"></a>装饰方法</h3><p>在公司的脚手架中经常看到有这样一种写法</p>
+<div class="code-wrapper"><pre><code class="hljs javascript">@controller(<span class="hljs-string">&quot;/api&quot;</span>)
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IssueTask</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">sword</span>.<span class="hljs-title">Controller</span> </span>&#123;
+    @get(<span class="hljs-string">&quot;/param&quot;</span>)
+    <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-title">getParam</span>(<span class="hljs-params"></span>)</span> &#123;
+        ...异步请求
+    &#125;
+&#125;</code></pre></div>
+
+<p>这不就是即装饰了类，又装饰了方法嘛（内心os：差点晕过去，这是什么神仙写法！）</p>
+<p>装饰类我们只需关注第一个参数<code>target</code>，而装饰方法有三个参数（前两个参数没有什么luan用）</p>
+<p>在之前的例子上改造一下，添加一个name方法，由于log内容太多，这里做个记号，下面单独列出。</p>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getType</span>(<span class="hljs-params">type</span>) </span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">target, name, descriptor</span>) </span>&#123;
+        <span class="hljs-built_in">console</span>.log(target, name, descriptor); <span class="hljs-comment">// ①</span>
+        <span class="hljs-keyword">const</span> oldValue = descriptor.value; <span class="hljs-comment">// 将之前的方法保存下来，方便下面调用</span>
+        descriptor.value = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123; <span class="hljs-comment">// 目标方法重写了</span>
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`我是<span class="hljs-subst">$&#123;type&#125;</span>芯片`</span>, <span class="hljs-built_in">arguments</span>); <span class="hljs-comment">// ②</span>
+            <span class="hljs-keyword">return</span> oldValue.apply(<span class="hljs-built_in">this</span>, <span class="hljs-built_in">arguments</span>); <span class="hljs-comment">// 最后一定要调用之前保存的方法</span>
+        &#125;
+    &#125;
+&#125;
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Mac</span> </span>&#123;
+    price = <span class="hljs-string">&#x27;100&#x27;</span>
+    @getType(<span class="hljs-string">&#x27;m1&#x27;</span>)
+    <span class="hljs-function"><span class="hljs-title">name</span>(<span class="hljs-params">unit</span>)</span> &#123;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;价格是：&#x27;</span>, <span class="hljs-built_in">this</span>.price + unit); <span class="hljs-comment">// ③</span>
+    &#125;
+&#125;
+<span class="hljs-keyword">const</span> m = <span class="hljs-keyword">new</span> Mac();
+m.name(<span class="hljs-string">&#x27;$&#x27;</span>);</code></pre></div>
+
+<p>①处打印了三个形参，<code>target</code>还是类本身，<code>name</code>是装饰的方法名，<code>descriptor</code>是装饰方法的访问器属性</p>
+<div class="code-wrapper"><pre><code class="hljs javascript">Mac&#123;&#125; <span class="hljs-string">&#x27;name&#x27;</span>  
+&#123; 
+  <span class="hljs-attr">value</span>: [<span class="hljs-built_in">Function</span>: name],
+  <span class="hljs-attr">writable</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">enumerable</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-attr">configurable</span>: <span class="hljs-literal">true</span> 
+&#125;</code></pre></div>
+
+<p>②处打印了参数列表，这里可以做一些额外的功能。arguments是④处调用时的实参</p>
+<div class="code-wrapper"><pre><code class="hljs java">我是m1芯片  [Arguments] &#123; <span class="hljs-string">&#x27;0&#x27;</span>: <span class="hljs-string">&#x27;$&#x27;</span> &#125;</code></pre></div>
+
+<p>③处是正常的打印</p>
+<div class="code-wrapper"><pre><code class="hljs javascript">价格是： <span class="hljs-number">100</span>$</code></pre></div>
+
+<p><code>注意</code>：装饰方法时，一定要把<code>descriptor.value</code>做一次保存，这么做的目的是为了装饰的目标方法不被丢失，因为我们重写了方法，这个方法里面可以做一些额为的事，并且在最后要调用那个之前被保存的目标方法，并<code>return</code>掉！</p>
+<p>如果同一个类或者方法有多个装饰器，会像剥洋葱一样，先从外到内进入，然后由内向外执行。</p>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dec</span>(<span class="hljs-params">id</span>)</span>&#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;evaluated&#x27;</span>, id);
+  <span class="hljs-keyword">return</span> <span class="hljs-function">(<span class="hljs-params">target, property, descriptor</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;executed&#x27;</span>, id);
+&#125;
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Example</span> </span>&#123;
+    @dec(<span class="hljs-number">1</span>)
+    @dec(<span class="hljs-number">2</span>)
+    <span class="hljs-function"><span class="hljs-title">method</span>(<span class="hljs-params"></span>)</span>&#123;&#125;
+&#125;
+<span class="hljs-comment">// evaluated 1</span>
+<span class="hljs-comment">// evaluated 2</span>
+<span class="hljs-comment">// executed 2</span>
+<span class="hljs-comment">// executed 1</span></code></pre></div>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>装饰器就是给类或方法添加额外功能的！</p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>装饰器模式还处于提案过程，没办法在浏览器或node中直接使用，需要用<code>babel</code>转译一次</p>
+<p>安装以下依赖（开发环境即可）</p>
+<div class="code-wrapper"><pre><code class="hljs javascript">@babel/cli
+@babel/core
+@babel/preset-env
+@babel/plugin-proposal-decorators</code></pre></div>
+
+<p>新建<code>.babelrc</code>文件，添加以下内容</p>
+<div class="code-wrapper"><pre><code class="hljs javascript">&#123;
+    <span class="hljs-string">&quot;assumptions&quot;</span>: &#123;
+      <span class="hljs-string">&quot;setPublicClassFields&quot;</span>: <span class="hljs-literal">true</span>
+    &#125;,
+    <span class="hljs-string">&quot;plugins&quot;</span>: [
+      [<span class="hljs-string">&quot;@babel/plugin-proposal-decorators&quot;</span>, &#123; <span class="hljs-string">&quot;legacy&quot;</span>: <span class="hljs-literal">true</span> &#125;],
+      [<span class="hljs-string">&quot;@babel/plugin-proposal-class-properties&quot;</span>]
+    ]
+&#125;</code></pre></div>
+
+<p>修改<code>package.json</code>文件</p>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-string">&quot;scripts&quot;</span>: &#123;
+     <span class="hljs-string">&quot;test&quot;</span>: <span class="hljs-string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span>,
+ +   <span class="hljs-string">&quot;build&quot;</span>: <span class="hljs-string">&quot;babel index.js -d dist&quot;</span>
+ &#125;,</code></pre></div>
+
+<p>完成后直接<code>npm run build</code>命令即可</p>
+<p>babel会将index.js文件转译一次，输出到<code>dist</code>文件夹下，直接<code>node</code>dist下的文件就好了</p>
+<p>以上配置只能用与学习，不能用与实际开发中！</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/js%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">js设计模式</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/07/30/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">观察者模式</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/07/20/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/">
+                        <span class="hidden-mobile">原型模式</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

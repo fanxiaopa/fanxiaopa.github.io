@@ -1,0 +1,585 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;light&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/me/title.jpg">
+  <link rel="icon" type="image/png" href="/img/me/title.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="你要悄悄学web，然后惊艳所有人">
+  <meta name="author" content="yxfan">
+  <meta name="keywords" content="">
+  <title>观察者模式 - yxfan</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3","placement":"right","visible":"always","Option":"§ |","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":20},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"AGrJP3tUCktoWpoiRigqj3zy-gzGzoHsz","app_key":"r0u61FlVNs3yvXwGYocWG3qm","server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>yxfan</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/background/lu_bule.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="观察者模式">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-07-30 17:10" pubdate>
+        2021年7月30日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      13
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">观察者模式</h1>
+            
+            <div class="markdown-body">
+              <p>说起<code>观察者模式</code>，离不开<code>发布者</code>和<code>订阅者</code> 。</p>
+<p>举个生活中的例子：刷微博</p>
+<p>我们会在微博中关注一些博主，当这些博主要更新内容时，会将内容发布到平台上，平台再将内容推送给我们。</p>
+<p>我们就是<code>订阅者</code>，<code>博主</code>则是发布者。</p>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>组件通信、消息监听、</p>
+<h3 id="代码中的实现"><a href="#代码中的实现" class="headerlink" title="代码中的实现"></a>代码中的实现</h3><p>简易版的<span id="anchor">观察者模式</span></p>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 发布者类</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Publisher</span> </span>&#123;
+  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">name</span>)</span> &#123;
+    <span class="hljs-built_in">this</span>.name = name;
+    <span class="hljs-built_in">this</span>.observers = []
+   &#125;
+
+  <span class="hljs-comment">// 增加订阅者</span>
+  <span class="hljs-function"><span class="hljs-title">add</span>(<span class="hljs-params">observer</span>)</span> &#123;
+    <span class="hljs-built_in">this</span>.observers.push(observer);
+  &#125;
+  <span class="hljs-comment">// 取消订阅</span>
+  <span class="hljs-function"><span class="hljs-title">remove</span>(<span class="hljs-params">observer</span>)</span> &#123;
+    <span class="hljs-keyword">const</span> index = <span class="hljs-built_in">this</span>.observers.findIndex(<span class="hljs-function"><span class="hljs-params">o</span> =&gt;</span> o === observer);
+    <span class="hljs-built_in">this</span>.observers.splice(index, <span class="hljs-number">1</span>);
+  &#125;
+  <span class="hljs-comment">// 发布消息</span>
+  <span class="hljs-function"><span class="hljs-title">notify</span>(<span class="hljs-params"></span>)</span> &#123;
+    <span class="hljs-built_in">this</span>.observers.forEach(<span class="hljs-function"><span class="hljs-params">observer</span> =&gt;</span> &#123;
+      observer.do(<span class="hljs-built_in">this</span>.name);
+    &#125;);
+  &#125;
+&#125;
+<span class="hljs-comment">// 订阅者类</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Observe</span> </span>&#123;
+  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">name</span>)</span> &#123;
+    <span class="hljs-built_in">this</span>.name = name;
+  &#125;
+  <span class="hljs-function"><span class="hljs-title">do</span>(<span class="hljs-params">name</span>)</span> &#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.name&#125;</span>又看到<span class="hljs-subst">$&#123;name&#125;</span>的新瓜啦！`</span>)
+  &#125;
+&#125;
+<span class="hljs-keyword">const</span> yxfan = <span class="hljs-keyword">new</span> Observe(<span class="hljs-string">&#x27;yxfan&#x27;</span>);
+<span class="hljs-keyword">const</span> xiaopa = <span class="hljs-keyword">new</span> Observe(<span class="hljs-string">&#x27;xiaopa&#x27;</span>);
+<span class="hljs-keyword">const</span> krisWu = <span class="hljs-keyword">new</span> Publisher(<span class="hljs-string">&#x27;吴亦凡&#x27;</span>);
+krisWu.add(yxfan);
+krisWu.add(xiaopa);
+krisWu.notify();</code></pre></div>
+
+<p><code>yxfan</code>和<code>xiaopa</code>订阅了<code>krisWu</code>的动态，所以当<code>krisWu</code>发布新瓜时，两位订阅者就能接受到。</p>
+<p>所以打印：<code>yxfan又看到吴亦凡的新瓜啦！`` xiaopa又看到吴亦凡的新瓜啦！</code></p>
+<p>原谅我不厚道的笑了。。。</p>
+<h3 id="实现Event-Emitter"><a href="#实现Event-Emitter" class="headerlink" title="实现Event Emitter"></a>实现Event Emitter</h3><p><code>Emitter</code>在开发中经常用（典型的事件发布者-订阅者模式），不管是<code>Vue</code>合适<code>React</code>，涉及到组件通信时，用<code>Emitter</code>将会方便许多（父子组件通信大可不必）。</p>
+<p>下面实现一个简易版的<code>Emitter</code></p>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Emitter</span> </span>&#123;
+  <span class="hljs-comment">// 事件对象</span>
+  handlers = &#123;&#125;
+  <span class="hljs-comment">// 添加事件</span>
+  <span class="hljs-function"><span class="hljs-title">on</span>(<span class="hljs-params">eventName, cb</span>)</span> &#123;
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.handlers[eventName]) &#123;
+      <span class="hljs-built_in">this</span>.handlers[eventName].push(cb);
+    &#125; <span class="hljs-keyword">else</span> &#123;
+      <span class="hljs-built_in">this</span>.handlers[eventName] = [cb];
+    &#125;
+  &#125;
+  <span class="hljs-comment">// 触发事件</span>
+  <span class="hljs-function"><span class="hljs-title">emit</span>(<span class="hljs-params">eventName, ...params</span>)</span> &#123;
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.handlers[eventName]) &#123;
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.handlers[eventName].forEach(<span class="hljs-function"><span class="hljs-params">cb</span> =&gt;</span> &#123;
+        cb(...params);
+      &#125;);
+    &#125;
+    <span class="hljs-keyword">throw</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;eventName&#125;</span>事件不存在`</span>
+  &#125;
+  <span class="hljs-comment">// 删除事件</span>
+  <span class="hljs-function"><span class="hljs-title">remove</span>(<span class="hljs-params">eventName</span>)</span> &#123;
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.handlers[eventName]) &#123;
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">delete</span> <span class="hljs-built_in">this</span>.handlers[eventName];
+    &#125;
+    <span class="hljs-keyword">throw</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;eventName&#125;</span>事件不存在`</span>
+  &#125;
+  <span class="hljs-comment">// 单次监听器，用完即删除</span>
+  <span class="hljs-function"><span class="hljs-title">once</span>(<span class="hljs-params">eventName, cb</span>)</span> &#123;
+    <span class="hljs-built_in">this</span>.on(eventName, <span class="hljs-function">(<span class="hljs-params">...args</span>) =&gt;</span> &#123;
+      cb(...args);
+      <span class="hljs-built_in">this</span>.remove(eventName);
+    &#125;);
+  &#125;
+&#125;
+<span class="hljs-keyword">const</span> emitter = <span class="hljs-keyword">new</span> Emitter();
+<span class="hljs-built_in">window</span>.emitter = emitter;
+<span class="hljs-built_in">window</span>.emitter.on(<span class="hljs-string">&#x27;emit-test&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`中国又夺冠🏆啦`</span>)
+&#125;);
+<span class="hljs-built_in">window</span>.emitter.on(<span class="hljs-string">&#x27;emit-test&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">num</span>) =&gt;</span> &#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`现在金牌<span class="hljs-subst">$&#123;num&#125;</span>枚`</span>)
+&#125;);
+<span class="hljs-keyword">try</span> &#123;
+  <span class="hljs-built_in">window</span>.emitter.emit(<span class="hljs-string">&#x27;emit-test&#x27;</span>, <span class="hljs-number">15</span>);
+  <span class="hljs-built_in">console</span>.log(emitter)
+  <span class="hljs-built_in">window</span>.emitter.remove(<span class="hljs-string">&#x27;emit-test&#x27;</span>);
+  <span class="hljs-built_in">window</span>.emitter.emit(<span class="hljs-string">&#x27;emit-test&#x27;</span>, <span class="hljs-number">15</span>);
+&#125; <span class="hljs-keyword">catch</span> (e) &#123;
+  <span class="hljs-built_in">console</span>.error(e)
+&#125;</code></pre></div>
+
+<p>打印结果：</p>
+<div class="code-wrapper"><pre><code class="hljs javascript">中国又夺冠🏆啦
+现在金牌<span class="hljs-number">15</span>枚
+Emitter &#123;
+  <span class="hljs-attr">handlers</span>: &#123;&#125;
+&#125;
+emit-test事件不存在</code></pre></div>
+
+<p>原理很简单，从始至终只需将<code>Emitter</code>实例化一次，并挂载在<code>window</code>上，使得任何地方都可以访问到。</p>
+<p>监听时只需要把<code>事件名</code>丢进缓存池<code>handles</code>中，做一个<code>eventName</code>和<code>cb</code>的映射，触发时找到缓存池中的<code>eventName</code>并运行该映射下的方法即可。</p>
+<h3 id="观察者模式与发布者-订阅者模式"><a href="#观察者模式与发布者-订阅者模式" class="headerlink" title="观察者模式与发布者-订阅者模式"></a>观察者模式与发布者-订阅者模式</h3><p>上述例子中分别实现了<code>观察者模式</code>和<code>发布者-订阅者模式</code>，好像两者并没有什么区别。</p>
+<blockquote>
+<p>上述模式都是为了实现模块间的解耦，但<code>观察者模式</code>又没有完全解耦。被观察者必须去维护一套观察者的集合，这些观察者必须实现统一的方法供被观察者调用，两者之间还是有着说不清、道不明的关系。</p>
+</blockquote>
+<p>我们用上述两个例子来分析这段话</p>
+<p><code>1、被观察者必须去维护一套观察者的集合</code></p>
+<p>krisWu.add(yxfan);  krisWu.add(xiaopa); 被观察者<code>krisWu</code>是知道它的观察者有哪些的，并调用<code>add()</code>把观察者<code>yxfan</code>和<code>xiaopa</code>添加进了自己的观察者集合<code>observers</code>中。</p>
+<p><code>2、观察者必须实现统一的方法供被观察者调用</code></p>
+<p>观察者<code>yxfan</code>和<code>xiaopa</code>中都有<code>do()</code> 在被观察者<code>krisWu</code>的<code>notify()</code>中调用。</p>
+<p>而发布者-订阅者就没有那么多戏了，<code>发布者</code>并不知道它的<code>订阅者</code>有哪些，事件的注册和触发都发生在第三方平台上（事件总线），实现了完全的解耦。</p>
+<p>区分这两者模式，就看有木有用到第三方平台。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/js%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">js设计模式</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/08/03/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">迭代器模式</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/07/22/%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F/">
+                        <span class="hidden-mobile">装饰器模式</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

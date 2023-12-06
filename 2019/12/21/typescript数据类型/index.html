@@ -1,0 +1,565 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;light&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/me/title.jpg">
+  <link rel="icon" type="image/png" href="/img/me/title.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="你要悄悄学web，然后惊艳所有人">
+  <meta name="author" content="yxfan">
+  <meta name="keywords" content="">
+  <title>typescript数据类型 - yxfan</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3","placement":"right","visible":"always","Option":"§ |","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":20},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"AGrJP3tUCktoWpoiRigqj3zy-gzGzoHsz","app_key":"r0u61FlVNs3yvXwGYocWG3qm","server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>yxfan</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/background/lu_bule.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="typescript数据类型">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2019-12-21 14:13" pubdate>
+        2019年12月21日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      803 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      11
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">typescript数据类型</h1>
+            
+            <div class="markdown-body">
+              <p>typescript中为了使编写的代码更规范，更有利于维护，增加了类型校验，在typescript中主要给我们提供了以下数据类型</p>
+<ul>
+<li>布尔类型（boolean）</li>
+<li>数字类型（number）</li>
+<li>字符串类型(string)</li>
+<li>数组类型（array）</li>
+<li>元组类型（tuple）</li>
+<li>枚举类型（enum）</li>
+<li>任意类型（any）</li>
+<li>null 和 undefined</li>
+<li>void类型</li>
+<li>never类型</li>
+</ul>
+<h3 id="布尔类型（boolean）"><a href="#布尔类型（boolean）" class="headerlink" title="布尔类型（boolean）"></a>布尔类型（boolean）</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> flag:boolean=<span class="hljs-literal">true</span>;
+<span class="hljs-comment">// flag=123;  //错误</span>
+flag=<span class="hljs-literal">false</span>;  <span class="hljs-comment">//正确</span>
+<span class="hljs-built_in">console</span>.log(flag);</code></pre></div>
+<h3 id="数字类型（number）"><a href="#数字类型（number）" class="headerlink" title="数字类型（number）"></a>数字类型（number）</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> num:number=<span class="hljs-number">123</span>;
+num=<span class="hljs-number">456</span>;
+<span class="hljs-built_in">console</span>.log(num);  <span class="hljs-comment">//正确</span>
+num=<span class="hljs-string">&#x27;str&#x27;</span>;    <span class="hljs-comment">//错误</span></code></pre></div>
+<h3 id="字符串类型-string"><a href="#字符串类型-string" class="headerlink" title="字符串类型(string)"></a>字符串类型(string)</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> str:string=<span class="hljs-string">&#x27;this is ts&#x27;</span>;
+str=<span class="hljs-string">&#x27;haha&#x27;</span>;  <span class="hljs-comment">//正确</span>
+str=<span class="hljs-literal">true</span>;  <span class="hljs-comment">//错误</span></code></pre></div>
+<h3 id="数组类型-array"><a href="#数组类型-array" class="headerlink" title="数组类型(array)"></a>数组类型(array)</h3><p>ts中定义数组有两种方式</p>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 1.第一种定义数组的方式</span>
+<span class="hljs-keyword">var</span> arr:number[]=[<span class="hljs-number">11</span>,<span class="hljs-number">22</span>,<span class="hljs-number">33</span>];
+<span class="hljs-built_in">console</span>.log(arr);
+
+<span class="hljs-comment">// 2.第二种定义数组的方式</span>
+<span class="hljs-keyword">var</span> arr:<span class="hljs-built_in">Array</span>&lt;number&gt;=[<span class="hljs-number">11</span>,<span class="hljs-number">22</span>,<span class="hljs-number">33</span>];
+<span class="hljs-built_in">console</span>.log(arr)</code></pre></div>
+<h3 id="元组类型-tuple-属于数组的一种"><a href="#元组类型-tuple-属于数组的一种" class="headerlink" title="元组类型(tuple)  属于数组的一种"></a>元组类型(tuple)  属于数组的一种</h3><p>元组类型允许表示一个已知元素数量和类型的数组，各元素的类型不必相同。 比如，你可以定义一对值分别为string和number类型的元组。</p>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> arr:<span class="hljs-built_in">Array</span>&lt;number&gt;=[<span class="hljs-number">11</span>,<span class="hljs-number">22</span>,<span class="hljs-number">33</span>];
+ <span class="hljs-built_in">console</span>.log(arr)
+<span class="hljs-comment">//元祖类型</span>
+<span class="hljs-keyword">let</span> arr:[number,string];
+arr = [<span class="hljs-number">123</span>,<span class="hljs-string">&#x27;this is ts&#x27;</span>]; <span class="hljs-comment">//正确</span>
+arr = [<span class="hljs-string">&#x27;this is ts&#x27;</span>,<span class="hljs-number">123</span>]; <span class="hljs-comment">//错误</span></code></pre></div>
+<p>当访问一个越界的元素，会使用联合类型替代：</p>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">//x[3] 不存在，不知道它的类型</span>
+x[<span class="hljs-number">3</span>] = <span class="hljs-string">&#x27;world&#x27;</span>; <span class="hljs-comment">// OK, 字符串可以赋值给(string | number)类型</span>
+<span class="hljs-built_in">console</span>.log(x[<span class="hljs-number">5</span>].toString()); <span class="hljs-comment">// OK, &#x27;string&#x27; 和 &#x27;number&#x27; 都有 toString</span>
+x[<span class="hljs-number">6</span>] = <span class="hljs-literal">true</span>; <span class="hljs-comment">// Error, 布尔不是(string | number)类型</span></code></pre></div>
+<h3 id="枚举类型-enum"><a href="#枚举类型-enum" class="headerlink" title="枚举类型(enum)"></a>枚举类型(enum)</h3><p>在程序中用自然语言中有相应含义的单词来代表某一状态，则程序就很容易阅读和理解。</p>
+<div class="code-wrapper"><pre><code class="hljs javascript">enum Flag &#123;success=<span class="hljs-number">1</span>,error=<span class="hljs-number">2</span>&#125;;
+<span class="hljs-keyword">let</span> s:Flag=Flag.success;
+<span class="hljs-built_in">console</span>.log(s);<span class="hljs-comment">//1</span>
+enum Flag &#123;success=<span class="hljs-number">1</span>,error=<span class="hljs-number">2</span>&#125;;
+<span class="hljs-keyword">let</span> f:Flag=Flag.error;
+<span class="hljs-built_in">console</span>.log(f);<span class="hljs-comment">//2</span></code></pre></div>
+<p>如果标识符没有赋值 它的值就是下标：</p>
+<div class="code-wrapper"><pre><code class="hljs javascript">enum Color &#123;blue,red,<span class="hljs-string">&#x27;orange&#x27;</span>&#125;;
+<span class="hljs-keyword">var</span> c:Color=Color.red;
+ <span class="hljs-built_in">console</span>.log(c);   <span class="hljs-comment">//1  </span>
+ <span class="hljs-regexp">/当有些有值时，有些没值时/</span>
+enum Color &#123;blue,red=<span class="hljs-number">3</span>,<span class="hljs-string">&#x27;orange&#x27;</span>&#125;;
+<span class="hljs-keyword">var</span> c:Color=Color.red;
+<span class="hljs-built_in">console</span>.log(c);   <span class="hljs-comment">//3</span>
+<span class="hljs-keyword">var</span> c:Color=Color.orange;
+<span class="hljs-built_in">console</span>.log(c);   <span class="hljs-comment">//4</span>
+<span class="hljs-keyword">var</span> d:string=Color[<span class="hljs-number">4</span>]
+<span class="hljs-built_in">console</span>.log(d)   <span class="hljs-comment">// orange</span>
+
+enum Err &#123;<span class="hljs-string">&#x27;undefined&#x27;</span>=-<span class="hljs-number">1</span>,<span class="hljs-string">&#x27;null&#x27;</span>=-<span class="hljs-number">2</span>,<span class="hljs-string">&#x27;success&#x27;</span>=<span class="hljs-number">1</span>&#125;;
+<span class="hljs-keyword">var</span> e:Err=Err.success;
+<span class="hljs-built_in">console</span>.log(e);<span class="hljs-comment">//1</span></code></pre></div>
+<h3 id="任意类型-any"><a href="#任意类型-any" class="headerlink" title="任意类型(any)"></a>任意类型(any)</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> num:any=<span class="hljs-number">123</span>;
+num=<span class="hljs-string">&#x27;str&#x27;</span>;
+num=<span class="hljs-literal">true</span>;
+<span class="hljs-built_in">console</span>.log(num)<span class="hljs-comment">//true</span></code></pre></div>
+<h3 id="null-和-undefined"><a href="#null-和-undefined" class="headerlink" title="null 和 undefined"></a>null 和 undefined</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> num:number;  <span class="hljs-comment">//必须要赋一个值</span>
+<span class="hljs-built_in">console</span>.log(num)  <span class="hljs-comment">//输出：undefined   报错</span>
+
+<span class="hljs-keyword">var</span> num:<span class="hljs-literal">undefined</span>;
+<span class="hljs-built_in">console</span>.log(num)  <span class="hljs-comment">//输出：undefined  //正确</span></code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> num:number | <span class="hljs-literal">undefined</span>;
+num=<span class="hljs-number">123</span>;
+<span class="hljs-built_in">console</span>.log(num);<span class="hljs-comment">//123</span>
+ 
+ <span class="hljs-comment">//定义没有赋值就是undefined</span>
+<span class="hljs-keyword">var</span> num:number | <span class="hljs-literal">undefined</span>;
+<span class="hljs-built_in">console</span>.log(num); <span class="hljs-comment">//undefined</span></code></pre></div>
+<p>一个元素可能是 number类型 可能是null 可能是undefined</p>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> num:number | <span class="hljs-literal">null</span> | <span class="hljs-literal">undefined</span>;
+num=<span class="hljs-number">1234</span>;
+<span class="hljs-built_in">console</span>.log(num) <span class="hljs-comment">//1234</span></code></pre></div>
+<h3 id="void"><a href="#void" class="headerlink" title="void"></a>void</h3><p>typescript中的void表示没有任何类型，一般用于定义方法的时候方法没有返回值。</p>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">//typescript中 </span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">run</span>(<span class="hljs-params"></span>):<span class="hljs-title">void</span></span>&#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;run&#x27;</span>)
+&#125;
+run();
+<span class="hljs-comment">//错误写法</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">run</span>(<span class="hljs-params"></span>):<span class="hljs-title">undefined</span></span>&#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;run&#x27;</span>)
+&#125;
+run();</code></pre></div>
+<h3 id="never类型"><a href="#never类型" class="headerlink" title="never类型"></a>never类型</h3><p>是其他类型 （包括 null 和 undefined）的子类型，代表从不会出现的值。<br>这意味着声明never的变量只能被never类型所赋值。</p>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> a:never;
+<span class="hljs-comment">//    a=123; //错误的写法</span>
+a=(<span class="hljs-function">()=&gt;</span>&#123;
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&#x27;错误&#x27;</span>);
+&#125;)()</code></pre></div>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/TypeScript/">TypeScript</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/12/24/TypeScript%E4%B8%AD%E7%9A%84%E6%B3%9B%E5%9E%8B/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">TypeScript中的泛型</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2019/12/17/%E5%88%9D%E8%AF%86commander-js/">
+                        <span class="hidden-mobile">初识commander.js</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
