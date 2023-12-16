@@ -178,27 +178,25 @@
   <div class="row mx-auto index-card">
     
     
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/10/24/Notice/" target="_self">
-          <img src="/images/notice.jpg" srcset="/img/loading.gif" alt="公告">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
+    <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-          <i class="index-pin iconfont icon-top" title="Pin on top"></i>
-        
-        <a href="/2021/10/24/Notice/">公告</a>
+        <a href="/2023/12/16/%E8%AF%BB%E3%80%8A%E8%AF%86%E4%BA%BA%E6%94%BB%E7%95%A5%E3%80%8B/">读《识人攻略》</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/10/24/Notice/">
+        <a href="/2023/12/16/%E8%AF%BB%E3%80%8A%E8%AF%86%E4%BA%BA%E6%94%BB%E7%95%A5%E3%80%8B/">
           
           
             
           
-          想要把写文章这件事持续的做下去，初心是技术，但不局限于技术，也有对生活、书籍甚至是电影的感悟。为了能专注于写文章，决定采用第三方平台，相比于知乎、掘金、CSDN，我更喜欢语雀的简洁。
+          结合自己的工作场景，以下是读书笔记
+推拖者什么是公事公办公和私，就是从谁的利益出发来做决定。从公司利益出发来行事、做决定就是公办；反之从个人或小团体利益出发就是私心
+判断对方是不是推脱者可以直接求助
+
+报销流程被卡在财务那里了，被对方说资料不符合规范。可以直接求助：那您觉得应该补充哪些材料呢，能给我讲讲吗？如果回复不知道，那就是推脱者
+
+如何对付推脱者推脱的四个原因：害怕担责、无利不起早、显示存在
         </a>
       </p>
 
@@ -206,8 +204,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-24 16:09" pubdate>
-              2021-10-24
+            <time datetime="2023-12-16 20:27" pubdate>
+              2023-12-16
             </time>
           </div>
         
@@ -216,7 +214,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%85%AC%E5%91%8A/">公告</a>
+              <a href="/tags/%E4%B9%A6%E7%B1%8D/">书籍</a>
             
           </div>
         
@@ -477,6 +475,53 @@ SyncHook用法：const &#1
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/10/24/Notice/" target="_self">
+          <img src="/images/notice.jpg" srcset="/img/loading.gif" alt="公告">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/10/24/Notice/">公告</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/10/24/Notice/">
+          
+          
+            
+          
+          想要把写文章这件事持续的做下去，初心是技术，但不局限于技术，也有对生活、书籍甚至是电影的感悟。为了能专注于写文章，决定采用第三方平台，相比于知乎、掘金、CSDN，我更喜欢语雀的简洁。
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-10-24 16:09" pubdate>
+              2021-10-24
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%85%AC%E5%91%8A/">公告</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2021/10/03/https%E5%8A%A0%E5%AF%86/" target="_self">
           <img src="/images/https%E5%8A%A0%E5%AF%86/https%E6%B5%81%E7%A8%8B%E5%9B%BE.png" srcset="/img/loading.gif" alt="https">
         </a>
@@ -520,43 +565,6 @@ SyncHook用法：const &#1
               <a href="/tags/https/">https</a>
             
           </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/09/17/useEffect-useLayoutEffect%E7%9A%84%E5%8C%BA%E5%88%AB/">useEffect &amp; useLayoutEffect的区别</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/09/17/useEffect-useLayoutEffect%E7%9A%84%E5%8C%BA%E5%88%AB/">
-          
-          
-            
-          
-          先说结论：两者执行时机不同，useEffect在渲染之后异步执行；useLayoutEffect在渲染之前同步执行，如果执行复杂的操作，会阻塞页面渲染
-
- 1、useLayoutEffect和componentDidMount和componentDidUpdate触发时机一致（都在在DOM修改后且浏览器渲染之前），会阻塞浏览器渲染！
-2、useEffect执行时机是commit阶段后异步执行（可理
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-17 16:19" pubdate>
-              2021-09-17
-            </time>
-          </div>
-        
-        
         
       </div>
     </article>
